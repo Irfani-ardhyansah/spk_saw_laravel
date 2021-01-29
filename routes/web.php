@@ -69,6 +69,14 @@ Route::get('/admin/periode/peserta', function() {
     return view('admin.periode.peserta');
 });
 
+Route::get('/admin/periode/analisis', function() {
+    return view('admin.periode.analisis');
+});
+
+Route::get('/admin/periode/peserta/nilai', function() {
+    return view('admin.periode.nilai');
+});
+
 Route::get('/regist', function() {
     return view('register');
 });

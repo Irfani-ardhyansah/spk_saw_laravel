@@ -33,4 +33,12 @@
                             </td>
                         </tr>
                     </table>
-                </d
+                </div>
+            </div>
+            <div class="card-footer text-right">
+
+            </div>
+          </div>
+    </div>
+</section>
+@endsection

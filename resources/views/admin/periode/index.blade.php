@@ -39,8 +39,8 @@
                             <td>
                                 <a href="#" class="btn btn-sm btn-success">Edit</a>
                                 <a href="#" class="btn btn-sm btn-danger">Hapus</a>
-                                <a href="#" class="btn btn-sm btn-primary">Peserta</a>
-                                <a href="#" class="btn btn-outline-info btn-sm">Analisis</a>
+                                <a href="/admin/periode/peserta" class="btn btn-sm btn-primary">Peserta</a>
+                                <a href="/admin/periode/analisis" class="btn btn-outline-info btn-sm">Analisis</a>
                             </td>
                         </tr>
                     </table>

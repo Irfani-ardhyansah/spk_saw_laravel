@@ -24,9 +24,8 @@
                             <th>Sifat</th>
                             <th>Action</th>
                             <th>Nilai 
-                                <a href="#" class="btn btn-sm btn-light" style="text-align-right">Tambah Nilai</a>
+                                <a href="#" class="btn btn-sm btn-light float-right">Tambah</a>
                             </th>
-                            <th>#</th>
                         </tr>
                         <tr>
                             <td>1</td>
@@ -77,9 +76,6 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-light">Tambah Nilai</a>
-                            </td>
                         </tr>
                     </table>
                 </div>
@@ -108,4 +104,10 @@
         </div>
         
         <div class="modal-footer">
- 
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      
+      </div>
+    </div>
+</div>
+@endsection
