@@ -23,8 +23,8 @@
                 <h2>Sistem Pengambilan</h2>
                 <h3>Keputusan</h3>
                 <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, quidem!</p> -->
-                <a href="#">Login</a>
-                <a href="#">Register</a>
+                <a href="{{ url('/login')}}">Login</a>
+                <a href="{{ url('/register')}}">Register</a>
             </div>
         </div>
     </div>

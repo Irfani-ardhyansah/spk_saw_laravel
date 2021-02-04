@@ -13,7 +13,7 @@ class AddFieldStatusToUserPeriodsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function(Blueprint $table) {
+        Schema::table('user_periods', function(Blueprint $table) {
             $table->integer('status')->after('period_id');
         });
     }
@@ -25,6 +25,8 @@ class AddFieldStatusToUserPeriodsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('user_periods', function(Blueprint $table) {
+            $table->dropIndex('status');
+        });
     }
 }

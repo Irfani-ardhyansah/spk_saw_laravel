@@ -1,6 +1,12 @@
 @extends('layouts.user.app')
 
 @section('content')
+    {{-- @if (session('error')) --}}
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {!! session('error') !!}
+    </div>
+    {{-- @endif --}}
     <div class="section-header">
         <h1>Profile</h1>
         <div class="section-header-breadcrumb">
@@ -8,6 +14,7 @@
         <div class="breadcrumb-item"><a href="#">Edit Profile</a></div>
         </div>
     </div>
+
 
     <div class="section-body">
 
@@ -17,7 +24,9 @@
 
             <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                    <form method="post" class="needs-validation" novalidate="">
+                    <form method="post" action="{{ route('user.profile.update', ['id' => $mahasiswa->id]) }}" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <input type="hidden" value="PUT" name="_method" class="form-control">
                     <div class="card-header">
                         <h4>Edit Profile</h4>
                     </div>
@@ -25,14 +34,14 @@
                         <div class="row">
                             <div class="form-group col-md-7 col-12">
                                 <label>Nama</label>
-                                <input type="text" class="form-control" required="">
+                                <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" required name="name" value="{{ $mahasiswa->name }}">
                                 <div class="invalid-feedback">
                                     Please fill in the field
                                 </div>
                             </div>
                             <div class="form-group col-md-5 col-12">
                                 <label>NPM</label>
-                                <input type="text" class="form-control" required="">
+                                <input type="text" class="form-control {{ $errors->has('npm') ? 'is-invalid' : '' }}" required name="npm" value="{{ $mahasiswa->npm }}">
                                 <div class="invalid-feedback">
                                     Please fill in the field
                                 </div>
@@ -41,19 +50,19 @@
                         <div class="row">
                             <div class="form-group col-md-5 col-12">
                                 <label>Agama</label>
-                                <select class="form-control selectric">
+                                <select class="form-control selectric" name="religion">
                                     <option selected>-</option>
-                                    <option>Islam</option>
-                                    <option>Protestan</option>
-                                    <option>Katolik</option>
-                                    <option>Hindu</option>
-                                    <option>Buddha</option>
-                                    <option>Khonghucu</option>
+                                    <option {{ $mahasiswa->religion == "Islam" ? 'selected' : '' }}>Islam</option>
+                                    <option {{ $mahasiswa->religion == "Protestan" ? 'selected' : '' }}>Protestan</option>
+                                    <option {{ $mahasiswa->religion == "Katolik" ? 'selected' : '' }}>Katolik</option>
+                                    <option {{ $mahasiswa->religion == "Hindu" ? 'selected' : '' }}>Hindu</option>
+                                    <option {{ $mahasiswa->religion == "Buddha" ? 'selected' : '' }}>Buddha</option>
+                                    <option {{ $mahasiswa->religion == "Khonghucu" ? 'selected' : '' }}>Khonghucu</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-7 col-12">
                                 <label>Email</label>
-                                <input type="email" class="form-control" required="">
+                                <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" required name="email" value="{{ $mahasiswa->user->email }}">
                                 <div class="invalid-feedback">
                                     Please fill in the field
                                 </div>
@@ -62,15 +71,15 @@
                         <div class="row">
                             <div class="form-group col-md-4 col-12">
                                 <label>Gender</label>
-                                    <select class="form-control select2" required>
+                                    <select class="form-control select2" required name="gender">
                                         <option selected>-</option>
-                                        <option>Laki - laki</option>
-                                        <option>Perempuan</option>
+                                        <option {{ $mahasiswa->gender == "Laki - laki" ? 'selected' : '' }}>Laki - laki</option>
+                                        <option {{ $mahasiswa->gender == "Perempuan" ? 'selected' : '' }}>Perempuan</option>
                                     </select>
                                 </div>
                             <div class="form-group col-md-8 col-12">
                                 <label>No HP</label>
-                                <input type="number" class="form-control" required="">
+                                <input type="number" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" required name="phone" value="{{ $mahasiswa->phone }}">
                                 <div class="invalid-feedback">
                                     Please fill in the field
                                 </div>
@@ -79,35 +88,35 @@
                         <div class="row">
                             <div class="form-group col-md-6 col-12">
                                 <label>Prodi</label>
-                                    <select class="form-control select2" required>
+                                    <select class="form-control select2" required name="prodi">
                                         <option selected>-</option>
-                                        <option>Teknologi Informasi</option>
-                                        <option>Mesin Otomotif</option>
-                                        <option>Teknik Komputer Kontrol</option>
-                                        <option>Teknik Listrik</option>
-                                        <option>Teknik Kereta</option>
-                                        <option>Komputer Akuntansi</option>
-                                        <option>Akuntansi</option>
-                                        <option>Administrasi Bisnis</option>
-                                        <option>Bahasa Inggris</option>
+                                        <option {{ $mahasiswa->prodi == "TI" ? 'selected' : '' }}>Teknologi Informasi</option>
+                                        <option {{ $mahasiswa->prodi == "Meto" ? 'selected' : '' }}>Mesin Otomotif</option>
+                                        <option {{ $mahasiswa->prodi == "TKK" ? 'selected' : '' }}>Teknik Komputer Kontrol</option>
+                                        <option {{ $mahasiswa->prodi == "Teklis" ? 'selected' : '' }}>Teknik Listrik</option>
+                                        <option {{ $mahasiswa->prodi == "Kereta" ? 'selected' : '' }}>Teknik Kereta</option>
+                                        <option {{ $mahasiswa->prodi == "Kompak" ? 'selected' : '' }}>Komputer Akuntansi</option>
+                                        <option {{ $mahasiswa->prodi == "Akuntansi" ? 'selected' : '' }}>Akuntansi</option>
+                                        <option {{ $mahasiswa->prodi == "Adbis" ? 'selected' : '' }}>Administrasi Bisnis</option>
+                                        <option {{ $mahasiswa->prodi == "Bahasa Inggris" ? 'selected' : '' }}>Bahasa Inggris</option>
                                     </select>
                                 </div>
                             <div class="form-group col-md-6 col-12">
                                 <label>Semester</label>
-                                    <select class="form-control select2" required>
+                                    <select class="form-control select2" required name="semester" value="{{ $mahasiswa->semester }}">
                                         <option selected>-</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option {{ $mahasiswa->semester == "1" ? 'selected' : '' }}>1</option>
+                                        <option {{ $mahasiswa->semester == "2" ? 'selected' : '' }}>2</option>
+                                        <option {{ $mahasiswa->semester == "3" ? 'selected' : '' }}>3</option>
+                                        <option {{ $mahasiswa->semester == "4" ? 'selected' : '' }}>4</option>
+                                        <option {{ $mahasiswa->semester == "5" ? 'selected' : '' }}>5</option>
                                     </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12 col-12">
                                 <label>Alamat</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" required name="address" value="{{ $mahasiswa->address }}">
                                 <div class="invalid-feedback">
                                     Please fill in the field
                                 </div>
@@ -116,7 +125,7 @@
                         <div class="row">
                             <div class="form-group col-md-12 col-12">
                                 <label>Profile Picture</label>
-                                <input type="file" class="form-control" required>
+                                <input type="file" class="form-control" name="photo">
                             </div>
                         </div>
                     </div>
