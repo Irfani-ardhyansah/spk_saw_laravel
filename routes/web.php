@@ -26,16 +26,19 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
         return view('user.index');
     });
     
+    //Route Profile User
     Route::get('/profile', 'User\ProfileController@index')->name('user.profile');
-    
     Route::get('/profile/edit/{id}', 'User\ProfileController@edit')->name('user.profile.edit');
-
     Route::put('/profile/update/{id}', 'User\ProfileController@update')->name('user.profile.update');
-    
+    Route::get('/profile/changepassword', 'HomeController@changePasswordForm')->name('user.changePassword.form');
+    Route::post('/profile/changepassword', 'HomeController@changePassword')->name('user.changePassword');
+
+    //Route Kriteria Halaman User
     Route::get('/kriteria', function() {
         return view('user.kriteria');
     });
     
+    //Route Beasiswa Halaman User
     Route::get('/beasiswa', function() {
         return view('user.beasiswa.index');
     });
@@ -55,17 +58,19 @@ Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.logi
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
 
-    Route::get('/mahasiswa', function() {
-        return view('admin.mahasiswa.index');
-    }); 
+    // Route Halaman Mahasiswa
+    Route::get('/mahasiswa', 'Admin\MahasiswaController@index')->name('admin.mahasiswa'); 
+    Route::get('/mahasiswa/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail');
+    Route::delete('/mahasiswa/delete/{id}', 'Admin\MahasiswaController@delete')->name('admin.mahasiswa.delete');
 
-    Route::get('/mahasiswa/detail', function() {
-        return view('admin.mahasiswa.detail');
-    });
-
-    Route::get('/kriteria', function() {
-        return view('admin.kriteria.index');
-    });
+    // Route Halaman Kriteria
+    Route::get('/kriteria', 'Admin\CriteriaController@index')->name('admin.criteria');
+    Route::post('/kriteria', 'Admin\CriteriaController@save')->name('admin.criteria.save');
+    Route::delete('/kriteria/delete/{id}', 'Admin\CriteriaController@delete')->name('admin.criteria.delete');
+    Route::match(['get', 'post'], '/kriteria/update/{id}', 'Admin\CriteriaController@update')->name('admin.criteria.update');
+    Route::post('/kriteria/weight/save', 'Admin\WeightController@save')->name('admin.criteria.weight.save');
+    Route::delete('/kriteria/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete');
+    Route::match(['get', 'post'], '/kriteria/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update');
 
     Route::get('/periode', function() {
         return view('admin.periode.index');

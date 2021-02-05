@@ -5,30 +5,33 @@ namespace App\Http\Controllers\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mahasiswa;
+use App\User;
 use Auth;
 use File;
 use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
+    // method untuk menampilkan halaman profile
     public function index()
     {
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
         return view('user.profile.index', compact('mahasiswa'));
     }
 
+    // method untuk mengedit profile
     public function edit($id)
     {
         $mahasiswa = Mahasiswa::where('id', $id)->first();
         return view('user.profile.edit', compact('mahasiswa'));
     }
 
+    //method untuk mengupdate profile berdasarkan inputan edit
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'npm'       => 'required|max:9|unique:users',
             'name'      => 'required',
-            'npm'       => 'required',
             'prodi'     => 'required',
             'semester'  => 'required',
             'address'   => 'required',
@@ -40,16 +43,21 @@ class ProfileController extends Controller
 
         try {
             $mahasiswa = Mahasiswa::findOrFail($id);
+            $user = User::where('id', $mahasiswa->user_id)->first();
             if($request->file('photo') == "") {
                 $mahasiswa->update([
                     'name'      => $request->name,
-                    'npm'       => $request->npm,
                     'prodi'     => $request->prodi,
                     'semester'  => $request->semester,
                     'address'   => $request->address,
                     'gender'    => $request->gender,
                     'phone'     => $request->phone,
                     'religion'  => $request->religion,
+                ]);
+
+                $user->update([
+                    'npm'       => $request->npm,
+                    'email'     => $request->email
                 ]);
             } else {
                 File::delete('public/profile_images/'.$mahasiswa->photo);
@@ -61,7 +69,6 @@ class ProfileController extends Controller
 
                 $mahasiswa->update([
                     'name'      => $request->name,
-                    'npm'       => $request->npm,
                     'prodi'     => $request->prodi,
                     'semester'  => $request->semester,
                     'address'   => $request->address,
@@ -69,6 +76,11 @@ class ProfileController extends Controller
                     'phone'     => $request->phone,
                     'religion'  => $request->religion,
                     'photo'     => $profile,
+                ]);
+
+                $user->update([
+                    'npm'       => $request->npm,
+                    'email'     => $request->email
                 ]);
             }
             return redirect()->route('user.profile')->with(['success' => 'Data Berhasil Diupdate!']);

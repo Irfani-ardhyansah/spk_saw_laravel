@@ -52,6 +52,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // Validasi Inputan Dari Form Register
         return Validator::make($data, [
             'npm'       => 'required|max:9|unique:users',
             'email'     => 'required|email|max:255|unique:users',
@@ -73,15 +74,21 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
+    
+    //method untuk menghandle inputan register
     protected function create(array $data)
     {
+        //Menginput Pada Tabel User
         $user = User::create([
             'npm'       => $data['npm'],
             'email'     => $data['email'],
             'password'  => bcrypt($data['password']),
         ]);
 
-        if(is_array(file($file = $data['photo']))) {
+        //Mengecek apakah ada inputan dari form photo
+        if(isset($data['photo']) ? $data['photo'] : '0') {
+            //memecah array dan memasukkan ke dalam variabel
+            (is_array($file = $data['photo']));
             $extension = $file->getClientOriginalExtension();
             $nama_file = rand(99,999) . '_' . Carbon::now()->format('Y-m-d') . '_' . '_profile' . '.' . $extension;
             $data['photo']->move('profile_images/', $nama_file);
@@ -90,21 +97,22 @@ class RegisterController extends Controller
             $profile = NULL;
         }
 
+        //Menginput pada tabel Mahasiswa
         Mahasiswa::create([
             'user_id'   => $user->id,
             'name'      => $data['name'],
-            'npm'       => $data['npm'],
             'prodi'     => $data['prodi'],
             'semester'  => $data['semester'],
             'address'   => $data['address'],
             'gender'    => $data['gender'],
             'phone'     => $data['phone'],
             'religion'  => $data['religion'],
-            'photo'     => $profile
+            'photo'     => $profile,
         ]);
         return ($user);
     }
 
+    // Method untuk mencegah agar langsung login setelah register
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();

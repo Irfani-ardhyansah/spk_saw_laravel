@@ -5,8 +5,8 @@
 <div class="section-header">
   <h1>Periode Beasiswa</h1>
   <div class="section-header-breadcrumb">
-  <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-  <div class="breadcrumb-item"><a href="#">Beasiswa</a></div>
+  <div class="breadcrumb-item active"><a href="{{ url('/user') }}">Dashboard</a></div>
+  <div class="breadcrumb-item"><a href="{{ url('/user/beasiswa') }}">Beasiswa</a></div>
   </div>
 </div>
 

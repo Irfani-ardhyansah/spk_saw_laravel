@@ -14,10 +14,14 @@
             <div class="col-12 col-md-12 col-lg-5">
                 <div class="card profile-widget">
                     <div class="profile-widget-header">
-                        <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png')}}" class="rounded-circle profile-widget-picture">
+                        @if(file_exists($mahasiswa->photo))
+                            <img alt="image" src="{{ url('/profile_images/default.png')}}" class="rounded-circle profile-widget-picture">
+                        @else
+                            <img alt="image" src="{{ url('/profile_images/' . $mahasiswa->photo)}}" class="rounded-circle profile-widget-picture">
+                        @endif
                     </div>
                     <div class="profile-widget-description">
-                        <div class="profile-widget-name">Mochamad Irfani Ardhyansah</div>
+                        <div class="profile-widget-name">{{$mahasiswa->name}}</div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -26,32 +30,42 @@
                                             <tr>
                                                 <td>NPM</td>
                                                 <td>:</td>
-                                                <td>183307009</td>
+                                                <td>{{$mahasiswa->user->npm}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Gender</td>
+                                                <td>Email</td>
                                                 <td>:</td>
-                                                <td>Laki - laki</td>
+                                                <td>{{$mahasiswa->user->email}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jenis Kelamin</td>
+                                                <td>:</td>
+                                                <td>{{$mahasiswa->gender}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Agama</td>
+                                                <td>:</td>
+                                                <td>{{$mahasiswa->religion}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Prodi</td>
                                                 <td>:</td>
-                                                <td>Teknologi Informasi</td>
+                                                <td>{{$mahasiswa->prodi}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Semester</td>
                                                 <td>:</td>
-                                                <td>5</td>
+                                                <td>{{$mahasiswa->semester}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Alamat</td>
                                                 <td>:</td>
-                                                <td>Ds. Bukur Rt 1 Rw 1 Kec Jiwan Kab Madiun</td>
+                                                <td>{{$mahasiswa->address}}</td>
                                             </tr>
                                             <tr>
                                                 <td>No HP</td>
                                                 <td>:</td>
-                                                <td>081332695709</td>
+                                                <td>{{$mahasiswa->phone}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

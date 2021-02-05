@@ -4,9 +4,17 @@
     <div class="section-header">
         <h1>Profile</h1>
         <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="#">Profil</a></div>
+        <div class="breadcrumb-item active"><a href="{{ url('/user') }}">Dashboard</a></div>
+        <div class="breadcrumb-item"><a href="{{ url('/user/profile') }}">Profile</a></div>
         </div>
     </div>
+
+    @if (session('success'))
+    <div class="alert alert-primary alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {!! session('success') !!}
+    </div>
+    @endif
 
     <div class="section-body">
 
@@ -33,7 +41,7 @@
                                             <tr>
                                                 <td>NPM</td>
                                                 <td>:</td>
-                                                <td>{{$mahasiswa->npm}}</td>
+                                                <td>{{$mahasiswa->user->npm}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Gender</td>
@@ -68,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ url('/user/profile/changepassword') }}" class="btn btn-warning">Change Password</a>
+                <a href="{{ route('user.changePassword.form') }}" class="btn btn-warning">Change Password</a>
             </div>
 
             <div class="col-12 col-md-12 col-lg-3">

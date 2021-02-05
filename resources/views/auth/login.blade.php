@@ -33,9 +33,9 @@
                   
                   <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                       <label for="">Npm</label>
-                    <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" tabindex="1" required autofocus>
+                    <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" tabindex="1" required autofocus >
                     <div class="invalid-feedback">
-                      Please fill in your email
+                      Email / NPM / Password yang di input salah!
                     </div>
                   </div>
 
@@ -44,9 +44,6 @@
                       <label for="" class="control-label">Password</label>
                     </div>
                     <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" tabindex="2" required>
-                    <div class="invalid-feedback">
-                      please fill in your password
-                    </div>
                   </div>
 
                   <div class="row form-group">

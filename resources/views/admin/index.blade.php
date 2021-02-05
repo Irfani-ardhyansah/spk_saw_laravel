@@ -18,7 +18,7 @@
                 <h4>Total Admin</h4>
               </div>
               <div class="card-body">
-                1
+                {{$admin_count}}
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@
                 <h4>Data Mahasiswa</h4>
               </div>
               <div class="card-body">
-                42
+                {{$mahasiswa_count}}
               </div>
             </div>
           </div>

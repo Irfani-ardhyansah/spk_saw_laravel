@@ -1,20 +1,22 @@
 @extends('layouts.user.app')
 
 @section('content')
-    {{-- @if (session('error')) --}}
+
+    <div class="section-header">
+        <h1>Profile</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active"><a href="{{ url('/user') }}">Dashboard</a></div>
+        <div class="breadcrumb-item"><a href="{{ url('/user/profile') }}">Profile</a></div>
+        <div class="breadcrumb-item">Edit Profile</div>
+        </div>
+    </div>
+
+    @if (session('error'))
     <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {!! session('error') !!}
     </div>
-    {{-- @endif --}}
-    <div class="section-header">
-        <h1>Profile</h1>
-        <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="#">Profile</a></div>
-        <div class="breadcrumb-item"><a href="#">Edit Profile</a></div>
-        </div>
-    </div>
-
+    @endif
 
     <div class="section-body">
 
@@ -41,7 +43,7 @@
                             </div>
                             <div class="form-group col-md-5 col-12">
                                 <label>NPM</label>
-                                <input type="text" class="form-control {{ $errors->has('npm') ? 'is-invalid' : '' }}" required name="npm" value="{{ $mahasiswa->npm }}">
+                                <input type="text" class="form-control {{ $errors->has('npm') ? 'is-invalid' : '' }}" required name="npm" value="{{ $mahasiswa->user->npm }}">
                                 <div class="invalid-feedback">
                                     Please fill in the field
                                 </div>

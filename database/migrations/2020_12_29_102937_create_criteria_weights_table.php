@@ -13,11 +13,11 @@ class CreateCriteriaWeightsTable extends Migration
      */
     public function up()
     {
-        Schema::create('criteria_weights', function (Blueprint $table) {
+        Schema::create('weights', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('criteria_id')->nullable();
             $table->string('information');
-            $table->string('value');
+            $table->double('value');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCriteriaWeightsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criteria_weights');
+        Schema::dropIfExists('weights');
     }
 }

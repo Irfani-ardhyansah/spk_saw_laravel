@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="#">SPK</a>
+        <a href="{{route('admin.dashboard')}}">SPK</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="#">SPK</a>
+        <a href="{{route('admin.dashboard')}}">SPK</a>
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Super Admin</li>
