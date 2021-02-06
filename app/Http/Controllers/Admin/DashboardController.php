@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mahasiswa;
 use App\Admin;
+use App\Criteria;
 
 class DashboardController extends Controller
 {
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     {
         $admin_count = Admin::all()->count();
         $mahasiswa_count = Mahasiswa::all()->count();
-        return view('admin.index', compact('admin_count', 'mahasiswa_count'));
+        $criteria_count = Criteria::all()->count();
+        return view('admin.index', compact('admin_count', 'mahasiswa_count', 'criteria_count'));
     }
 }

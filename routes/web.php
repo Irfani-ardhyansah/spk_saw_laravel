@@ -72,9 +72,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::delete('/kriteria/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete');
     Route::match(['get', 'post'], '/kriteria/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update');
 
-    Route::get('/periode', function() {
-        return view('admin.periode.index');
-    });
+    Route::get('/periode', 'Admin\PeriodController@index')->name('admin.period');
+    Route::post('/periode/save', 'Admin\PeriodController@save')->name('admin.period.save');
 
     Route::get('/periode/peserta', function() {
         return view('admin.periode.peserta');

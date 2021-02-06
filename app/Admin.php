@@ -32,4 +32,8 @@ class Admin extends Authenticatable
     public function criterias(){
     	return $this->hasMany('App\Criteria');
     }
+
+    public function periods(){
+    	return $this->hasMany('App\Period');
+    }
 }
