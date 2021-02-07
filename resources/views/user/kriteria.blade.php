@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-8">
                     <div class="tab-content no-padding" id="myTab2Content">
-                        <div class="tab-pane fade show active" id="ipk" role="tabpanel" aria-labelledby="home-tab4">
+                        <div class="tab-pane fade show active" id="ipk" role="tabpanel" aria-labelledby="">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

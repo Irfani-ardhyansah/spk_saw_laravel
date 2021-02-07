@@ -61,10 +61,11 @@ class ProfileController extends Controller
                 ]);
             } else {
                 File::delete('public/profile_images/'.$mahasiswa->photo);
-
-                $$extension = $file->getClientOriginalExtension();
+                
+                $file = $request->file('photo');
+                $extension = $file->getClientOriginalExtension();
                 $nama_file = rand(99,999) . '_' . Carbon::now()->format('Y-m-d') . '_' . '_profile' . '.' . $extension;
-                $data['photo']->move('profile_images/', $nama_file);
+                $request->file('photo')->move('profile_images/', $nama_file);
                 $profile = $nama_file;
 
                 $mahasiswa->update([

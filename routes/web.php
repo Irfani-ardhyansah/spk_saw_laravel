@@ -74,17 +74,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
 
     Route::get('/periode', 'Admin\PeriodController@index')->name('admin.period');
     Route::post('/periode/save', 'Admin\PeriodController@save')->name('admin.period.save');
+    Route::delete('/periode/delete/{id}', 'Admin\PeriodController@delete')->name('admin.period.delete');
+    Route::match(['get', 'post'], 'periode/update/{id}', 'Admin\PeriodController@update')->name('admin.period.update');
 
     Route::get('/periode/peserta', function() {
-        return view('admin.periode.peserta');
+        return view('admin.period.peserta');
     });
 
     Route::get('/periode/analisis', function() {
-        return view('admin.periode.analisis');
+        return view('admin.period.analisis');
     });
 
     Route::get('/periode/peserta/nilai', function() {
-        return view('admin.periode.nilai');
+        return view('admin.period.nilai');
     });
 
 });

@@ -44,7 +44,7 @@
                             <td>Mesin Otomotif</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">Ganti Status</a>
-                                <a href="#" class="btn btn-outline-info btn-sm">Nilai</a>
+                                <a href="{{url('/admin/periode/peserta/nilai')}}" class="btn btn-outline-info btn-sm">Nilai</a>
                             </td>
                         </tr>
                     </table>
