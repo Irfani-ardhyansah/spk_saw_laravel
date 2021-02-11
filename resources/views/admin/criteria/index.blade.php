@@ -37,9 +37,7 @@
                             <th>Bobot</th>
                             <th>Sifat</th>
                             <th>Action</th>
-                            <th>Nilai 
-                                <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#modalTambahWeight">Tambah</button>
-                            </th>
+                            <th>Nilai</th>
                         </tr>
                         @foreach($criterias as $row)
                         <tr>
@@ -54,23 +52,28 @@
                                     {{ method_field('DELETE') }}
                                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Menghapus Data {{ $row->name }} ?');" >Delete</button>
+                                    <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#modalTambahWeight-{{ $row->id }}">Tambah Nilai</button>
                                 </form>
                             </td>
                             <td>
                                 <table>
-                                    @foreach($weights as $row)
+                                    @forelse($row->weights as $weight)
                                     <tr>
-                                        <td> {{$row->information}} ( {{ $row->value }} ) </td>
+                                        <td> {{$weight->information}} ( {{ $weight->value }} ) </td>
                                         <td>
-                                            <form method="POST" action="{{ route('admin.criteria.weight.delete', ['id' => $row->id]) }}">
+                                            <form method="POST" action="{{ route('admin.criteria.weight.delete', ['id' => $weight->id]) }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalEditWeight-{{ $row->id }}">Edit</button>
-                                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Yakin Menghapus Data {{ $row->information }} ?');" >Delete</button>
+                                                <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalEditWeight-{{ $weight->id }}">Edit</button>
+                                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Yakin Menghapus Data {{ $weight->information }} ?');" >Delete</button>
                                             </form>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="2" class="text-center">Tidak ada data Bobot!</td>
+                                        </tr>
+                                    @endforelse
                                 </table>
                             </td>
                         </tr>
@@ -110,6 +113,9 @@
                             <label for="">Nama</label>
                             <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name') }}">
                         </div>
+                        <div class="invalid-feedback">
+                            Pastikan Teliti Dalam Menginput!
+                        </div>
                     </div>
 
                     <div class="row">
@@ -127,6 +133,13 @@
                                 <option value="Benefit">Benefit</option>
                                 <option value="Cost">Cost</option>
                             </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-12 {{ $errors->has('information') ? 'has-error' : '' }}">
+                            <label for="">Keterangan</label>
+                            <input type="text" class="form-control {{ $errors->has('information') ? 'is-invalid' : '' }}" name="information" value="{{ old('information') }}">
                         </div>
                     </div>
 
@@ -188,6 +201,15 @@
                         </div>
                     </div>
 
+                                        
+                    <div class="row">
+                        <div class="form-group col-12 {{ $errors->has('information') ? 'has-error' : '' }}">
+                            <label for="">Keterangan</label>
+                            <input type="text" class="form-control {{ $errors->has('information') ? 'is-invalid' : '' }}" name="information" value="{{ $row->information }}">
+                        </div>
+                    </div>
+
+
                     <button type="submit" class="btn btn-primary">Update Changes</button>
 
                 </form>
@@ -201,8 +223,9 @@
 </div>
 @endforeach
 
-{{-- Modal Tambah Kriteria --}}
-<div class="modal fade" id="modalTambahWeight" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- Modal Tambah Bobot --}}
+@foreach($criterias as $row)
+<div class="modal fade" id="modalTambahWeight-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         
@@ -219,7 +242,7 @@
                     <div class="row">
                         <div class="form-group col-5">
                             <label for="">ID Criteria</label>
-                            <input type="text" class="form-control" name="criteria_id" value="{{ $criteria_id }}" readonly>
+                            <input type="text" class="form-control" name="criteria_id" value="{{ $row->id }}" readonly>
                         </div>
                     </div>
 
@@ -245,51 +268,55 @@
         </div>
     </div>
 </div>
+@endforeach
 
-{{-- Modal Edit Kriteria --}}
-@foreach($weights as $row)
-<div class="modal fade" id="modalEditWeight-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Kriteria Weight</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-    
-            <div class="modal-body">
-                <form method="POST" action="{{ route('admin.criteria.weight.update', ['id' => $row->id]) }}">
-                    {{csrf_field()}}
-                    <div class="row">
-                        <div class="form-group col-5">
-                            <label for="">ID Criteria</label>
-                            <input type="text" class="form-control" name="criteria_id" value="{{ $criteria_id }}" readonly>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-6 {{ $errors->has('information') ? 'has-error' : '' }}">
-                            <label for="">Keterangan</label>
-                            <input type="text" class="form-control {{ $errors->has('information')  ? 'is-invalid' : ''}}" name="information" value="{{ $row->information }}">
-                        </div>
-                        <div class="form-group col-6 {{ $errors->has('value') ? 'has-error' : '' }}">
-                            <label for="">Nilai</label>
-                            <input type="number" step="0.01" class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" value="{{ $row->value }}">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Update changes</button>
-
-                </form>
-            </div>
+{{-- Modal Edit Bobot --}}
+@foreach($criterias as $row)
+    @foreach($row->weights as $weight)
+    <div class="modal fade" id="modalEditWeight-{{ $weight->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
             
-            <div class="modal-footer">
-            </div>
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Kriteria Weight</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+        
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('admin.criteria.weight.update', ['id' => $weight->id]) }}">
+                        {{csrf_field()}}
+                        <div class="row">
+                            <div class="form-group col-5">
+                                <label for="">ID Criteria</label>
+                                <input type="text" class="form-control" name="criteria_id" value="{{ $weight->criteria_id }}" readonly>
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="form-group col-6 {{ $errors->has('information') ? 'has-error' : '' }}">
+                                <label for="">Keterangan</label>
+                                <input type="text" class="form-control {{ $errors->has('information')  ? 'is-invalid' : ''}}" name="information" value="{{ $weight->information }}">
+                            </div>
+                            <div class="form-group col-6 {{ $errors->has('value') ? 'has-error' : '' }}">
+                                <label for="">Nilai</label>
+                                <input type="number" step="0.01" class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" value="{{ $weight->value }}">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update changes</button>
+
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
+    @endforeach
 @endforeach
+
 @endsection

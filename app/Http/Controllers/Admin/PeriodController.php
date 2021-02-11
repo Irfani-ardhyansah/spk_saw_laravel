@@ -21,7 +21,7 @@ class PeriodController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'start'  => 'required|unqiue:periods,end',
+            'start'  => 'required|unique:periods,end',
             'end'    => 'required|unique:periods,start',
             'file'   => 'required|mimes:pdf|max:2000',
             'status' => 'required'
@@ -70,26 +70,34 @@ class PeriodController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'start'  => 'required|unique:periods,end',
-            'end'    => 'required|unique:periods,start',
-            'file'   => 'required|mimes:pdf|max:2000',
-            'status' => 'required'
-        ]);
-
         $period = Period::findOrFail($id);
-        
+        // dd($request->all());
         if($request->isMethod('post')) {
             if($request->file('file') == "") {
+
+                $this->validate($request, [
+                    'start'  => 'required|unique:periods,end',
+                    'end'    => 'required|unique:periods,start',
+                    'status' => 'required'
+                ]);
+
                 $data = $request->all();
                 Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'status'=>$data['status']]);
                 return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
             } else {
+
+                $this->validate($request, [
+                    'start'  => 'required|unique:periods,end',
+                    'end'    => 'required|unique:periods,start',
+                    'file'   => 'required|mimes:pdf|max:2000',
+                    'status' => 'required'
+                ]);
+
                 File::delete('pengumuman_periode/'.$period->file);
 
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension();
-                $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanPeriodeBeasiswa' . '.' . $extension;
+                $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanUpdatePeriodeBeasiswa' . '.' . $extension;
                 $request->file('file')->move('pengumuman_periode/', $nama_file);
                 $item = $nama_file;
 

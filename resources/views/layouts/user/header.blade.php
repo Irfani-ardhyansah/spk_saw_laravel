@@ -9,9 +9,9 @@
       <i class="fas fa-ellipsis-v"></i>
     </a>
     <ul class="navbar-nav">
-      <li class="nav-item {{ (request()->is('user/profile')) ? 'active' : ''}}"><a href="/user/profile" class="nav-link">Profile</a></li>
-      <li class="nav-item {{ (request()->is('user/beasiswa')) ? 'active' : ''}}"><a href="/user/beasiswa" class="nav-link">Beasiswa</a></li>
-      <li class="nav-item {{ (request()->is('user/kriteria')) ? 'active' : ''}}"><a href="/user/kriteria" class="nav-link">Kriteria</a></li>
+      <li class="nav-item {{ (request()->is('user/profile')) ? 'active' : ''}}"><a href="{{route('user.profile')}}" class="nav-link">Profile</a></li>
+      <li class="nav-item {{ (request()->is('user/beasiswa')) ? 'active' : ''}}"><a href="{{route('user.period')}}" class="nav-link">Beasiswa</a></li>
+      <li class="nav-item {{ (request()->is('user/kriteria')) ? 'active' : ''}}"><a href="{{route('user.criteria')}}" class="nav-link">Kriteria</a></li>
     </ul>
   </div>
   <ul class="navbar-nav navbar-right ml-auto">

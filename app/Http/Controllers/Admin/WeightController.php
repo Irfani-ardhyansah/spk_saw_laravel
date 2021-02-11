@@ -14,7 +14,7 @@ class WeightController extends Controller
         $this->validate($request, [
             'criteria_id'   => 'required|exists:criterias,id',
             'information'   => 'required',
-            'value'         => 'required|unique:criterias'
+            'value'         => 'required'
         ]);
 
         try {

@@ -34,6 +34,7 @@
     </div>
   </div>
 
+  {{-- Tempat Menaruh Modal Bootstrap --}}
   
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -47,73 +48,10 @@
       </div>
 
       <div class="modal-body">
-        <form action="">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-4"> 
-                <p>IPK : </p>
-              </div>
-              <div class="col-4">
-                <select class="form-control selectric">
-                  <option selected>-</option>
-                  <option>3.75 s/d 3.95</option>
-                  <option>3.35 s/d 3.55</option>
-                  <option>2.95 s/d 3.15</option>
-                  <option>2.75 s/d 2.95</option>
-                </select>
-              </div>
-              <div class="col-4">
-                <input type="file">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-4"> 
-                <p>Gaji Orang Tua : </p>
-              </div>
-              <div class="col-4">
-                <select class="form-control selectric">
-                  <option selected>-</option>
-                  <option> < 1.500.000 </option>
-                  <option> 1.500.000 s/d 2.500.000 </option>
-                  <option> 2.500.000 s/d 3.500.000 </option>
-                  <option> 3.500.000 s/d 5.000.000 </option>
-                  <option> > 5.0000.0000 </option>
-                </select>
-              </div>
-              <div class="col-4">
-                <input type="file">
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-              <div class="col-4"> 
-                <p>Tanggungan Orang Tua : </p>
-              </div>
-              <div class="col-4">
-                <select class="form-control selectric">
-                  <option selected>-</option>
-                  <option>4 Anak</option>
-                  <option>3 Anak</option>
-                  <option>2 Anak</option>
-                  <option>1 Anak</option>
-                </select>
-              </div>
-              <div class="col-4">
-                <input type="file">
-              </div>
-            </div>
-          </div>
-          
-        </form>
+       
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     
     </div>

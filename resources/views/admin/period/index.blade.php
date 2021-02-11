@@ -39,7 +39,7 @@
                         </tr>
                         @foreach($periods as $row)
                         <tr>
-                            <td>1</td>
+                            <td>{{$loop->iteration}}</td>
                             <td>
                                 <table>
                                     <tr>

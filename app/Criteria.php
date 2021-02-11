@@ -14,6 +14,6 @@ class Criteria extends Model
     }
 
     public function weights(){
-    	return $this->hasMany('App\Weight');
+    	return $this->hasMany('App\Weight')->orderBy('value', 'ASC');
     }
 }

@@ -34,15 +34,12 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     Route::post('/profile/changepassword', 'HomeController@changePassword')->name('user.changePassword');
 
     //Route Kriteria Halaman User
-    Route::get('/kriteria', function() {
-        return view('user.kriteria');
-    });
+    Route::get('/kriteria', 'User\CriteriaController@index')->name('user.criteria');
     
     //Route Beasiswa Halaman User
-    Route::get('/beasiswa', function() {
-        return view('user.beasiswa.index');
-    });
-    
+    Route::get('/beasiswa', 'User\PeriodController@index')->name('user.period');
+    Route::get('/beasiswa/daftar', 'User\PeriodController@create')->name('user.period.create');
+    Route::post('/beasiswa/save', 'User\PeriodController@save')->name('user.period.save');
 });
 
 

@@ -63,7 +63,7 @@
                 <h4>Periode Beasiswa</h4>
               </div>
               <div class="card-body">
-                2
+                {{$period_count}}
               </div>
             </div>
           </div>
