@@ -31,4 +31,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Mahasiswa');
     }
+
+    public function user_period()
+    {
+        return $this->hasOne('App\User_period');
+    }
+    
 }

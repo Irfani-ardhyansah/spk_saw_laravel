@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Period;
 use Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Response;
 use File;
 
 class PeriodController extends Controller
@@ -15,7 +13,12 @@ class PeriodController extends Controller
     public function index()
     {
         $periods = Period::all();
-        return view('admin.period.index', compact('periods'));
+
+        foreach($periods as $row) {
+            $count_peserta = $row -> user_periods->count();
+        }
+
+        return view('admin.period.index', compact('periods', 'count_peserta'));
     }
 
     public function save(Request $request)

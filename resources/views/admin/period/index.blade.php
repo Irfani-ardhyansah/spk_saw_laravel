@@ -54,7 +54,7 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td> 5 Orang </td>
+                            <td> {{$count_peserta}} </td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#modalShowPDF-{{ $row->id }}" class="btn btn-light btn-sm">File</button>
                                 {{-- <iframe src="/pengumuman_periode/{{$row->file }}" width="50%" height="250">
@@ -66,7 +66,7 @@
                                     {{ method_field('DELETE') }}
                                     <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalEditPeriode-{{ $row->id }}">Edit</button>
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin Menghapus Data {{ $row->information }} ?');" >Delete</button>
-                                    <a href="/admin/periode/peserta" class="btn btn-sm btn-primary">Peserta</a>
+                                    <a href="{{route('admin.beasiswa.peserta', ['id' => $row->id])}}" class="btn btn-sm btn-primary">Peserta</a>
                                     <a href="/admin/periode/analisis" class="btn btn-outline-info btn-sm">Analisis</a>
                                 </form>
                             </td>

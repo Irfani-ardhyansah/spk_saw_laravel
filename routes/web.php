@@ -38,8 +38,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
     
     //Route Beasiswa Halaman User
     Route::get('/beasiswa', 'User\PeriodController@index')->name('user.period');
-    Route::get('/beasiswa/daftar', 'User\PeriodController@create')->name('user.period.create');
-    Route::post('/beasiswa/save', 'User\PeriodController@save')->name('user.period.save');
+    Route::get('/beasiswa/{id}/daftar', 'User\PeriodController@create')->name('user.period.create');
+    Route::post('/beasiswa/{id}/save', 'User\PeriodController@save')->name('user.period.save');
 });
 
 
@@ -74,9 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::delete('/periode/delete/{id}', 'Admin\PeriodController@delete')->name('admin.period.delete');
     Route::match(['get', 'post'], 'periode/update/{id}', 'Admin\PeriodController@update')->name('admin.period.update');
 
-    Route::get('/periode/peserta', function() {
-        return view('admin.period.peserta');
-    });
+    Route::get('/periode/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
 
     Route::get('/periode/analisis', function() {
         return view('admin.period.analisis');

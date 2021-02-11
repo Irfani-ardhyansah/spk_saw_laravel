@@ -24,15 +24,16 @@ class CriteriaController extends Controller
 
     public function save(Request $request) 
     {
-        $this->validate($request, [
-            'code'          => 'required|unique:criterias',
-            'name'          => 'required|max:40',
-            'weight'        => 'required|between:0.0,5',
-            'character'     => 'required',
-            'information'   => 'required'
-        ]);
 
         try {
+            $this->validate($request, [
+                'code'          => 'required|unique:criterias',
+                'name'          => 'required|max:40',
+                'weight'        => 'required|between:0.0,5',
+                'character'     => 'required',
+                'information'   => 'required'
+            ]);    
+
             $criteria = Criteria::create([
                 'admin_id'      =>  Auth::user()->id,
                 'code'          =>  $request->code,

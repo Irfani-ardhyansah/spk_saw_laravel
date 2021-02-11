@@ -21,32 +21,33 @@
                             <th>Prodi</th>
                             <th>Action</th>
                         </tr>
+                        @forelse($pendaftar as $row) 
                         <tr>
-                            <td>1</td>
-                            <td>183307009</td>
-                            <td>Irwansyah Saputra</td>
-                            <td><span class="badge badge-success">Diterima</span></td>
-                            <td>0812371248</td>
-                            <td>5</td>
-                            <td>Teknologi Informasi</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$row->user->npm}}</td>
+                            <td>{{$row->user->mahasiswa->name}}</td>
+                            <td>
+                            @if($row->status == '0')
+                                <span class="badge badge-secondary">Menunggu</span>
+                            @elseif($row->status == '1')
+                                <span class="badge badge-success">Diterima</span>
+                            @else
+                                <span class="badge badge-danger">Ditolak</span>
+                            @endif
+                            </td>
+                            <td>{{$row->user->mahasiswa->phone}}</td>
+                            <td>{{$row->user->mahasiswa->semester}}</td>
+                            <td>{{$row->user->mahasiswa->prodi}}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">Ganti Status</a>
                                 <a href="#" class="btn btn-outline-info btn-sm">Nilai</a>
                             </td>
                         </tr>
+                        @empty
                         <tr>
-                            <td>2</td>
-                            <td>183307010</td>
-                            <td>Nicholas Saputra</td>
-                            <td><span class="badge badge-danger">Ditolak</span></td>
-                            <td>081235121</td>
-                            <td>5</td>
-                            <td>Mesin Otomotif</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-primary">Ganti Status</a>
-                                <a href="{{url('/admin/periode/peserta/nilai')}}" class="btn btn-outline-info btn-sm">Nilai</a>
-                            </td>
+                            <td colspan="8">Tidak Ada Data</td>
                         </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>

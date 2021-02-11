@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mahasiswa extends Model
+class User_period extends Model
 {
     protected $guarded = [];
 
@@ -13,8 +13,8 @@ class Mahasiswa extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function values()
+    public function period()
     {
-        return $this->hasMany('App\Value');
+        return $this->belongsTo('App\Period', 'period_id');
     }
 }

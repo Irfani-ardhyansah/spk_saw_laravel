@@ -41,7 +41,11 @@
 
                     <div class="col-3">
                         <div class="mt-4">
-                            <a href="{{route('user.period.create')}}" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
+                        @if(empty($cek_button)) 
+                            <a href="{{route('user.period.create', ['id' => $row->id])}}" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
+                        @else
+                            <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
+                        @endif
                         </div>
                     </div>
                 </div>
