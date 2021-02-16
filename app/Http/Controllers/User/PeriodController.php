@@ -16,8 +16,12 @@ class PeriodController extends Controller
     public function index()
     {
         $periods = Period::where('status', 1)->get();
-        $cek_button = User_period::where('user_id', Auth::user()->id)->first();
-        return view('user.period.index', compact('periods', 'cek_button'));
+        $user_periods = User_period::where('user_id', Auth()->user()->id)->get();
+        foreach($user_periods as $row) {
+            $period_id = $row->id;
+        }
+        // dd($period_id);
+        return view('user.period.index', compact('periods', 'period_id'));
     }
 
     public function create($id)

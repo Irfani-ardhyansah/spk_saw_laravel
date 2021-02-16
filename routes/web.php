@@ -66,8 +66,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
     Route::delete('/kriteria/delete/{id}', 'Admin\CriteriaController@delete')->name('admin.criteria.delete');
     Route::match(['get', 'post'], '/kriteria/update/{id}', 'Admin\CriteriaController@update')->name('admin.criteria.update');
     Route::post('/kriteria/weight/save', 'Admin\WeightController@save')->name('admin.criteria.weight.save');
-    Route::delete('/kriteria/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete');
-    Route::match(['get', 'post'], '/kriteria/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update');
+    Route::get('/kriteria/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete');
+    Route::match(['get', 'post'], '/kriteria/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update'); //Menggunakan SweetAlert
 
     Route::get('/periode', 'Admin\PeriodController@index')->name('admin.period');
     Route::post('/periode/save', 'Admin\PeriodController@save')->name('admin.period.save');

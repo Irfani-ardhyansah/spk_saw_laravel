@@ -13,7 +13,7 @@
 <div class="section-body">
     <div class="col-12 mb-4">
         @forelse($periods as $row)
-        <div class="hero bg-primary text-white">
+        <div class="hero bg-primary text-white mb-3">
             <div class="hero-inner">
 
                 <div class="row">
@@ -41,11 +41,14 @@
 
                     <div class="col-3">
                         <div class="mt-4">
-                        @if(empty($cek_button)) 
-                            <a href="{{route('user.period.create', ['id' => $row->id])}}" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
-                        @else
-                            <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
-                        @endif
+                            {{-- @foreach($user_periods as $item) --}}
+                            {{-- {{dd($item->user_id == Auth()->user()->id)}} --}}
+                                @if($row->id == $period_id)
+                                <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
+                                @else
+                                <a href="{{route('user.period.create', ['id' => $row->id])}}" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
+                                @endif
+                            {{-- @endforeach --}}
                         </div>
                     </div>
                 </div>

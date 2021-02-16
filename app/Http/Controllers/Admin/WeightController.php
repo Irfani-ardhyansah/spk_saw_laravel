@@ -23,7 +23,7 @@ class WeightController extends Controller
                 'information'   =>  $request->information,
                 'value'         =>  $request->value
             ]);
-            return redirect()->back()->with(['success' => 'Berhasil Menambah Data ' . $weight->information]);
+            return redirect()->back()->with(['success' => 'Berhasil Menambah Nilai Kriteria ' . $weight->information]);
         } catch(\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }

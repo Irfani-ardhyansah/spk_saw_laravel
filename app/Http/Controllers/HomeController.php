@@ -55,7 +55,6 @@ class HomeController extends Controller
         $user->password = bcrypt($request->new_password);
         $user->save();
 
-        return redirect()->back()->with(['success' => 'Password Berhasil Dirubah!']);
-        dd($request->all());
+        return redirect()->route('user.profile')->with(['success' => 'Password Berhasil Dirubah!']);
     }
 }

@@ -11,12 +11,10 @@
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{{ asset('node_modules/bootstrap-social/bootstrap-social.css')}}">
-
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
-
 <body>
   <div id="app">
     <section class="section">
@@ -80,7 +78,6 @@
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js')}}"></script>
   <script src="{{ asset('assets/js/custom.js')}}"></script>
-
   <!-- Page Specific JS File -->
 </body>
 </html>

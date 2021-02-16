@@ -13,12 +13,7 @@ class PeriodController extends Controller
     public function index()
     {
         $periods = Period::all();
-
-        foreach($periods as $row) {
-            $count_peserta = $row -> user_periods->count();
-        }
-
-        return view('admin.period.index', compact('periods', 'count_peserta'));
+        return view('admin.period.index', compact('periods'));
     }
 
     public function save(Request $request)

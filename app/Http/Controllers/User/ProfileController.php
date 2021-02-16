@@ -29,19 +29,22 @@ class ProfileController extends Controller
     //method untuk mengupdate profile berdasarkan inputan edit
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'npm'       => 'required|max:9|unique:users',
-            'name'      => 'required',
-            'prodi'     => 'required',
-            'semester'  => 'required',
-            'address'   => 'required',
-            'gender'    => 'required',
-            'phone'     => 'required',
-            'religion'  => 'required',
-            'photo'     => 'mimes:jpg,jpeg,png|max:20000'
-        ]);
 
         try {
+            $this->validate($request, [
+                'npm'       => 'required|unique:users|digits:9',
+                'name'      => 'required',
+                'prodi'     => 'required',
+                'semester'  => 'required',
+                'address'   => 'required',
+                'gender'    => 'required',
+                'phone'     => 'required',
+                'religion'  => 'required',
+                'photo'     => 'nullable|mimes:jpg,jpeg,png|max:20000'
+            ],[
+                'npm.unique' => 'NPM Sudah Terdaftar!'
+            ]);
+
             $mahasiswa = Mahasiswa::findOrFail($id);
             $user = User::where('id', $mahasiswa->user_id)->first();
             if($request->file('photo') == "") {

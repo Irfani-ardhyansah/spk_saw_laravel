@@ -13,7 +13,7 @@
           <li class="menu-header">Admin</li>
           <li class="nav-link {{ (request()->is('admin/mahasiswa')) ? 'active' : ''}}"><a href="/admin/mahasiswa"><i class="ion ion-ios-folder"></i> <span>Data Mahasiswa</span></a></li>
           <li class="nav-link {{ (request()->is('admin/kriteria')) ? 'active' : ''}}"><a href="/admin/kriteria"><i class="ion ion-ios-folder"></i> <span>Data Kriteria</span></a></li>
-          <li class="nav-link {{ (request()->is('admin/periode')) ? 'active' : ''}}"><a href="/admin/periode"><i class="far fa-square"></i> <span>Data Periode</span></a></li>
+          <li class="nav-link {{ (request()->is('admin/periode')) ? 'active' : ''}}"><a href="/admin/periode"><i class="far fa-square"></i> <span>Data Beasiswa</span></a></li>
         </ul>
     </aside>
   </div>

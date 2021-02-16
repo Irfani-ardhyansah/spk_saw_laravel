@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="{{ asset('node_modules/summernote/dist/summernote-bs4.css')}}">
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{{ asset('node_modules/prismjs/themes/prism.css')}}">
+  {{-- Toaster --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
@@ -25,7 +27,6 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-     
           @yield('content')
         </section>
       </div>
@@ -76,5 +77,18 @@
   <script src="{{ asset('assets/js/scripts.js')}}"></script>
   <script src="{{ asset('assets/js/custom.js')}}"></script>
   <script src="{{ asset('assets/js/page/bootstrap-modal.js')}}"></script>
+    {{-- Toaster --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+      @if(Session::has('success'))    
+        toastr.options.positionClass = "toast-top-center";
+        toastr.options.progressBar = true;
+        toastr.success("{{ Session::get('success') }}");
+      @elseif(Session::has('error'))
+        toastr.options.positionClass = "toast-top-center";
+        toastr.options.progressBar = true;
+        toastr.error("{{ Session::get('error') }}");
+      @endif
+    </script>
 </body>
 </html>

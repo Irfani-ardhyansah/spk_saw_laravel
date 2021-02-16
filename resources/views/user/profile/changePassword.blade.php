@@ -15,20 +15,6 @@
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
 
-            @if (session('error'))
-            <div class="alert alert-danger alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              {!! session('error') !!}
-            </div>
-            @endif
-
-            @if (session('success'))
-            <div class="alert alert-primary alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              {!! session('success') !!}
-            </div>
-            @endif
-
             <div class="card card-primary">
 
               <div class="card-body">

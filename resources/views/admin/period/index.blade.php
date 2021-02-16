@@ -11,20 +11,6 @@
         </div>  
     </div>
 
-    @if (session('error'))
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! session('error') !!}
-    </div>
-    @endif
-
-    @if (session('success'))
-    <div class="alert alert-primary alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! session('success') !!}
-    </div>
-    @endif
-
     <div class="section-body">
         <div class="card">
             <div class="card-body p-0">
@@ -54,7 +40,7 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td> {{$count_peserta}} </td>
+                            <td> {{$row->user_periods->count()}} </td>
                             <td>
                                 <button type="button" data-toggle="modal" data-target="#modalShowPDF-{{ $row->id }}" class="btn btn-light btn-sm">File</button>
                                 {{-- <iframe src="/pengumuman_periode/{{$row->file }}" width="50%" height="250">

@@ -11,13 +11,6 @@
         </div>
     </div>
 
-    @if (session('error'))
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! session('error') !!}
-    </div>
-    @endif
-
     <div class="section-body">
 
         <div class="row mt-sm-4">
@@ -38,14 +31,15 @@
                                 <label>Nama</label>
                                 <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" required name="name" value="{{ $mahasiswa->name }}">
                                 <div class="invalid-feedback">
-                                    Please fill in the field
+                                    {{ $errors->first('name') }}
+
                                 </div>
                             </div>
                             <div class="form-group col-md-5 col-12">
                                 <label>NPM</label>
                                 <input type="text" class="form-control {{ $errors->has('npm') ? 'is-invalid' : '' }}" required name="npm" value="{{ $mahasiswa->user->npm }}">
                                 <div class="invalid-feedback">
-                                    Please fill in the field
+                                    {{ $errors->first('npm') }}
                                 </div>
                             </div>
                         </div>
@@ -66,7 +60,7 @@
                                 <label>Email</label>
                                 <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" required name="email" value="{{ $mahasiswa->user->email }}">
                                 <div class="invalid-feedback">
-                                    Please fill in the field
+                                    {{ $errors->first('email') }}
                                 </div>
                             </div>
                         </div>
@@ -83,7 +77,7 @@
                                 <label>No HP</label>
                                 <input type="number" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" required name="phone" value="{{ $mahasiswa->phone }}">
                                 <div class="invalid-feedback">
-                                    Please fill in the field
+                                    {{ $errors->first('phone') }}
                                 </div>
                             </div>
                         </div>
@@ -92,7 +86,7 @@
                                 <label>Prodi</label>
                                     <select class="form-control select2" required name="prodi">
                                         <option selected>-</option>
-                                        <option {{ $mahasiswa->prodi == "TI" ? 'selected' : '' }}>Teknologi Informasi</option>
+                                        <option {{ $mahasiswa->prodi == "Teknologi Informasi" ? 'selected' : '' }}>Teknologi Informasi</option>
                                         <option {{ $mahasiswa->prodi == "Meto" ? 'selected' : '' }}>Mesin Otomotif</option>
                                         <option {{ $mahasiswa->prodi == "TKK" ? 'selected' : '' }}>Teknik Komputer Kontrol</option>
                                         <option {{ $mahasiswa->prodi == "Teklis" ? 'selected' : '' }}>Teknik Listrik</option>
@@ -120,7 +114,7 @@
                                 <label>Alamat</label>
                                 <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" required name="address" value="{{ $mahasiswa->address }}">
                                 <div class="invalid-feedback">
-                                    Please fill in the field
+                                    {{ $errors->first('address') }}
                                 </div>
                             </div>
                         </div>

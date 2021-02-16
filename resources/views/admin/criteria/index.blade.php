@@ -11,20 +11,6 @@
         </div>    
     </div>
 
-    @if (session('error'))
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! session('error') !!}
-    </div>
-    @endif
-
-    @if (session('success'))
-    <div class="alert alert-primary alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! session('success') !!}
-    </div>
-    @endif
-
     <div class="section-body">
         <div class="card">
             <div class="card-body p-0">
@@ -65,7 +51,7 @@
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalEditWeight-{{ $weight->id }}">Edit</button>
-                                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Yakin Menghapus Data {{ $weight->information }} ?');" >Delete</button>
+                                                <a href="#" class="btn btn-outline-danger btn-sm weight-delete" weight_id="{{ $weight->id }}">Delete</a>
                                             </form>
                                         </td>
                                     </tr>
@@ -319,4 +305,27 @@
     @endforeach
 @endforeach
 
+@endsection
+
+
+@section('footer')
+    <script>
+        $('.weight-delete').click(function(){
+            var weight_id = $(this).attr('weight_id');
+            swal({
+                backdrop:false,
+                title: "Yakin ?",
+                text: "Menghapus Data Dengan ID " + weight_id + " ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/admin/kriteria/weight/delete/" + weight_id;
+                }
+                });
+                event.preventDefault();
+        });
+    </script>
 @endsection

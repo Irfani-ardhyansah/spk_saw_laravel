@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+    {{-- Toaster --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('/node_modules/jqvmap/dist/jqvmap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('/node_modules/summernote/dist/summernote-bs4.css')}}">
@@ -27,7 +31,6 @@
           @include('layouts.admin.header')
 
           @include('layouts.admin.sidebar')
-    
           <!-- Main Content -->
           <div class="main-content">
             @yield('content')
@@ -58,5 +61,22 @@
 
   <!-- Page Specific JS File -->
   <script src="{{ asset('/assets/js/page/index.js')}}"></script>
+
+  {{-- SweetAlert --}}
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  {{-- Toaster --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script>
+    @if(Session::has('success'))    
+      toastr.options.positionClass = "toast-top-center";
+      toastr.options.progressBar = true;
+      toastr.success("{{ Session::get('success') }}");
+    @elseif(Session::has('error'))
+      toastr.options.progressBar = true;
+      toastr.error("{{ Session::get('error') }}");
+    @endif
+  </script>
+  @yield('footer')
 </body>
 </html>

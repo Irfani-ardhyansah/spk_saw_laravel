@@ -9,13 +9,6 @@
         </div>
     </div>
 
-    @if (session('success'))
-    <div class="alert alert-primary alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! session('success') !!}
-    </div>
-    @endif
-
     <div class="section-body">
 
         <div class="row mt-sm-4">
