@@ -42,7 +42,12 @@ class ProfileController extends Controller
                 'religion'  => 'required',
                 'photo'     => 'nullable|mimes:jpg,jpeg,png|max:20000'
             ],[
-                'npm.unique' => 'NPM Sudah Terdaftar!'
+                'npm.unique'        => 'NPM Sudah Terdaftar!',
+                'npm.digits'        => 'NPM Harus 9!',
+                'name.required'     => 'Nama Harus Diisi!',
+                'email.required'    => 'Email Harus Diisi!',
+                'phone.required'    => 'No Hp Harus Diisi!',
+                'address.required'  => 'Alamt Harus Diisi!',
             ]);
 
             $mahasiswa = Mahasiswa::findOrFail($id);

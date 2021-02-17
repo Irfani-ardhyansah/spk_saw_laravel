@@ -307,7 +307,6 @@
 
 @endsection
 
-
 @section('footer')
     <script>
         $('.weight-delete').click(function(){

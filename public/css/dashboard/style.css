@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300&display=swap");
 body {
-  font-family: 'Poppins', sans-serif; }
+  font-family: 'Poppins', sans-serif; 
+}
 
 .head__custom-nav .navbar-brand img {
   width: 18px;
@@ -50,14 +51,14 @@ body {
       display: inline-block;
       padding: 8px 22px;
       color: #fff;
-      background-color: #1EA5F7;
+      background-color: #5C6EDE;
       border: 1px solid transparent;
       margin-top: 60px;
       text-decoration: none;
       transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
       .custom-section .col-lg-4 a:hover {
         color: #1EA5F7;
-        background-color: #fff;
+        background-color: #B8CCEC;
         border: 1px solid #1EA5F7; }
   .custom-section .col-lg-8 img {
     width: 100%;

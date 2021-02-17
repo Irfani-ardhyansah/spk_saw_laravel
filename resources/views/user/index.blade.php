@@ -1,7 +1,6 @@
 @extends('layouts.user.app')
 
 @section('content')
-
 <div class="section-header">
   <h1>Top Navigation</h1>
   <div class="section-header-breadcrumb">

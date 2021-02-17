@@ -17,11 +17,15 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('/2', function () {
+    return view('dashboard2');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'user', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'user', 'middleware' => ['prevent-back-history','auth']], function() {
     Route::get('/', function () {
         return view('user.index');
     });
@@ -52,7 +56,7 @@ Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('adm
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 
 //Route Group Untuk Admin
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth:admin']], function() {
     Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
 
     // Route Halaman Mahasiswa

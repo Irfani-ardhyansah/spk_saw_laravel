@@ -15,9 +15,9 @@
     <title>Sistem Pengambilan Keputusan</title>
 </head>
 
-<body>
-    <div class="container">
-        <div class="row custom-section d-flex align-items-center">
+<body style="background-image: linear-gradient(to right, #dae2ed, #afc6ec, #8aa8ea, #6c89e5, #5868dc);">
+    <div class="container pt-4">
+        <div class="row custom-section d-flex align-items-center" style="height: 575px">
             <div class="col-12 col-lg-4">
                 <h2>Sistem Pengambilan</h2>
                 <h3>Keputusan</h3>
@@ -38,7 +38,7 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>\
+    </script>
 </body>
 
 </html>

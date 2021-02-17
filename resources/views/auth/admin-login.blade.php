@@ -33,7 +33,7 @@
                     <label for="">Email</label>
                     <input id="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
                     <div class="invalid-feedback">
-                      Please fill in your email
+                      {{ $errors->first('email') }}
                     </div>
                   </div>
 
@@ -43,7 +43,7 @@
                     </div>
                     <input id="password" type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
-                      please fill in your password
+                      {{ $errors->first('password') }}
                     </div>
                   </div>
 
