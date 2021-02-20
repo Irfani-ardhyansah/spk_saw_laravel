@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Grayscale - Start Bootstrap Theme</title>
+        <title>Sistem Pengambilan Keputusan</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -36,15 +36,21 @@
                 <div class="mx-auto text-center">
                     <h1 class="mx-auto my-0">Sistem Pengambilan Keputusan</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Beasiswa PPA.</h2>
-                    <a class="btn btn-primary js-scroll-trigger" href="{{ url('/login')}}">Login</a>
-                    <a class="btn btn-primary js-scroll-trigger" href="{{ url('/register')}}">Register</a>
+                    <a class="btn btn-success js-scroll-trigger" href="{{ url('/login')}}">Login</a>
+                    <a class="btn btn-success js-scroll-trigger" href="{{ url('/register')}}">Register</a>
                 </div>
             </div>
         </header>
         <!-- Contact-->
-        <section class="contact-section bg-black" id="pengumuman">
+        <section class="contact-section" style="background-color: #131C21;" id="pengumuman">
             <div class="container">
-                <h1 class="mx-auto my-0 mb-3">Pengumuman Penerimaan Beasiswa</h1>
+                <div class="row mb-4">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <h1 class="mx-auto my-0 mb-3 text-white-50">Pengumuman Penerimaan Beasiswa</h1>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
                 <div class="row">
                     <div class="col-md-4 mb-3 mb-md-0">
                         <div class="card py-4 h-100">
@@ -53,7 +59,7 @@
                                 <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
                                 <h5 class="text-uppercase m-0">4 Februari 2020 - 10 Februari 2020</h5>
                                 <hr class="my-4" />
-                                <a class="btn btn-info btn-sm text-black-50">Unduh</a>
+                                <a class="btn btn-success btn-sm text-white-50">Unduh</a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +70,7 @@
                                 <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
                                 <h5 class="text-uppercase m-0">4 Februari 2020 - 10 Februari 2020</h5>
                                 <hr class="my-4" />
-                                <a class="btn btn-info btn-sm text-black-50">Unduh</a>
+                                <a class="btn btn-success btn-sm text-white-50">Unduh</a>
                             </div>
                         </div>
                     </div>
@@ -75,7 +81,7 @@
                                 <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
                                 <h5 class="text-uppercase m-0">4 Februari 2020 - 10 Februari 2020</h5>
                                 <hr class="my-4" />
-                                <a class="btn btn-info btn-sm text-black-50">Unduh</a>
+                                <a class="btn btn-success btn-sm text-white-50">Unduh</a>
                             </div>
                         </div>
                     </div>
@@ -83,7 +89,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="footer small text-center text-white-50 bg-black"><div class="container">Copyright © Your Website 2020</div></footer>
+        <footer class="footer small text-center text-white-50" style="background-color: #131C21"><div class="container">Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://gitlab.com/Irfani-ardhyansah/">Mochamad Irfani Ardhyansah</a></div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -17,10 +17,10 @@
   <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
 
-<body>
+<body style="background-image: linear-gradient(to bottom, #dae2ed, #a2abb5, #6e777f, #3e474e, #131c21);">
   <div id="app">
     <section class="section">
-      <div class="container mt-5">
+      <div class="container mt-5" style="opacity: 0.8;">
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
 
@@ -62,7 +62,7 @@
               </div>
             </div>
             <div class="simple-footer">
-              Copyright &copy; Stisla 2018
+              Copyright &copy; 2021 <br> Develop By <a href="https://gitlab.com/Irfani-ardhyansah/">Mochamad Irfani Ardhyansah</a>
             </div>
           </div>
         </div>

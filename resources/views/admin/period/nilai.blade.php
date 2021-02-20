@@ -3,7 +3,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Nilai Seleksi <b>Irwansyah Putra</b> Prodi <b>Teknologi Informasi</b> </h1>
+        <h1>Nilai Seleksi <b>{{$mahasiswa->name}}</b> Prodi <b>Teknologi Informasi</b> </h1>
     </div>
 
     <div class="section-body">
@@ -17,24 +17,15 @@
                             <th>Nilai</th>
                             <th>File</th>
                         </tr>
+                        @foreach($values as $row)
                         <tr>
-                            <td>1</td>
-                            <td>IPK</td>
-                            <td>3.50</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{$row->criteria->name}}</td>
+                            <td>{{$row->value}}</td>
+                            <td>{{ $row->criteria->name }}</td>
                             <td> <a href="#"><button>File</button></a> </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Gaji Orang Tua</td>
-                            <td>1.000.000 - 1.500.000</td>
-                            <td> <a href="#"><button>File</button></a> </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Tanggungan Orang Tua</td>
-                            <td>4</td>
-                            <td> <a href="#"><button>File</button></a> </td>
-                        </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>

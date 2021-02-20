@@ -16,12 +16,19 @@ class PeriodController extends Controller
     public function index()
     {
         $periods = Period::where('status', 1)->get();
-        $user_periods = User_period::where('user_id', Auth()->user()->id)->get();
-        foreach($user_periods as $row) {
-            $period_id = $row->id;
+        $count_user_periods = User_period::where('user_id', Auth()->user()->id)->get()->count();
+
+        if($count_user_periods == 0) {
+            $period_id = NULL;
+            return view('user.period.index', compact('periods', 'period_id'));
+        } else {
+            $user_periods = User_period::where('user_id', Auth()->user()->id)->get();
+            foreach($user_periods as $row) 
+            {
+                $period_id = $row->id;
+            }
+            return view('user.period.index', compact('periods', 'period_id'));
         }
-        // dd($period_id);
-        return view('user.period.index', compact('periods', 'period_id'));
     }
 
     public function create($id)

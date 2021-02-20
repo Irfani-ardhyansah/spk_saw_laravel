@@ -13,7 +13,7 @@
 <div class="section-body">
     <div class="col-12 mb-4">
         @forelse($periods as $row)
-        <div class="hero bg-primary text-white mb-3">
+        <div class="hero text-white mb-3" style="background-color: #36485E">
             <div class="hero-inner">
 
                 <div class="row">
@@ -33,7 +33,7 @@
 
                     <div class="col-3">
                         <div class="mt-4">
-                            <a href="/pengumuman_periode/{{$row->file }}" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="fas fa-file"></i> File Pengumuman</a>
+                            <a href="/pengumuman_periode/{{$row->file }}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="fas fa-file"></i> File Pengumuman</a>
                         </div>
                     </div>
 
@@ -44,9 +44,9 @@
                             {{-- @foreach($user_periods as $item) --}}
                             {{-- {{dd($item->user_id == Auth()->user()->id)}} --}}
                                 @if($row->id == $period_id)
-                                <a href="#" class="btn btn-outline-white btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
+                                <a href="#" class="btn btn-outline-secondary btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
                                 @else
-                                <a href="{{route('user.period.create', ['id' => $row->id])}}" class="btn btn-outline-white btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
+                                <a href="{{route('user.period.create', ['id' => $row->id])}}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
                                 @endif
                             {{-- @endforeach --}}
                         </div>
@@ -60,7 +60,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="lead">Tidak Ada Data Beasiswa</h3>
+                        <h3 class="lead">Tidak Ada Beasiswa Buka Pendaftaran</h3>
                     </div>
                 </div>
 

@@ -32,7 +32,7 @@ class ProfileController extends Controller
 
         try {
             $this->validate($request, [
-                'npm'       => 'required|unique:users|digits:9',
+                'npm'       => 'required|digits:9|unique:users,npm,' . auth()->user()->id . ',id',
                 'name'      => 'required',
                 'prodi'     => 'required',
                 'semester'  => 'required',

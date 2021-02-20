@@ -3,7 +3,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Data Peserta</h1>
+        <h1>Data Peserta Periode {{ $beasiswa->start }} s/d {{ $beasiswa->end }}</h1>
     </div>
 
     <div class="section-body">
@@ -39,8 +39,8 @@
                             <td>{{$row->user->mahasiswa->semester}}</td>
                             <td>{{$row->user->mahasiswa->prodi}}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary">Ganti Status</a>
-                                <a href="#" class="btn btn-outline-info btn-sm">Nilai</a>
+                                <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalGantiStatus-{{ $row->id }}">Ganti Status</a>
+                                <a href="{{ route('admin.beasiswa.peserta.nilai', ['id' => $row->user->mahasiswa->id]) }}" class="btn btn-outline-info btn-sm">Nilai</a>
                             </td>
                         </tr>
                         @empty
@@ -57,4 +57,47 @@
           </div>
     </div>
 </section>
+
+{{-- Modal Ganti Status --}}
+@foreach($pendaftar as $row)
+<div class="modal fade" id="modalGantiStatus-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ganti Status</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+    
+            <div class="modal-body">
+                <form method="POST" action="{{ route('admin.beasiswa.status.peserta', ['id' => $row->id]) }}">
+                    {{csrf_field()}}
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label>Status</label>
+                            <select class="form-control selectric" name="status">
+                                <option selected>-</option>
+                                <option value="0" {{ $row->status  == "0" ? 'selected' : '' }}>Menunggu</option>
+                                <option value="1" {{ $row->status  == "1" ? 'selected' : '' }}>Diterima</option>
+                                <option value="2" {{ $row->status  == "2" ? 'selected' : '' }}>Ditolak</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+@endforeach
+
 @endsection

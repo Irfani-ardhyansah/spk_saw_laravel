@@ -37,6 +37,6 @@
   </ul>
 </nav>
 
-<nav class="navbar navbar-secondary navbar-expand-lg">
+<nav class="navbar navbar-secondary navbar-expand-lg" style="background-color:#E6F4F2;">
 
 </nav>

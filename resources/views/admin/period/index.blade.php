@@ -21,9 +21,10 @@
                             <th>Periode</th>
                             <th>Pendaftar</th>
                             <th>Pengumuman</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($periods as $row)
+                        @forelse($periods as $row)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
@@ -47,17 +48,28 @@
                                 </iframe> --}}
                             </td>
                             <td>
-                                <form method="POST" action="{{ route('admin.period.delete', ['id' => $row->id]) }}">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalEditPeriode-{{ $row->id }}">Edit</button>
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin Menghapus Data {{ $row->information }} ?');" >Delete</button>
-                                    <a href="{{route('admin.beasiswa.peserta', ['id' => $row->id])}}" class="btn btn-sm btn-primary">Peserta</a>
-                                    <a href="/admin/periode/analisis" class="btn btn-outline-info btn-sm">Analisis</a>
-                                </form>
+                                @if($row->status == 1)
+                                <span class="badge badge-info">Buka</span>
+                                @else
+                                <span class="badge badge-warning">Tutup</span>
+                                @endif
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalEditPeriode-{{ $row->id }}">Edit</button>
+                                <a href="#" class="btn btn-sm btn-danger period-delete" period_id="{{$row->id}}" period_start="{{ $row->start }}" period_end="{{ $row->end }}" >Delete</a>
+                                <a href="{{route('admin.beasiswa.peserta', ['id' => $row->id])}}" class="btn btn-sm btn-primary">Peserta</a>
+                                
+                                <br>
+                                
+                                <a href="/admin/periode/analisis" class="btn btn-outline-info btn-sm mt-2">Analisis</a>
+                                <button type="button" class="btn btn-outline-warning btn-sm mt-2" data-toggle="modal" data-target="#modalGantiStatus-{{ $row->id }}">Ganti Status</button>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="6" center>Tidak Ada Data</td>
+                        </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>
@@ -69,7 +81,7 @@
 
 </section>
 
-{{-- Modal Tambah Kriteria --}}
+{{-- Modal Tambah Periode --}}
 <div class="modal fade" id="modalTambahPeriode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -152,7 +164,7 @@
 </div>
 @endforeach
 
-{{-- Modal Edit Kriteria --}}
+{{-- Modal Edit Periode --}}
 @foreach($periods as $row)
 <div class="modal fade" id="modalEditPeriode-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -194,6 +206,39 @@
                                 File harus PDF!
                             </div>
                         </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+@endforeach
+
+{{-- Modal Ganti Status --}}
+@foreach($periods as $row)
+<div class="modal fade" id="modalGantiStatus-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ganti Status</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+    
+            <div class="modal-body">
+                <form method="POST" action="{{ route('admin.period.status', ['id' => $row->id]) }}">
+                    {{csrf_field()}}
+
+                    <div class="row">
                         <div class="form-group col-6">
                             <label>Status</label>
                             <select class="form-control selectric" name="status">
@@ -217,4 +262,28 @@
 </div>
 @endforeach
 
+@endsection
+
+@section('footer')
+    <script>
+        $('.period-delete').click(function(){
+            var period_id = $(this).attr('period_id');
+            var period_start = $(this).attr('period_start');
+            var period_end = $(this).attr('period_end');
+            swal({
+                backdrop:false,
+                title: "Yakin ?",
+                text: "Menghapus Periode " + period_start + " _ " + period_end + " ?" ,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/admin/periode/delete/" + period_id;
+                }
+                });
+                event.preventDefault();
+        });
+    </script>
 @endsection

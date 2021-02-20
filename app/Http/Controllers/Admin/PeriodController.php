@@ -76,7 +76,6 @@ class PeriodController extends Controller
                 $this->validate($request, [
                     'start'  => 'required|unique:periods,end',
                     'end'    => 'required|unique:periods,start',
-                    'status' => 'required'
                 ]);
 
                 $data = $request->all();
@@ -88,7 +87,6 @@ class PeriodController extends Controller
                     'start'  => 'required|unique:periods,end',
                     'end'    => 'required|unique:periods,start',
                     'file'   => 'required|mimes:pdf|max:2000',
-                    'status' => 'required'
                 ]);
 
                 File::delete('pengumuman_periode/'.$period->file);
@@ -100,9 +98,19 @@ class PeriodController extends Controller
                 $item = $nama_file;
 
                 $data = $request->all();
-                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'status'=>$data['status'], 'file' => $item]);
+                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'file' => $item]);
                 return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
             }
+        }
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $period = Period::findOrFail($id);
+        if($request->isMethod('post')) {
+            $data = $request->all();
+            Period::where(['id' => $id])->update(['status'=>$data['status']]);
+            return redirect()->back()->with(['success' => 'Status Periode ' . $request->start . ' Berhasil Diganti!']);
         }
     }
 }

@@ -54,8 +54,8 @@ class RegisterController extends Controller
     {
         // Validasi Inputan Dari Form Register
         return Validator::make($data, [
-            'npm'       => 'required|max:9|unique:users',
-            'email'     => 'required|email|max:255|unique:users',
+            'npm'       => 'required|max:9|unique:users,npm',
+            'email'     => 'required|email|max:255|unique:users,email',
             'password'  => 'required|min:6|confirmed',
             'name'      => 'required|max:50',
             'prodi'     => 'required',
@@ -65,6 +65,15 @@ class RegisterController extends Controller
             'phone'     => 'required|max:12',
             'religion'  => 'required',
             'photo'     => 'mimes:jpg,jpeg,png|max:20000'
+        ],[
+            'npm.unique'        => 'NPM Sudah Terdaftar!',
+            'npm.digits'        => 'NPM Harus 9!',
+            'name.required'     => 'Nama Harus Diisi!',
+            'email.required'    => 'Email Harus Diisi!',
+            'email.unique'      => 'Email Sudah Terdaftar!',
+            'phone.required'    => 'No Hp Harus Diisi!',
+            'address.required'  => 'Alamt Harus Diisi!',
+            'photo.mimes'  => 'Foto Harus Berformat jpg,jpeg,png!',
         ]);
     }
 

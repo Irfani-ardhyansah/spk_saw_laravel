@@ -13,11 +13,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/2', function () {
     return view('dashboard');
 });
 
-Route::get('/2', function () {
+Route::get('/', function () {
     return view('dashboard2');
 });
 
@@ -67,18 +67,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
     // Route Halaman Kriteria
     Route::get('/kriteria', 'Admin\CriteriaController@index')->name('admin.criteria');
     Route::post('/kriteria', 'Admin\CriteriaController@save')->name('admin.criteria.save');
-    Route::delete('/kriteria/delete/{id}', 'Admin\CriteriaController@delete')->name('admin.criteria.delete');
+    Route::get('/kriteria/delete/{id}', 'Admin\CriteriaController@delete')->name('admin.criteria.delete'); //Menggunakan SweetAlert Dalam Delete
     Route::match(['get', 'post'], '/kriteria/update/{id}', 'Admin\CriteriaController@update')->name('admin.criteria.update');
     Route::post('/kriteria/weight/save', 'Admin\WeightController@save')->name('admin.criteria.weight.save');
-    Route::get('/kriteria/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete');
-    Route::match(['get', 'post'], '/kriteria/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update'); //Menggunakan SweetAlert
+    Route::get('/kriteria/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete'); //Menggunakan SweetAlert Dalam Delete
+    Route::match(['get', 'post'], '/kriteria/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update'); 
 
     Route::get('/periode', 'Admin\PeriodController@index')->name('admin.period');
     Route::post('/periode/save', 'Admin\PeriodController@save')->name('admin.period.save');
-    Route::delete('/periode/delete/{id}', 'Admin\PeriodController@delete')->name('admin.period.delete');
+    Route::get('/periode/delete/{id}', 'Admin\PeriodController@delete')->name('admin.period.delete'); //Menggunakan SweetAlert Dalam Delete
     Route::match(['get', 'post'], 'periode/update/{id}', 'Admin\PeriodController@update')->name('admin.period.update');
+    Route::match(['get', 'post'], 'periode/change_status/{id}', 'Admin\PeriodController@changeStatus')->name('admin.period.status');
 
     Route::get('/periode/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
+    Route::match(['get', 'post'], 'periode/peserta/change_status/{id}', 'Admin\BeasiswaController@changeStatus')->name('admin.beasiswa.status.peserta');
+    Route::get('/periode/peserta/{id}/nilai', 'Admin\BeasiswaController@nilai')->name('admin.beasiswa.peserta.nilai');
 
     Route::get('/periode/analisis', function() {
         return view('admin.period.analisis');

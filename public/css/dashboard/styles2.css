@@ -2458,18 +2458,18 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #64a19d;
-  border-color: #64a19d;
+  background-color: #0098FA;
+  border-color: #0098FA;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #548b87;
-  border-color: #4f837f;
+  background-color: #46b5ff;
+  border-color: #46b5ff;
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #548b87;
-  border-color: #4f837f;
+  background-color: #46b5ff;
+  border-color: #46b5ff;
   box-shadow: 0 0 0 0.2rem rgba(123, 175, 172, 0.5);
 }
 .btn-primary.disabled, .btn-primary:disabled {
@@ -2518,12 +2518,12 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: #01756D;
+  border-color: #01756D;
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #218838;
+  background-color: #43A579;
   border-color: #1e7e34;
 }
 .btn-success:focus, .btn-success.focus {
@@ -10207,7 +10207,7 @@ body {
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("../assets/img/bg-masthead.jpg");
+  background-image: linear-gradient(to bottom, #dae2ed, #a2abb5, #6e777f, #3e474e, #131c21);
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;

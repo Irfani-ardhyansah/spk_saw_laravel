@@ -33,13 +33,9 @@
                             <td>{{($row  -> weight) * 100}}%</td>
                             <td>{{$row  -> character}}</td>
                             <td>
-                                <form method="POST" action="{{ route('admin.criteria.delete', ['id' => $row->id]) }}">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Menghapus Data {{ $row->name }} ?');" >Delete</button>
-                                    <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#modalTambahWeight-{{ $row->id }}">Tambah Nilai</button>
-                                </form>
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
+                                <a href="#" class="btn btn-danger btn-sm criteria-delete" criteria_id="{{ $row->id }}" criteria_name="{{ $row->name }}" >Delete</a>
+                                <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#modalTambahWeight-{{ $row->id }}">Tambah Nilai</button>
                             </td>
                             <td>
                                 <table>
@@ -47,12 +43,8 @@
                                     <tr>
                                         <td> {{$weight->information}} ( {{ $weight->value }} ) </td>
                                         <td>
-                                            <form method="POST" action="{{ route('admin.criteria.weight.delete', ['id' => $weight->id]) }}">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                                <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalEditWeight-{{ $weight->id }}">Edit</button>
-                                                <a href="#" class="btn btn-outline-danger btn-sm weight-delete" weight_id="{{ $weight->id }}">Delete</a>
-                                            </form>
+                                            <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalEditWeight-{{ $weight->id }}">Edit</button>
+                                            <a href="#" class="btn btn-outline-danger btn-sm weight-delete" weight_id="{{ $weight->id }}">Delete</a>
                                         </td>
                                     </tr>
                                     @empty
@@ -323,6 +315,25 @@
                 if (willDelete) {
                     window.location = "/admin/kriteria/weight/delete/" + weight_id;
                 }
+                });
+                event.preventDefault();
+        });
+
+        $('.criteria-delete').click(function(){
+            var criteria_id = $(this).attr('criteria_id');
+            var criteria_name = $(this).attr('criteria_name');
+            swal({
+                backdrop:false,
+                title: "Yakin ?",
+                text: "Menghapus Kriteria " + criteria_name + " ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "/admin/kriteria/delete/" + criteria_id;
+                    }
                 });
                 event.preventDefault();
         });

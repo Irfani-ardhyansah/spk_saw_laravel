@@ -17,15 +17,15 @@
   <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
 
-<body>
+<body style="background-image: linear-gradient(to bottom, #dae2ed, #a2abb5, #6e777f, #3e474e, #131c21);">
   <div id="app">
     <section class="section">
-      <div class="container mt-5">
+      <div class="container mt-5" style="opacity: 0.8;">
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Register</h4></div>
+              <div class="card-header"><h4>Form Register Sistem</h4></div>
 
               <div class="card-body">
 
@@ -37,11 +37,17 @@
                     <div class="form-group col-5 {{ $errors->has('npm') ? 'has-error' : '' }}">
                       <label for="">NPM</label>
                       <input type="text" class="form-control {{ $errors->has('npm') ? 'is-invalid' : '' }}" name="npm" value="{{ old('npm') }}">
+                      <div class="invalid-feedback">
+                        {{ $errors->first('npm') }}
+                      </div>
                     </div>
 
                     <div class="form-group col-7 {{ $errors->has('email') ? 'has-error' : '' }}">
                       <label for="">Email</label>
                       <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}">
+                      <div class="invalid-feedback">
+                        {{ $errors->first('email') }}
+                      </div>
                     </div>
 
                   </div>
@@ -51,12 +57,14 @@
                       <label for="">Nama</label>
                       <input type="text" class="form-control {{ $errors->has('name')  ? 'is-invalid' : ''}}" name="name" value="{{ old('name') }}">
                       <div class="invalid-feedback">
+                        {{ $errors->first('name') }}
                       </div>
                     </div>
                     <div class="form-group col-4">
                       <label for="">No HP</label>
                       <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" value="{{ old('phone') }}">
                       <div class="invalid-feedback">
+                        {{ $errors->first('phone') }}
                       </div>
                     </div>
                   </div>
@@ -88,6 +96,9 @@
                     <div class="form-group col-12">
                       <label for="">Alamat</label>
                       <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" value="{{ old('address') }}">
+                      <div class="invalid-feedback">
+                        {{ $errors->first('address') }}
+                      </div>
                     </div>
                   </div>
 
@@ -124,6 +135,9 @@
                     <div class="form-group col-6 {{ $errors->has('password') ? 'has-error' : '' }}">
                       <label for="">Password</label>
                       <input type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
+                      <div class="invalid-feedback">
+                        {{ $errors->first('password') }}
+                      </div>
                     </div>
                     <div class="form-group col-6">
                       <label for="">Password Confirmation</label>
@@ -135,6 +149,9 @@
                     <div class="form-group col-12">
                       <label>Profile Picture</label>
                       <input type="file" class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}" name="photo">
+                      <div class="invalid-feedback">
+                        {{ $errors->first('photo') }}
+                      </div>
                     </div>
                   </div>
 
@@ -155,7 +172,7 @@
               </div>
             </div>
             <div class="simple-footer">
-              Copyright &copy; Stisla 2018
+              Copyright &copy; 2021 <br> Develop By <a href="https://gitlab.com/Irfani-ardhyansah/">Mochamad Irfani Ardhyansah</a>
             </div>
           </div>
         </div>
