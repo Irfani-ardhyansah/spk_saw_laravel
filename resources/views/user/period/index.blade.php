@@ -41,14 +41,11 @@
 
                     <div class="col-3">
                         <div class="mt-4">
-                            {{-- @foreach($user_periods as $item) --}}
-                            {{-- {{dd($item->user_id == Auth()->user()->id)}} --}}
-                                @if($row->id == $period_id)
+                                @if($checker)
                                 <a href="#" class="btn btn-outline-secondary btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
                                 @else
                                 <a href="{{route('user.period.create', ['id' => $row->id])}}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
                                 @endif
-                            {{-- @endforeach --}}
                         </div>
                     </div>
                 </div>

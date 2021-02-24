@@ -81,16 +81,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
 
     Route::get('/periode/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
     Route::match(['get', 'post'], 'periode/peserta/change_status/{id}', 'Admin\BeasiswaController@changeStatus')->name('admin.beasiswa.status.peserta');
-    Route::get('/periode/peserta/{id}/nilai', 'Admin\BeasiswaController@nilai')->name('admin.beasiswa.peserta.nilai');
-
-    Route::get('/periode/analisis', function() {
-        return view('admin.period.analisis');
-    });
-
-    Route::get('/periode/peserta/nilai', function() {
-        return view('admin.period.nilai');
-    });
-
+    Route::get('/periode/{period_id}/peserta/{mahasiswa_id}/nilai', 'Admin\BeasiswaController@nilai')->name('admin.beasiswa.peserta.nilai');
+    Route::get('/periode/{period_id}/analisis', 'Admin\BeasiswaController@analisis')->name('admin.beasiswa.analisis');
 });
 
 Route::get('/log', function() {

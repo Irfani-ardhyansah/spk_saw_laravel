@@ -15,14 +15,14 @@
                 <div class="table-responsive">
                     <table class="table table-striped table-md text-center">
                         <tr>
-                            <th>IPK</th>
-                            <th>Gaji Orang Tua</th>
-                            <th>Tanggungan Orang Tua</th>
+                        @foreach($criterias as $row)
+                            <th>{{$row->name}}</th>
+                        @endforeach
                         </tr>
                         <tr>
-                            <td>0.35</td>
-                            <td>0.35</td>
-                            <td>0.30</td>
+                        @foreach($criterias as $row)
+                            <td>{{$row->weight}}</td>
+                        @endforeach
                         </tr>
                     </table>
                 </div>
@@ -41,24 +41,21 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>IPK</th>
-                            <th>Gaji Orang Tua</th>
-                            <th>Tanggungan Orang Tua</th>
+                            @foreach($criterias as $row)
+                            <th>{{$row->name}}</th>
+                            @endforeach
                         </tr>
+                        @foreach($user_periods as $row)
                         <tr>
-                            <td>1</td>
-                            <td>Irwansyah Saputra</td>
-                            <td>0.50</td>
-                            <td>0.75</td>
-                            <td>0.25</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$row->user->mahasiswa->name}}</td>
+                            @foreach($row->user->mahasiswa->values as $value)
+                                @if($value->period_id == $period_id)
+                                <td>{{$value->value}}</td>
+                                @endif
+                            @endforeach
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Nicholas Saputra</td>
-                            <td>1</td>
-                            <td>0.25</td>
-                            <td>0.50</td>
-                        </tr>
+                        @endforeach
                     </table>
                 </div>
             </div>

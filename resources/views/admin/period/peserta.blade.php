@@ -40,7 +40,7 @@
                             <td>{{$row->user->mahasiswa->prodi}}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalGantiStatus-{{ $row->id }}">Ganti Status</a>
-                                <a href="{{ route('admin.beasiswa.peserta.nilai', ['id' => $row->user->mahasiswa->id]) }}" class="btn btn-outline-info btn-sm">Nilai</a>
+                                <a href="/admin/periode/{{$period_id}}/peserta/{{$row->user->mahasiswa->id}}/nilai" class="btn btn-outline-info btn-sm">Nilai</a>
                             </td>
                         </tr>
                         @empty

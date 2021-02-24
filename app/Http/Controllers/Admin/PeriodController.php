@@ -18,14 +18,20 @@ class PeriodController extends Controller
 
     public function save(Request $request)
     {
-        $this->validate($request, [
-            'start'  => 'required|unique:periods,end',
-            'end'    => 'required|unique:periods,start',
-            'file'   => 'required|mimes:pdf|max:2000',
-            'status' => 'required'
-        ]);
 
         try {
+
+            $this->validate($request, [
+                'start'  => 'required|unique:periods,end',
+                'end'    => 'required|unique:periods,start',
+                'file'   => 'required|mimes:pdf|max:2000',
+                'status' => 'required'
+            ], [
+                'start.required'    => 'Tanggal Mulai Harus Diisi!',
+                'end.required'      => 'Tanggal Selesai Harus Diisi!',
+                'file.required'     => 'File Pengumuman Harus Diisi!',
+                'file.mimes'        => 'File Pengumuman Harus Berupa PDF!'
+            ]);
 
             if($request->hasFile('file')){
                 $file = $request->file('file');

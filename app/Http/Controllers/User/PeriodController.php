@@ -16,26 +16,35 @@ class PeriodController extends Controller
     public function index()
     {
         $periods = Period::where('status', 1)->get();
-        $count_user_periods = User_period::where('user_id', Auth()->user()->id)->get()->count();
+        // $count_user_periods = User_period::where('user_id', Auth()->user()->id)->get()->count();
 
-        if($count_user_periods == 0) {
-            $period_id = NULL;
-            return view('user.period.index', compact('periods', 'period_id'));
-        } else {
-            $user_periods = User_period::where('user_id', Auth()->user()->id)->get();
-            foreach($user_periods as $row) 
-            {
-                $period_id = $row->id;
-            }
-            return view('user.period.index', compact('periods', 'period_id'));
+        // if($count_user_periods == 0) {
+        //     $period_id = NULL;
+        //     return view('user.period.index', compact('periods', 'period_id'));
+        // } else {
+        //     $user_periods = User_period::where('user_id', Auth()->user()->id)->get();
+        //     foreach($user_periods as $row) 
+        //     {
+        //         $period_id = $row->period_id;
+        //     }
+        //     return view('user.period.index', compact('periods', 'period_id'));
+        // }
+
+        foreach($periods as $row) {
+            $period_id = $row->id;
         }
+        $checker = User_period::where('user_id',Auth()->user()->id)->first();
+
+        // $checker = User_period::where('user_id', Auth()->user()->id)->exists();
+        return view('user.period.index', compact('periods', 'checker'));
     }
 
     public function create($id)
     {
         $criterias = Criteria::all();
         $weight = Weight::first();
-        return view('user.period.daftar', compact('criterias', 'weight'));
+        $period_id =  $id;
+        return view('user.period.daftar', compact('criterias', 'weight', 'period_id'));
     }
 
     public function save(Request $request, $id)

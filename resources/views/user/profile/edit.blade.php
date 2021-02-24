@@ -30,9 +30,9 @@
                             <div class="form-group col-md-7 col-12">
                                 <label>Nama</label>
                                 <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" required name="name" value="{{ $mahasiswa->name }}">
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('name') }}
-                                </div>
+                            <div class="invalid-feedback">
+                                {{ $errors->first('name') }}
+                            </div>
                             </div>
                             <div class="form-group col-md-5 col-12">
                                 <label>NPM</label>

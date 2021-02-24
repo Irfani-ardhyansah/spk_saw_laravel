@@ -95,7 +95,7 @@ class RegisterController extends Controller
         ]);
 
         //Mengecek apakah ada inputan dari form photo
-        if(isset($data['photo']) ? $data['photo'] : '0') {
+        if(isset($data['photo'])) {
             //memecah array dan memasukkan ke dalam variabel
             (is_array($file = $data['photo']));
             $extension = $file->getClientOriginalExtension();

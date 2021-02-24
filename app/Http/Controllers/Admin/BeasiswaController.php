@@ -8,6 +8,7 @@ use App\User_period;
 use App\Period;
 use App\Mahasiswa;
 use App\Value;
+use App\Criteria;
 
 class BeasiswaController extends Controller
 {
@@ -15,7 +16,8 @@ class BeasiswaController extends Controller
     {   
         $beasiswa = Period::where('id', $id)->first();
         $pendaftar = User_period::where('period_id', $id)->get();
-        return view('admin.period.peserta', compact('pendaftar', 'beasiswa'));
+        $period_id = $id;
+        return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
     }
 
     public function changeStatus(Request $request, $id)
@@ -28,10 +30,20 @@ class BeasiswaController extends Controller
         }
     }
 
-    public function nilai($id)
+    public function nilai($period_id, $mahasiswa_id)
     {   
-        $values = Value::where('mahasiswa_id', $id)->get();
-        $mahasiswa = Mahasiswa::findOrFail($id);
+        $values = Value::where([
+            ['mahasiswa_id', $mahasiswa_id], 
+            ['period_id', $period_id]
+            ])->get();
+        $mahasiswa = Mahasiswa::findOrFail($mahasiswa_id);
         return view('admin.period.nilai', compact('values', 'mahasiswa'));
+    }
+    
+    public function analisis($period_id)
+    {
+        $criterias = Criteria::all();
+        $user_periods = User_period::where('period_id', $period_id)->get();
+        return view('admin.period.analisis', compact('criterias', 'user_periods', 'period_id'));
     }
 }

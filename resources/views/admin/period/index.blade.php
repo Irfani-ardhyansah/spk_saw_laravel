@@ -61,7 +61,7 @@
                                 
                                 <br>
                                 
-                                <a href="/admin/periode/analisis" class="btn btn-outline-info btn-sm mt-2">Analisis</a>
+                                <a href="/admin/periode/{{$row->id}}/analisis" class="btn btn-outline-info btn-sm mt-2">Analisis</a>
                                 <button type="button" class="btn btn-outline-warning btn-sm mt-2" data-toggle="modal" data-target="#modalGantiStatus-{{ $row->id }}">Ganti Status</button>
                             </td>
                         </tr>
@@ -100,11 +100,17 @@
                         <div class="form-group col-5 {{ $errors->has('start') ? 'has-error' : '' }}">
                             <label for="">Dimulai</label>
                             <input type="date" class="form-control {{ $errors->has('start') ? 'is-invalid' : '' }}" name="start" value="{{ old('start') }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('start') }}
+                            </div>
                         </div>
                         <div class="form-group col-1"></div>
                         <div class="form-group col-5 {{ $errors->has('end') ? 'has-error' : '' }}">
                             <label for="">Akhir</label>
                             <input type="date" class="form-control {{ $errors->has('end') ? 'is-invalid' : '' }}" name="end" value="{{ old('end') }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('end') }}
+                            </div>
                         </div>
                     </div>
 
@@ -112,9 +118,9 @@
                         <div class="form-group col-6 {{ $errors->has('file') ? 'has-error' : '' }}">
                             <label for="">File</label>
                             <input type="file" class="form-control-file" name="file">
-                        </div>
-                        <div class="invalid-feedback">
-                            File harus PDF!
+                            <div class="invalid-feedback">
+                                {{ $errors->first('file') }}
+                            </div>
                         </div>
                         <div class="form-group col-6">
                             <label>Status</label>
