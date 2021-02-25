@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="{{route('admin.dashboard')}}">SPK</a>
+        <a href="{{route('admin.dashboard')}}" style="font-size: 10px">Sistem Pengambilan Keputusan</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="{{route('admin.dashboard')}}">SPK</a>

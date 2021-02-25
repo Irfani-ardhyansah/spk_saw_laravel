@@ -85,14 +85,17 @@
                         <div class="form-group col-5 {{ $errors->has('code') ? 'has-error' : '' }}">
                             <label for="">Inisial</label>
                             <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" value="{{ old('code') }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('code') }}
+                            </div>
                         </div>
 
                         <div class="form-group col-7 {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="">Nama</label>
                             <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name') }}">
-                        </div>
-                        <div class="invalid-feedback">
-                            Pastikan Teliti Dalam Menginput!
+                            <div class="invalid-feedback">
+                                {{ $errors->first('name') }}
+                            </div>
                         </div>
                     </div>
 
@@ -100,9 +103,9 @@
                         <div class="form-group col-6 {{ $errors->has('weight') ? 'has-error' : '' }}">
                             <label for="">Bobot</label>
                             <input type="number" step="0.01" class="form-control {{ $errors->has('weight')  ? 'is-invalid' : ''}}" name="weight" value="{{ old('weight') }}">
-                        </div>
-                        <div class="invalid-feedback">
-                            Bobot harus dalam desimal!
+                            <div class="invalid-feedback">
+                                {{ $errors->first('weight') }}
+                            </div>
                         </div>
                         <div class="form-group col-6">
                             <label>Sifat</label>
@@ -118,6 +121,9 @@
                         <div class="form-group col-12 {{ $errors->has('information') ? 'has-error' : '' }}">
                             <label for="">Keterangan</label>
                             <input type="text" class="form-control {{ $errors->has('information') ? 'is-invalid' : '' }}" name="information" value="{{ old('information') }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('information') }}
+                            </div>
                         </div>
                     </div>
 
@@ -153,11 +159,17 @@
                         <div class="form-group col-5 {{ $errors->has('code') ? 'has-error' : '' }}">
                             <label for="">Inisial</label>
                             <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" value="{{ $row->code }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('code') }}
+                            </div>
                         </div>
 
                         <div class="form-group col-7 {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="">Nama</label>
                             <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ $row->name }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('name') }}
+                            </div>
                         </div>
                     </div>
 
@@ -165,9 +177,9 @@
                         <div class="form-group col-6 {{ $errors->has('weight') ? 'has-error' : '' }}">
                             <label for="">Bobot</label>
                             <input type="number" step="0.01" class="form-control {{ $errors->has('weight')  ? 'is-invalid' : ''}}" name="weight" value="{{ $row->weight }}">
-                        </div>
-                        <div class="invalid-feedback">
-                            Bobot harus dalam desimal!
+                            <div class="invalid-feedback">
+                                {{ $errors->first('weight') }}
+                            </div>
                         </div>
                         <div class="form-group col-6">
                             <label>Sifat</label>
@@ -184,6 +196,9 @@
                         <div class="form-group col-12 {{ $errors->has('information') ? 'has-error' : '' }}">
                             <label for="">Keterangan</label>
                             <input type="text" class="form-control {{ $errors->has('information') ? 'is-invalid' : '' }}" name="information" value="{{ $row->information }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('information') }}
+                            </div>
                         </div>
                     </div>
 
@@ -228,10 +243,16 @@
                         <div class="form-group col-6 {{ $errors->has('information') ? 'has-error' : '' }}">
                             <label for="">Keterangan</label>
                             <input type="text" class="form-control {{ $errors->has('information')  ? 'is-invalid' : ''}}" name="information" value="{{ old('information') }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('information') }}
+                            </div>
                         </div>
                         <div class="form-group col-6 {{ $errors->has('value') ? 'has-error' : '' }}">
                             <label for="">Nilai</label>
                             <input type="number" step="0.01" class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" value="{{ old('value') }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('value') }}
+                            </div>
                         </div>
                     </div>
 

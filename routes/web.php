@@ -47,9 +47,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['prevent-back-history','auth'
 });
 
 
-Route::get('/super_admin', function() {
-    return view('admin.data_admin.index');
-});
+Route::get('/super_admin', 'Super_admin\AdminController@index')->name('super_admin.index');
+Route::post('/super_admin/save', 'Super_admin\AdminController@save')->name('super_admin.save');
+Route::get('/super_admin/delete/{id}', 'Super_admin\AdminController@delete');
 
 //Route untuk login admin
 Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

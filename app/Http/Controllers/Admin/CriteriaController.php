@@ -29,9 +29,17 @@ class CriteriaController extends Controller
             $this->validate($request, [
                 'code'          => 'required|unique:criterias',
                 'name'          => 'required|max:40',
-                'weight'        => 'required|between:0.0,5',
+                'weight'        => 'required|numeric|between:0, 0.5',
                 'character'     => 'required',
                 'information'   => 'required'
+            ], [
+                'code.required' =>  'Kode Harus Diisi!',
+                'code.unique'   =>  'Kode Harus Unik!',
+                'name.required' =>  'Nama Harus Diisi!',
+                'name.max'          =>  'Nama Maksimal 40 Huruf!',
+                'weight.required'   =>  'Bobot Harus Diisi!',
+                'weight.between'    =>  'Bobot Bernilai 0 =< 0,5',
+                'information.required'  => 'Keterangan Harus Diisi!',
             ]);    
 
             $criteria = Criteria::create([
