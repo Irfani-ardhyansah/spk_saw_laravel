@@ -18,7 +18,7 @@ class CreateCriteriasTable extends Migration
             $table->unsignedInteger('admin_id')->nullable();
             $table->string('code');
             $table->string('name');
-            $table->double('weight');
+            $table->double('weight')->nullable();
             $table->string('character');
             $table->timestamps();
         });

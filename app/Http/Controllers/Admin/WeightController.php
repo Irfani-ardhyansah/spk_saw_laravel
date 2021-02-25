@@ -14,15 +14,15 @@ class WeightController extends Controller
 
         try {
 
-            $this->validate($request, [
-                'criteria_id'   => 'required|exists:criterias,id',
-                'information'   => 'required',
-                'value'         => 'required|numeric|between:0,1'
-            ],[
-                'information.required'  =>  'Keterangan harus Diisi!',
-                'value.required'        =>  'Nilai Harus Diisi!',
-                'value.between'         =>  'Nilain Harus Bernilai 0 =< 1'
-            ]);
+        $this->validate($request, [
+            'criteria_id'   => 'required|exists:criterias,id',
+            'information'   => 'required',
+            'value'         => 'required|numeric|between:0,1'
+        ],[
+            'information.required'  =>  'Keterangan harus Diisi!',
+            'value.required'        =>  'Nilai Harus Diisi!',
+            'value.between'         =>  'Nilain Harus Bernilai 0 =< 1'
+        ]);
 
             $weight = Weight::create([
                 'criteria_id'   =>  $request->criteria_id,

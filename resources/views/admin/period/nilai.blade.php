@@ -22,7 +22,6 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{$row->criteria->name}}</td>
                             <td>{{$row->value}}</td>
-                            <td>{{ $row->criteria->name }}</td>
                             <td> <a href="#"><button>File</button></a> </td>
                         </tr>
                         @endforeach

@@ -35,5 +35,30 @@
             </div>
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-4">
+                    <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
+                        @foreach($files as $row)
+                        <li class="nav-item">
+                            <a class="nav-link" id="home-tab4" data-toggle="tab" href="#{{$row->code}}" role="tab" aria-controls="home" aria-selected="true">{{$row->name}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-12 col-md-8">
+                    <div class="tab-content no-padding" id="myTab2Content">
+                        @foreach($files as $row)
+                        <div class="tab-pane fade show" id="{{$row->code}}" role="tabpanel" aria-labelledby="">
+                        {{$row->information}}
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

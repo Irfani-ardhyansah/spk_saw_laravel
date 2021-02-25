@@ -26,30 +26,60 @@ class CriteriaController extends Controller
     {
 
         try {
-            $this->validate($request, [
-                'code'          => 'required|unique:criterias',
-                'name'          => 'required|max:40',
-                'weight'        => 'required|numeric|between:0, 0.5',
-                'character'     => 'required',
-                'information'   => 'required'
-            ], [
-                'code.required' =>  'Kode Harus Diisi!',
-                'code.unique'   =>  'Kode Harus Unik!',
-                'name.required' =>  'Nama Harus Diisi!',
-                'name.max'          =>  'Nama Maksimal 40 Huruf!',
-                'weight.required'   =>  'Bobot Harus Diisi!',
-                'weight.between'    =>  'Bobot Bernilai 0 =< 0,5',
-                'information.required'  => 'Keterangan Harus Diisi!',
-            ]);    
 
-            $criteria = Criteria::create([
-                'admin_id'      =>  Auth::user()->id,
-                'code'          =>  $request->code,
-                'name'          =>  $request->name,
-                'weight'        =>  $request->weight,
-                'character'     =>  $request->character,
-                'information'   =>  $request->information
-            ]);
+            if($request->weight) {
+
+                $this->validate($request, [
+                    'code'          => 'required|unique:criterias',
+                    'name'          => 'required|max:40',
+                    'weight'        => 'required|numeric|between:0, 0.5',
+                    'character'     => 'required',
+                    'information'   => 'required'
+                ], [
+                    'code.required' =>  'Kode Harus Diisi!',
+                    'code.unique'   =>  'Kode Harus Unik!',
+                    'name.required' =>  'Nama Harus Diisi!',
+                    'name.max'          =>  'Nama Maksimal 40 Huruf!',
+                    'weight.between'    =>  'Bobot Bernilai 0 =< 0,5',
+                    'information.required'  => 'Keterangan Harus Diisi!',
+                ]);    
+
+                $criteria = Criteria::create([
+                    'admin_id'      =>  Auth::user()->id,
+                    'code'          =>  $request->code,
+                    'name'          =>  $request->name,
+                    'weight'        =>  $request->weight,
+                    'character'     =>  $request->character,
+                    'information'   =>  $request->information,
+                    'status'        =>  1
+                ]);
+            } else {
+
+                $this->validate($request, [
+                    'code'          => 'required|unique:criterias',
+                    'name'          => 'required|max:40',
+                    'weight'        => 'between:0, 0.5',
+                    'character'     => 'required',
+                    'information'   => 'required'
+                ], [
+                    'code.required' =>  'Kode Harus Diisi!',
+                    'code.unique'   =>  'Kode Harus Unik!',
+                    'name.required' =>  'Nama Harus Diisi!',
+                    'name.max'          =>  'Nama Maksimal 40 Huruf!',
+                    'weight.between'    =>  'Bobot Bernilai 0 =< 0,5',
+                    'information.required'  => 'Keterangan Harus Diisi!',
+                ]);    
+
+                $criteria = Criteria::create([
+                    'admin_id'      =>  Auth::user()->id,
+                    'code'          =>  $request->code,
+                    'name'          =>  $request->name,
+                    'weight'        =>  $request->weight,
+                    'character'     =>  $request->character,
+                    'information'   =>  $request->information,
+                    'status'        =>  0
+                ]);
+            }
 
             return redirect()->back()->with(['success' => 'Berhasil Menambah Data ' . $criteria->name]);
         } catch(\Exception $e) {

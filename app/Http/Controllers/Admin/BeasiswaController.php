@@ -34,7 +34,7 @@ class BeasiswaController extends Controller
     {   
         $values = Value::where([
             ['mahasiswa_id', $mahasiswa_id], 
-            ['period_id', $period_id]
+            ['period_id', $period_id] 
             ])->get();
         $mahasiswa = Mahasiswa::findOrFail($mahasiswa_id);
         return view('admin.period.nilai', compact('values', 'mahasiswa'));
@@ -42,7 +42,7 @@ class BeasiswaController extends Controller
     
     public function analisis($period_id)
     {
-        $criterias = Criteria::all();
+        $criterias = Criteria::where('status',1)->get();
         $user_periods = User_period::where('period_id', $period_id)->get();
         return view('admin.period.analisis', compact('criterias', 'user_periods', 'period_id'));
     }

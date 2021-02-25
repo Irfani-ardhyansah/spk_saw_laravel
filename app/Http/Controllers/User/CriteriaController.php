@@ -10,7 +10,8 @@ class CriteriaController extends Controller
 {
     public function index()
     {
-        $criterias = Criteria::all();
-        return view('user.kriteria', compact('criterias'));
+        $criterias = Criteria::where('status', 1)->get();
+        $files = Criteria::where('status', 0)->get();
+        return view('user.kriteria', compact('criterias', 'files'));
     } 
 }

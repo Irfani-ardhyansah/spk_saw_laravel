@@ -35,7 +35,11 @@
                             <td>
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
                                 <a href="#" class="btn btn-danger btn-sm criteria-delete" criteria_id="{{ $row->id }}" criteria_name="{{ $row->name }}" >Delete</a>
+                                @if($row->status == 1)
                                 <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#modalTambahWeight-{{ $row->id }}">Tambah Nilai</button>
+                                @else
+
+                                @endif
                             </td>
                             <td>
                                 <table>
@@ -102,7 +106,7 @@
                     <div class="row">
                         <div class="form-group col-6 {{ $errors->has('weight') ? 'has-error' : '' }}">
                             <label for="">Bobot</label>
-                            <input type="number" step="0.01" class="form-control {{ $errors->has('weight')  ? 'is-invalid' : ''}}" name="weight" value="{{ old('weight') }}">
+                            <input type="number" step="0.01" class="form-control {{ $errors->has('weight')  ? 'is-invalid' : ''}}" name="weight" value="{{ old('weight') }}"value=''>
                             <div class="invalid-feedback">
                                 {{ $errors->first('weight') }}
                             </div>
@@ -173,6 +177,7 @@
                         </div>
                     </div>
 
+                    @if($row->status == 1)
                     <div class="row">
                         <div class="form-group col-6 {{ $errors->has('weight') ? 'has-error' : '' }}">
                             <label for="">Bobot</label>
@@ -190,6 +195,9 @@
                             </select>
                         </div>
                     </div>
+                    @else
+
+                    @endif
 
                                         
                     <div class="row">
@@ -223,7 +231,7 @@
         <div class="modal-content">
         
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tambah Kriteria Weight</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Pilihan Nilai Kriteria</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -232,10 +240,11 @@
             <div class="modal-body">
                 <form method="POST" action="{{ route('admin.criteria.weight.save') }}">
                     {{csrf_field()}}
+                    <input type="hidden" class="form-control" name="criteria_id" value="{{ $row->id }}" readonly>
                     <div class="row">
                         <div class="form-group col-5">
-                            <label for="">ID Criteria</label>
-                            <input type="text" class="form-control" name="criteria_id" value="{{ $row->id }}" readonly>
+                            <label for="">Nama Kriteria</label>
+                            <input type="text" class="form-control" value="{{ $row->name }}" readonly>
                         </div>
                     </div>
 

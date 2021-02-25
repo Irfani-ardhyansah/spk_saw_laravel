@@ -16,7 +16,7 @@ class CreateAnouncementsTable extends Migration
         Schema::create('anouncements', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('admin_id')->nullable();
-            $table->string('content');
+            $table->unsignedInteger('period_id')->nullable();
             $table->string('file');
             $table->timestamps();
         });
