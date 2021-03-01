@@ -11,7 +11,7 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswas = Mahasiswa::paginate(1);
+        $mahasiswas = Mahasiswa::paginate(2);
         return view('admin.mahasiswa.index', compact('mahasiswas'));
     }
 
@@ -26,6 +26,6 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::findOrFail($id);
         User::where('id', $mahasiswa->user_id)->delete();
         $mahasiswa -> delete();
-        return view('admin.kriteria')->with(['success' => 'Data ' . $mahasiswa->name . ' Berhasil Dihapus!' ]);
+        return redirect()->back()->with(['success' => 'Data ' . $mahasiswa->name . ' Berhasil Dihapus!' ]);
     }
 }

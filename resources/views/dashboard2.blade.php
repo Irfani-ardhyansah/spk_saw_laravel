@@ -35,7 +35,7 @@
             <div class="container d-flex h-100 align-items-center">
                 <div class="mx-auto text-center">
                     <h1 class="mx-auto my-0">Sistem Pengambilan Keputusan</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Beasiswa PPA.</h2>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">Beasiswa PPA</h2>
                     <a class="btn btn-success js-scroll-trigger" href="{{ url('/login')}}">Login</a>
                     <a class="btn btn-success js-scroll-trigger" href="{{ url('/register')}}">Register</a>
                 </div>
@@ -52,39 +52,52 @@
                     <div class="col-2"></div>
                 </div>
                 <div class="row">
+                    @foreach($anouncements as $row)
                     <div class="col-md-4 mb-3 mb-md-0">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
                                 <i class="far fa-circle text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
-                                <h5 class="text-uppercase m-0">4 Februari 2020 - 10 Februari 2020</h5>
+                                <h5 class="text-uppercase m-0">
+                                    {{date('d', strtotime($row->period->start))}}-{{date('F', strtotime($row->period->start))}}-{{date('Y', strtotime($row->period->start))}}
+                                     
+                                    {{date('d', strtotime($row->period->end))}}-{{date('F', strtotime($row->period->end))}}-{{date('Y', strtotime($row->period->end))}}</h5>
                                 <hr class="my-4" />
                                 <a class="btn btn-success btn-sm text-white-50">Unduh</a>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4 mb-3 mb-md-0">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
-                                <i class="far fa-circle  text-primary mb-2"></i>
+                                <i class="far fa-circle text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
-                                <h5 class="text-uppercase m-0">4 Februari 2020 - 10 Februari 2020</h5>
+                                <h5 class="text-uppercase m-0">
+                                    {{date('d', strtotime($row->period->start))}}-{{date('F', strtotime($row->period->start))}}-{{date('Y', strtotime($row->period->start))}}
+                                     
+                                    {{date('d', strtotime($row->period->end))}}-{{date('F', strtotime($row->period->end))}}-{{date('Y', strtotime($row->period->end))}}</h5>
                                 <hr class="my-4" />
                                 <a class="btn btn-success btn-sm text-white-50">Unduh</a>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4 mb-3 mb-md-0">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
-                                <i class="far fa-circle  text-primary mb-2"></i>
+                                <i class="far fa-circle text-primary mb-2"></i>
                                 <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
-                                <h5 class="text-uppercase m-0">4 Februari 2020 - 10 Februari 2020</h5>
+                                <h5 class="text-uppercase m-0">
+                                    {{date('d', strtotime($row->period->start))}}-{{date('F', strtotime($row->period->start))}}-{{date('Y', strtotime($row->period->start))}}
+                                     
+                                    {{date('d', strtotime($row->period->end))}}-{{date('F', strtotime($row->period->end))}}-{{date('Y', strtotime($row->period->end))}}</h5>
                                 <hr class="my-4" />
                                 <a class="btn btn-success btn-sm text-white-50">Unduh</a>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </section>

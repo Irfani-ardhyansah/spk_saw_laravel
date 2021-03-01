@@ -8,7 +8,7 @@
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Super Admin</li>
-          <li class="nav-link"><a href="blank.html"><i class="ion ion-ios-folder"></i> <span>Data Admin</span></a></li>
+          <li class="nav-link {{ (request()->is('super_admin')) ? 'active' : ''}}"><a href="/super_admin"><i class="ion ion-ios-folder"></i> <span>Data Admin</span></a></li>
 
           <li class="menu-header">Admin</li>
           <li class="nav-link {{ (request()->is('admin/mahasiswa')) ? 'active' : ''}}"><a href="/admin/mahasiswa"><i class="ion ion-ios-folder"></i> <span>Data Mahasiswa</span></a></li>

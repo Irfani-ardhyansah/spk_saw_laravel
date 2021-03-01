@@ -17,9 +17,7 @@ Route::get('/2', function () {
     return view('dashboard');
 });
 
-Route::get('/', function () {
-    return view('dashboard2');
-});
+Route::get('/', 'DashboardController@index');
 
 Auth::routes();
 
@@ -85,6 +83,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
     Route::get('/periode/{period_id}/analisis', 'Admin\BeasiswaController@analisis')->name('admin.beasiswa.analisis');
 
     Route::get('/pengumuman', 'Admin\PengumumanController@index');
+    Route::post('/pengumuman/save', 'Admin\PengumumanController@save')->name('admin.pengumuman.save');
+    Route::match(['get', 'post'], 'pengumuman/change_status/{id}', 'Admin\PengumumanController@changeStatus')->name('admin.pengumuman.status');
 });
 
 Route::get('/log', function() {

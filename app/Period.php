@@ -22,4 +22,9 @@ class Period extends Model
     {
         return $this->hasMany('App\User_period');
     }
+
+    public function anouncement()
+    {
+        return $this->hasOne('App\Anouncement');
+    }
 }
