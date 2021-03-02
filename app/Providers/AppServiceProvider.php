@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        Gate::define('isSuper', function($admin) {
+            return $admin->role == '0';
+        });
+
+        Gate::define('isAdmin', function($admin) {
+            return $admin->role == '1';
+        });
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Data Kriteria</h1>
+        <h1>Data Kriteria & Bobot</h1>
         <div class="ml-auto">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahKriteria">
                 Tambah
@@ -11,7 +11,18 @@
         </div>    
     </div>
 
-    <div class="section-body">
+    <div class="body">
+        <p>
+            <a class="btn btn-light" data-toggle="collapse" href="#criteria1" role="button" aria-expanded="false" aria-controls="criteria">
+                Kriteria Penghitungan
+            </a>
+            <a class="btn btn-light" data-toggle="collapse" href="#criteria2" role="button" aria-expanded="false" aria-controls="criteria">
+                Kriteria Beasiswa
+            </a>
+          </p>
+    </div>
+
+    <div class="section-body collapse" id="criteria1">
         <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -25,7 +36,7 @@
                             <th>Action</th>
                             <th>Nilai</th>
                         </tr>
-                        @foreach($criterias as $row)
+                        @foreach($criterias->where('status', 1) as $row)
                         <tr>
                             <td>{{$loop -> iteration}}</td>
                             <td>{{$row  -> code}}</td>
@@ -57,6 +68,37 @@
                                         </tr>
                                     @endforelse
                                 </table>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+
+            </div>
+          </div>
+    </div>
+
+    <div class="section-body collapse" id="criteria2">
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-md">
+                        <tr>
+                            <th>#</th>
+                            <th>Inisial</th>
+                            <th>Nama</th>
+                            <th>Action</th>
+                        </tr>
+                        @foreach($criterias->where('status', 0) as $row)
+                        <tr>
+                            <td>{{$loop -> iteration}}</td>
+                            <td>{{$row  -> code}}</td>
+                            <td>{{$row  -> name}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
+                                <a href="#" class="btn btn-danger btn-sm criteria-delete" criteria_id="{{ $row->id }}" criteria_name="{{ $row->name }}" >Delete</a>
                             </td>
                         </tr>
                         @endforeach
@@ -198,8 +240,6 @@
                     @else
 
                     @endif
-
-                                        
                     <div class="row">
                         <div class="form-group col-12 {{ $errors->has('information') ? 'has-error' : '' }}">
                             <label for="">Keterangan</label>
@@ -223,6 +263,7 @@
     </div>
 </div>
 @endforeach
+
 
 {{-- Modal Tambah Bobot --}}
 @foreach($criterias as $row)

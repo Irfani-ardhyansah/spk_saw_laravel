@@ -12,6 +12,8 @@ class CriteriaController extends Controller
 {
     public function index()
     {
+        $criterias1 = Criteria::where('status', 1)->get();
+        $criterias2 = Criteria::where('status', 0)->get();
         $criterias = Criteria::all();
         // foreach(Auth::user()->criterias as $criteria) {
         //     $criteria_id = $criteria->id;
@@ -19,7 +21,7 @@ class CriteriaController extends Controller
         // $criteria_weights = Criteria::with('weights')->orderBy('value', 'DESC')->get();
         // dd($criteria_weights);
         // $weights = Weight::where('criteria_id', $criteria_id)->orderBy('value', 'DESC')->get();
-        return view('admin.criteria.index', compact('criterias'));
+        return view('admin.criteria.index', compact('criterias1', 'criterias2', 'criterias'));
     }
 
     public function save(Request $request) 

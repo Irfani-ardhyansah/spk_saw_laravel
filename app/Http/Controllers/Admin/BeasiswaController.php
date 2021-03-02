@@ -44,6 +44,7 @@ class BeasiswaController extends Controller
     {
         $criterias = Criteria::where('status',1)->get();
         $user_periods = User_period::where('period_id', $period_id)->get();
-        return view('admin.period.analisis', compact('criterias', 'user_periods', 'period_id'));
+        $values = Value::all();
+        return view('admin.period.analisis', compact('criterias', 'user_periods', 'period_id', 'values'));
     }
 }
