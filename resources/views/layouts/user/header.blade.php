@@ -1,6 +1,6 @@
 <div class="navbar-bg"></div>
 <nav class="navbar navbar-expand-lg main-navbar">
-  <a href="#" class="navbar-brand sidebar-gone-hide">SPK</a>
+  <a href="{{url('user')}}" class="navbar-brand sidebar-gone-hide">SPK</a>
   <div class="navbar-nav">
     <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
   </div>

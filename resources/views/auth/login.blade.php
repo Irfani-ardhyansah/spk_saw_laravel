@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
 
-<body style="background-image: linear-gradient(to bottom, #dae2ed, #a2abb5, #6e777f, #3e474e, #131c21);">
+<body style="background-color: #404950;">
   <div id="app">
     <section class="section">
       <div class="container mt-5" style="opacity: 0.8;">

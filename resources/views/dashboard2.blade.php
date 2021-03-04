@@ -52,7 +52,7 @@
                     <div class="col-2"></div>
                 </div>
                 <div class="row">
-                    @foreach($anouncements as $row)
+                    @forelse($anouncements as $row)
                     <div class="col-md-4 mb-3 mb-md-0">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
@@ -68,36 +68,24 @@
                         </div>
                     </div>
 
+                    @empty
                     <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="far fa-circle text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
-                                <h5 class="text-uppercase m-0">
-                                    {{date('d', strtotime($row->period->start))}}-{{date('F', strtotime($row->period->start))}}-{{date('Y', strtotime($row->period->start))}}
-                                     
-                                    {{date('d', strtotime($row->period->end))}}-{{date('F', strtotime($row->period->end))}}-{{date('Y', strtotime($row->period->end))}}</h5>
-                                <hr class="my-4" />
-                                <a class="btn btn-success btn-sm text-white-50">Unduh</a>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="col-md-4 mb-3 mb-md-0">
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
                                 <i class="far fa-circle text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
-                                <h5 class="text-uppercase m-0">
-                                    {{date('d', strtotime($row->period->start))}}-{{date('F', strtotime($row->period->start))}}-{{date('Y', strtotime($row->period->start))}}
-                                     
-                                    {{date('d', strtotime($row->period->end))}}-{{date('F', strtotime($row->period->end))}}-{{date('Y', strtotime($row->period->end))}}</h5>
-                                <hr class="my-4" />
-                                <a class="btn btn-success btn-sm text-white-50">Unduh</a>
+                                <h4 class="text-uppercase m-0 mb-2">Tidak Ada File Pengumuman</h4>
                             </div>
                         </div>
                     </div>
-                    @endforeach
+
+                    <div class="col-md-4 mb-3 mb-md-0">
+                    </div>
+
+                    @endforelse
+
                 </div>
             </div>
         </section>
