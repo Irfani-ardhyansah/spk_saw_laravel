@@ -4,14 +4,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Data Mahasiswa</h1>
+        <div class="ml-auto">
+            <button class="btn btn-success" data-toggle="modal" data-target="#modalImportExcel">
+                Import Data Excel
+            </button>
+        </div>
     </div>
-
-    @if (session('success'))
-    <div class="alert alert-primary alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {!! session('success') !!}
-    </div>
-    @endif
 
     <div class="section-body">
         <div class="card">
@@ -55,4 +53,48 @@
           </div>
     </div>
 </section>
+
+{{-- Modal Tambah Kriteria --}}
+<div class="modal fade" id="modalImportExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Kriteria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+    
+            <div class="modal-body">
+                <form method="POST" action="{{ route('admin.mahasiswa.store') }}" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="col-5">
+                            <a href="/data_mahasiswa/Contoh_Format_Data_Mahasiswa.xlsx" class="btn btn-success">Contoh Format Excel</a>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="form-group col-6 {{ $errors->has('file') ? 'has-error' : '' }}">
+                            <label for="">File</label>
+                            <input type="file" class="form-control {{ $errors->has('file')  ? 'is-invalid' : ''}}" name="file">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('file') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
