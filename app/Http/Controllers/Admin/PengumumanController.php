@@ -11,6 +11,7 @@ class PengumumanController extends Controller
 {
     public function index()
     {
+        //Mengambil data pada periode dan pengumuman
         $periods = Period::all();
         $anouncements = Anouncement::all();
         return view('admin.pengumuman.index', compact('periods', 'anouncements'));
@@ -19,6 +20,7 @@ class PengumumanController extends Controller
     public function save(Request $request)
     {
         try{
+            //memvalidasi data
             $this->validate($request,[
                 'period_id' => 'unique:anouncements',
                 'file'      =>  'mimes:pdf|max:20000'
@@ -28,6 +30,7 @@ class PengumumanController extends Controller
                 'file.max'          =>  'File Maksimal 2MB!'
             ]);
 
+            //lalu menyimpan berdasarkan inputan dari view
             $pengumuman = Anouncement::create([
                 'admin_id'      =>  Auth()->user()->id,
                 'period_id'     =>  $request->period_id,
@@ -43,7 +46,9 @@ class PengumumanController extends Controller
 
     public function changeStatus(Request $request, $id)
     {
+        //jika inputan post
         if($request->isMethod('post')) {
+            //mengambil data lalu mengupdate pada kolom status
             $data = $request->all();
             Anouncement::where(['id' => $id])->update(['status'=>$data['status']]);
             return redirect()->back()->with(['success' => 'Status Pengumuman Berhasil Diganti!']);

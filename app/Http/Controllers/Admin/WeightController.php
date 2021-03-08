@@ -11,19 +11,18 @@ class WeightController extends Controller
 {
     public function save(Request $request) 
     {
-
         try {
-
-        $this->validate($request, [
-            'criteria_id'   => 'required|exists:criterias,id',
-            'information'   => 'required',
-            'value'         => 'required|numeric|between:0,1'
-        ],[
-            'information.required'  =>  'Keterangan harus Diisi!',
-            'value.required'        =>  'Nilai Harus Diisi!',
-            'value.between'         =>  'Nilain Harus Bernilai 0 =< 1'
-        ]);
-
+            //melakukan validasi data
+            $this->validate($request, [ 
+                'criteria_id'   => 'required|exists:criterias,id',
+                'information'   => 'required',
+                'value'         => 'required|numeric|between:0,1'
+            ],[
+                'information.required'  =>  'Keterangan harus Diisi!',
+                'value.required'        =>  'Nilai Harus Diisi!',
+                'value.between'         =>  'Nilain Harus Bernilai 0 =< 1'
+            ]);
+            //menyimpan data
             $weight = Weight::create([
                 'criteria_id'   =>  $request->criteria_id,
                 'information'   =>  $request->information,
@@ -37,9 +36,9 @@ class WeightController extends Controller
 
     public function update(Request $request, $id) 
     {
-        if($request->isMethod('post')) {
-            $data = $request->all();
-            Weight::where(['id'=>$id])->update(['information'=>$data['information'], 'value'=>$data['value']]);
+        if($request->isMethod('post')) { //jika method post
+            $data = $request->all(); //menyimpan semua inputan dari view
+            Weight::where(['id'=>$id])->update(['information'=>$data['information'], 'value'=>$data['value']]); //melakukan update pada databse
             return redirect()->back()->with(['success' => 'Update ' . $request->information . ' Berhasil!']);
         }
     }

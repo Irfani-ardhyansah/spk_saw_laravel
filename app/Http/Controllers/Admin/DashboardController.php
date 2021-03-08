@@ -13,6 +13,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        ///Mengambil data lalu menghitungnya langsung
         $admin_count = Admin::all()->count();
         $mahasiswa_count = Mahasiswa::all()->count();
         $criteria_count = Criteria::all()->count();

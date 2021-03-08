@@ -12,6 +12,7 @@ class CriteriaController extends Controller
 {
     public function index()
     {
+        //Mmengambil Kriteria berdasarkan status jika 1 maka ada pilihan nilai jika 0 tidak ada pilihan nilai
         $criterias1 = Criteria::where('status', 1)->get();
         $criterias2 = Criteria::where('status', 0)->get();
         $criterias = Criteria::all();
@@ -28,9 +29,9 @@ class CriteriaController extends Controller
     {
 
         try {
-
+            //Jika ada inputan dari weight
             if($request->weight) {
-
+                //memvalidasi inputan
                 $this->validate($request, [
                     'code'          => 'required|unique:criterias',
                     'name'          => 'required|max:40',
@@ -45,7 +46,7 @@ class CriteriaController extends Controller
                     'weight.between'    =>  'Bobot Bernilai 0 =< 0,5',
                     'information.required'  => 'Keterangan Harus Diisi!',
                 ]);    
-
+                    //jika tervalidasi maka menyimpan ke dalam database
                 $criteria = Criteria::create([
                     'admin_id'      =>  Auth::user()->id,
                     'code'          =>  $request->code,
@@ -56,7 +57,7 @@ class CriteriaController extends Controller
                     'status'        =>  1
                 ]);
             } else {
-
+                //jika tidak ada inputan weight maka
                 $this->validate($request, [
                     'code'          => 'required|unique:criterias',
                     'name'          => 'required|max:40',
@@ -92,6 +93,7 @@ class CriteriaController extends Controller
     public function delete($id)
     {
         try {
+            //Mengambil data berdasarkan id lalu menghapusnya
             $criteria = Criteria::findOrFail($id);
             $criteria -> delete();
             return redirect()->back()->with(['success' => 'Data ' . $criteria->name . ' Berhasil Dihapus!' ]);
@@ -102,7 +104,9 @@ class CriteriaController extends Controller
 
     public function update(Request $request, $id)
     {
+        //jika methode yang dipilih post
         if($request->isMethod('post')) {
+            //melakukan update berdasarkan id data yang dipilih
             $data = $request->all();
             Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'weight'=>$data['weight'], 'character'=>$data['character'], 'information'=>$data['information']]);
             return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);

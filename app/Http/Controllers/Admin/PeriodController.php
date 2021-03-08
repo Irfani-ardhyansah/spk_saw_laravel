@@ -12,6 +12,7 @@ class PeriodController extends Controller
 {
     public function index()
     {
+        //Mengambil data periode
         $periods = Period::all();
         return view('admin.period.index', compact('periods'));
     }
@@ -20,7 +21,7 @@ class PeriodController extends Controller
     {
 
         try {
-
+            //memvalidasi inputan dari view
             $this->validate($request, [
                 'start'  => 'required|unique:periods,end',
                 'end'    => 'required|unique:periods,start',
@@ -32,16 +33,16 @@ class PeriodController extends Controller
                 'file.required'     => 'File Pengumuman Harus Diisi!',
                 'file.mimes'        => 'File Pengumuman Harus Berupa PDF!'
             ]);
-
+                //jika inputan ada file
             if($request->hasFile('file')){
-                $file = $request->file('file');
-                $extension = $file->getClientOriginalExtension();
-                $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanPeriodeBeasiswa' . '.' . $extension;
-                $request->file('file')->move('pengumuman_periode/', $nama_file);
-                $item = $nama_file;
+                $file = $request->file('file'); //memasukkan dalam variable
+                $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
+                $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanPeriodeBeasiswa' . '.' . $extension; //merename file
+                $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
+                $item = $nama_file; //memasukkan dalam variable
             }
     
-            if(!empty($item)){
+            if(!empty($item)){  //apabila variable $item ada isinya melakukan proses penyimpanan data
                 $periods = Period::create([
                     'admin_id'  =>  Auth::user()->id,
                     'start'     =>  $request->start,
@@ -50,7 +51,7 @@ class PeriodController extends Controller
                     'status'    =>  $request->status 
                 ]);
             } else {
-                return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']);
+                return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']); //jika tidak ada maka menampilkan pesan error
             }
 
             return redirect()->back()->with(['success' => 'Berhasil Menambah Periode Pada ' . $periods->start]);
@@ -62,10 +63,9 @@ class PeriodController extends Controller
     public function delete($id)
     {
         try {
-            // $soal = Soal::where('id',$id)->first();
-            $period = Period::findOrFail($id);
-            File::delete('pengumuman_periode/'.$period->file);
-            $period -> delete();
+            $period = Period::findOrFail($id); //Mengambil data berdasarkan id
+            File::delete('pengumuman_periode/'.$period->file); //melakukan delete file pada server
+            $period -> delete(); //menghapus data
             return redirect()->back()->with(['success' => 'Data ' . $period->start . ' Berhasil Dihapus!' ]);
         } catch(\Exception $e) {
             return redirect()->back()->with(['error' => 'Gagal Menghapus Data!']);
@@ -74,29 +74,31 @@ class PeriodController extends Controller
 
     public function update(Request $request, $id)
     {
-        $period = Period::findOrFail($id);
-        // dd($request->all());
-        if($request->isMethod('post')) {
-            if($request->file('file') == "") {
+        $period = Period::findOrFail($id); //mengambil data berdasarkan id
+        if($request->isMethod('post')) { //jika method post
+            if($request->file('file') == "") { //jika inputan file kosong
 
+                //melakukan validasi data
                 $this->validate($request, [
                     'start'  => 'required|unique:periods,end',
                     'end'    => 'required|unique:periods,start',
                 ]);
 
-                $data = $request->all();
-                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'status'=>$data['status']]);
+                $data = $request->all(); //mengambil semua inputan dan dimasukkan pada variable
+                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'status'=>$data['status']]); //melakukan proses update
                 return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
-            } else {
+            } else { //jika inputan file ada 
 
+                //melakukan validasi
                 $this->validate($request, [
                     'start'  => 'required|unique:periods,end',
                     'end'    => 'required|unique:periods,start',
                     'file'   => 'required|mimes:pdf|max:2000',
                 ]);
 
-                File::delete('pengumuman_periode/'.$period->file);
+                File::delete('pengumuman_periode/'.$period->file); //Menghapus file yang diupdate
 
+                //melakukan proses upload
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension();
                 $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanUpdatePeriodeBeasiswa' . '.' . $extension;
@@ -104,7 +106,7 @@ class PeriodController extends Controller
                 $item = $nama_file;
 
                 $data = $request->all();
-                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'file' => $item]);
+                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'file' => $item]); //menyimpan pada database
                 return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
             }
         }
@@ -112,10 +114,10 @@ class PeriodController extends Controller
 
     public function changeStatus(Request $request, $id)
     {
-        $period = Period::findOrFail($id);
-        if($request->isMethod('post')) {
-            $data = $request->all();
-            Period::where(['id' => $id])->update(['status'=>$data['status']]);
+        $period = Period::findOrFail($id); //mengambil data berdasarkan id
+        if($request->isMethod('post')) { //jika method nya post
+            $data = $request->all(); // mengambil semua inputan dari view
+            Period::where(['id' => $id])->update(['status'=>$data['status']]); //melakukan update data
             return redirect()->back()->with(['success' => 'Status Periode ' . $request->start . ' Berhasil Diganti!']);
         }
     }

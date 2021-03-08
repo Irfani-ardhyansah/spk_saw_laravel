@@ -41,11 +41,14 @@
 
                     <div class="col-3">
                         <div class="mt-4">
-                                {{-- @if($checker) --}}
+                                
+                                @php($checker = $row->user_periods->where('user_id',auth()->user()->id))
+                            
+                                @if($checker->contains('period_id', $row->id))
                                 <a href="#" class="btn btn-outline-secondary btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
-                                {{-- @else --}}
+                                @else
                                 <a href="{{route('user.period.create', ['id' => $row->id])}}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
-                                {{-- @endif --}}
+                                @endif
                         </div>
                     </div>
                 </div>

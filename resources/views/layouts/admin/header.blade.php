@@ -9,7 +9,7 @@
         <div class="dropdown-menu dropdown-menu-right">
           @can('isAdmin')
           <a href="features-profile.html" class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
+            <i class="far fa-user"></i> {{Auth::user()->password}}
           </a>
           @endcan
           <div class="dropdown-divider"></div>

@@ -11,6 +11,25 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-3">
+            <div class="form-group">
+                <select class="form-control" name="prodi">
+                    <option selected>-</option>
+                    <option value="TI">Teknologi Informasi</option>
+                    <option value="Meto">Mesin Otomotif</option>
+                    <option value="TKK">Teknik Komputer Kontrol</option>
+                    <option value="Teklis">Teknik Listrik</option>
+                    <option value="Kereta">Teknik Perkeretaapian</option>
+                    <option value="Kompak">Komputer Akuntansi</option>
+                    <option value="Akuntansi">Akuntansi</option>
+                    <option value="Adbis">Administrasi Bisnis</option>
+                    <option value="Bahasa Inggris">Bahasa Inggris</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <div class="section-body">
         <div class="card">
             <div class="card-body p-0">
@@ -54,13 +73,13 @@
     </div>
 </section>
 
-{{-- Modal Tambah Kriteria --}}
+{{-- Modal Upload Excel --}}
 <div class="modal fade" id="modalImportExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tambah Kriteria</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Upload File Data Excel</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -86,7 +105,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
 
                 </form>
             </div>

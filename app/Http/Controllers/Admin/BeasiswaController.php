@@ -14,6 +14,7 @@ class BeasiswaController extends Controller
 {
     public function peserta($id)
     {   
+        //Mengambil Data Peserta Dari Beasiswa yang dipilih
         $beasiswa = Period::where('id', $id)->first();
         $pendaftar = User_period::where('period_id', $id)->get();
         $period_id = $id;
@@ -22,8 +23,9 @@ class BeasiswaController extends Controller
 
     public function changeStatus(Request $request, $id)
     {
-        $period = User_period::findOrFail($id);
+        //Jika method yang dipilih post
         if($request->isMethod('post')) {
+            //Maka menjalankan proses update status
             $data = $request->all();
             User_period::where(['id' => $id])->update(['status'=>$data['status']]);
             return redirect()->back()->with(['success' => 'Status Pendaftar Beasiswa Berhasil Diganti!']);
@@ -32,6 +34,7 @@ class BeasiswaController extends Controller
 
     public function nilai($period_id, $mahasiswa_id)
     {   
+        //Mengambil data dari inputan mahasiswa 
         $values = Value::where([
             ['mahasiswa_id', $mahasiswa_id], 
             ['period_id', $period_id] 
@@ -42,6 +45,7 @@ class BeasiswaController extends Controller
     
     public function analisis($period_id)
     {
+        //Mengambil Data kriteria, periode beasiswa yang didaftarkan, hasil inputan dari mahasiswa
         $criterias = Criteria::where('status',1)->get();
         $user_periods = User_period::where('period_id', $period_id)->get();
         $values = Value::all();

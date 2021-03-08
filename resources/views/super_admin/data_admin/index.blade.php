@@ -120,7 +120,7 @@
                 })
                 .then((willDelete) => {
                 if (willDelete) {
-                    window.location = "/super_admin/delete/" + data_id;
+                    window.location = "/admin/super/delete/" + data_id;
                 }
                 });
                 event.preventDefault();
