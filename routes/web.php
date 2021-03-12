@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
 
             // Route Halaman Mahasiswa
         Route::get('/mahasiswa', 'Admin\MahasiswaController@index')->name('admin.mahasiswa'); 
+        Route::get('/mahasiswa', 'Admin\MahasiswaController@search')->name('admin.mahasiswa.search'); 
         Route::get('/mahasiswa/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail');
         Route::delete('/mahasiswa/delete/{id}', 'Admin\MahasiswaController@delete')->name('admin.mahasiswa.delete');
         Route::match(['get', 'post'], '/mahasiswa/import', 'Admin\MahasiswaController@store')->name('admin.mahasiswa.store');

@@ -75,15 +75,6 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <div class="form-group col-6">
-                            <label>Status</label>
-                            <select class="form-control selectric" name="status">
-                                <option selected>-</option>
-                                <option value="0">Belum Disahkan</option>
-                                <option value="1">Disahkan</option>
-                            </select>
-                        </div>
                     </div>
 
                     <div class="row">

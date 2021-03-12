@@ -18,7 +18,7 @@
             <div class="col-12 col-md-12 col-lg-5">
                 <div class="card profile-widget">
                     <div class="profile-widget-header">
-                        @if(file_exists($mahasiswa->photo))
+                        @if(!file_exists($mahasiswa->photo))
                             <img alt="image" src="{{ url('/profile_images/default.png')}}" class="rounded-circle profile-widget-picture">
                         @else
                             <img alt="image" src="{{ url('/profile_images/' . $mahasiswa->photo)}}" class="rounded-circle profile-widget-picture">

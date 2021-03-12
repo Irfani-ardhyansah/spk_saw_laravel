@@ -45,7 +45,7 @@ class PengumumanController extends Controller
             $pengumuman = Anouncement::create([
                 'admin_id'      =>  Auth()->user()->id,
                 'period_id'     =>  $request->period_id,
-                'status'        =>  $request->status,
+                'status'        =>  0,
                 'file'          =>  $item
             ]);
 

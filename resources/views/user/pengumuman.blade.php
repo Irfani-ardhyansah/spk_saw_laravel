@@ -29,7 +29,7 @@
               <h5>{{date('d', strtotime($row->period->end))}}-{{date('F', strtotime($row->period->end))}}-{{date('Y', strtotime($row->period->end))}}</h5>
             </div>
             <div class="pricing-cta">
-              <a href="#">Unduh <i class="fas fa-download"></i></a>
+              <a href="/pengumuman_beasiswa/{{ $row->file }}">Unduh <i class="fas fa-download"></i></a>
             </div>
           </div>
         </div>

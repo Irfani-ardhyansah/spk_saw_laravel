@@ -10,27 +10,35 @@
             </button>
         </div>
     </div>
-{{-- 
-    <div class="row">
-        <div class="col-3">
-            <div class="form-group">
-                <select class="form-control" name="prodi">
-                    <option selected>-</option>
-                    <option value="TI">Teknologi Informasi</option>
-                    <option value="Meto">Mesin Otomotif</option>
-                    <option value="TKK">Teknik Komputer Kontrol</option>
-                    <option value="Teklis">Teknik Listrik</option>
-                    <option value="Kereta">Teknik Perkeretaapian</option>
-                    <option value="Kompak">Komputer Akuntansi</option>
-                    <option value="Akuntansi">Akuntansi</option>
-                    <option value="Adbis">Administrasi Bisnis</option>
-                    <option value="Bahasa Inggris">Bahasa Inggris</option>
-                </select>
+
+        <form action="{{ route('admin.mahasiswa.search') }}" class="form-inline" method="GET">
+        <div class="row ml-auto">
+            <div class="col-2 mt-1">
+                <div class="form-group">
+                    <button class="btn-sm btn-outline-primary" type="submit">Cari</button>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <select class="form-control" name="prodi">
+                        <option selected>All</option>
+                        <option value="TI">Teknologi Informasi</option>
+                        <option value="Meto">Mesin Otomotif</option>
+                        <option value="TKK">Teknik Komputer Kontrol</option>
+                        <option value="Teklis">Teknik Listrik</option>
+                        <option value="Kereta">Teknik Perkeretaapian</option>
+                        <option value="Kompak">Komputer Akuntansi</option>
+                        <option value="Akuntansi">Akuntansi</option>
+                        <option value="Adbis">Administrasi Bisnis</option>
+                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </div> --}}
 
-    <div class="section-body">
+        </form>
+
+    <div class="section-body mt-3">
         <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">
