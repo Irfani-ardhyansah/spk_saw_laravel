@@ -8,6 +8,7 @@ use App\Mahasiswa;
 use App\User;
 use Carbon\Carbon;
 use Importer;
+use \PDF;
 
 class MahasiswaController extends Controller
 {
@@ -28,6 +29,14 @@ class MahasiswaController extends Controller
             $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->paginate(10);
         }
         return view('admin.mahasiswa.index', compact('mahasiswas'));
+    }
+
+    public function cetak_pdf()
+    {
+        $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->get();
+    
+        $pdf = PDF::loadview('admin.mahasiswa.mahasiswa_pdf', compact('mahasiswas'));
+        return $pdf->download('laporan-mahasiswa-pdf');
     }
 
     public function detail($id)
