@@ -30,13 +30,13 @@
                             <td>{{$row->file}}</td>
                             <td>
                                 @if($row->status == 0)
-                                <span class="badge badge-secondary">Tidak Ditampilkan</span>
+                                <span class="badge badge-secondary">Belum Disahkan</span>
                                 @else
-                                <span class="badge badge-success">Ditampilkan</span>
+                                <span class="badge badge-success">Disahkan</span>
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-warning btn-sm mt-2" data-toggle="modal" data-target="#modalGantiStatus-{{ $row->id }}">Ganti Status</button>
+                                <a href="#" class="btn btn-outline-danger btn-sm anouncement-delete" anouncement_id="{{ $row->id }}">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
@@ -80,15 +80,15 @@
                             <label>Status</label>
                             <select class="form-control selectric" name="status">
                                 <option selected>-</option>
-                                <option value="0">Tidak Ditampilkan</option>
-                                <option value="1">Ditampilkan</option>
+                                <option value="0">Belum Disahkan</option>
+                                <option value="1">Disahkan</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-9 {{ $errors->has('file') ? 'has-error' : '' }}">
-                            <label for="">File Pengumuman</label>
+                        <label for="">File Pengumuman</label>
                             <input type="file" class="form-control {{ $errors->has('file')  ? 'is-invalid' : ''}}" name="file" value="{{ old('file') }}">
                             <div class="invalid-feedback">
                                 {{ $errors->first('file') }}
@@ -109,45 +109,27 @@
     </div>
 </div>
 
-{{-- Modal Ganti Status --}}
-@foreach($anouncements as $row)
-<div class="modal fade" id="modalGantiStatus-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ganti Status</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-    
-            <div class="modal-body">
-                <form method="POST" action="{{ route('admin.pengumuman.status', ['id' => $row->id]) }}">
-                    {{csrf_field()}}
+@endsection
 
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label>Status</label>
-                            <select class="form-control selectric" name="status">
-                                <option selected>-</option>
-                                <option value="1" {{ $row->status  == "1" ? 'selected' : '' }}>Ditampilkan</option>
-                                <option value="0" {{ $row->status  == "0" ? 'selected' : '' }}>Tidak Ditampilkan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-
-                </form>
-            </div>
-            
-            <div class="modal-footer">
-            </div>
-
-        </div>
-    </div>
-</div>
-@endforeach
+@section('footer')
+    <script>
+        $('.anouncement-delete').click(function(){
+            var anouncement_id = $(this).attr('anouncement_id');
+            swal({
+                backdrop:false,
+                title: "Yakin ?",
+                text: "Menghapus Pengumuman ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "/admin/pengumuman/delete/" + anouncement_id;
+                    }
+                });
+                event.preventDefault();
+        });
+    </script>
 @endsection
 

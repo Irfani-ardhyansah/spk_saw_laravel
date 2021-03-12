@@ -24,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('isAdmin', function($admin) {
             return $admin->role == '1';
         });
+
+        Gate::define('isPimpinan', function($admin) {
+            return $admin->role == '2';
+        });
     }
 
     /**

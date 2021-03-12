@@ -9,7 +9,9 @@
       <ul class="sidebar-menu mt-3">
         @can('isSuper')
           <li class="nav-link {{ (request()->is('admin/super')) ? 'active' : ''}}"><a href="/admin/super"><i class="ion ion-ios-folder"></i> <span>Data Admin</span></a></li>
-        @elsecan('isAdmin')
+          @elsecan('isPimpinan')
+          <li class="nav-link {{ (request()->is('admin/pimpinan')) ? 'active' : ''}}"><a href="/admin/pimpinan"><i class="ion ion-ios-folder"></i> <span>Data Pengumuman</span></a></li>
+          @elsecan('isAdmin')
           <li class="menu-header">Mahasiswa</li>
           <li class="nav-link {{ (request()->is('admin/mahasiswa')) ? 'active' : ''}}"><a href="/admin/mahasiswa"><i class="ion ion-ios-people"></i> <span>Data</span></a></li>
           <li class="menu-header">Kriteria & Bobot</li>
@@ -23,6 +25,10 @@
         @can('isSuper')
         <div class="sidebar-brand" style="margin-top:420px">
           <a href="#" style="font-size: 20px; font-family:monaco;">Super Admin</a>
+        </div>
+        @elsecan('isPimpinan')
+        <div class="sidebar-brand" style="margin-top:420px">
+          <a href="#" style="font-size: 20px; font-family:monaco;">Pimpinan</a>
         </div>
         @elsecan('isAdmin')
         <div class="sidebar-brand" style="margin-top:100px">

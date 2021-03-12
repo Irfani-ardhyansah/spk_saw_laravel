@@ -17,7 +17,9 @@ Route::get('/2', function () {
     return view('dashboard');
 });
 
-Route::get('/', 'DashboardController@index');
+Route::get('/', function() {
+    return view('dashboard2');
+});
 
 Auth::routes();
 
@@ -42,6 +44,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['prevent-back-history','auth'
     Route::get('/beasiswa', 'User\PeriodController@index')->name('user.period');
     Route::get('/beasiswa/{id}/daftar', 'User\PeriodController@create')->name('user.period.create');
     Route::post('/beasiswa/{id}/save', 'User\PeriodController@save')->name('user.period.save');
+
+    Route::get('/pengumuman', 'User\PengumumanController@index')->name('user.pengumuman');
 });
 
 //Route untuk login admin
@@ -57,8 +61,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
         Route::get('/super', 'Super_admin\AdminController@index')->name('super_admin.index');
         Route::post('/super/save', 'Super_admin\AdminController@save')->name('super_admin.save');
         Route::get('/super/delete/{id}', 'Super_admin\AdminController@delete');
+        Route::get('/pimpinan', 'Pimpinan\PengumumanController@index')->name('pimpinan.index');
+        Route::match(['get', 'post'], '/pimpinan/status/{id}', 'Pimpinan\PengumumanController@changeStatus')->name('pengumuman.update');
 
     });
+
+    Route::group(['middleware' => 'can:isPimpinan'], function() {
+        Route::get('/pimpinan', 'Pimpinan\PengumumanController@index')->name('pimpinan.index');
+        Route::match(['get', 'post'], '/pimpinan/status/{id}', 'Pimpinan\PengumumanController@changeStatus')->name('pengumuman.update');
+    });
+
 
     Route::group(['middleware' => 'can:isAdmin'], function() {
 
@@ -91,6 +103,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
         Route::get('/pengumuman', 'Admin\PengumumanController@index');
         Route::post('/pengumuman/save', 'Admin\PengumumanController@save')->name('admin.pengumuman.save');
         Route::match(['get', 'post'], 'pengumuman/change_status/{id}', 'Admin\PengumumanController@changeStatus')->name('admin.pengumuman.status');
+        Route::get('/pengumuman/delete/{id}', 'Admin\PengumumanController@delete')->name('admin.pengumuman.delete');
 
     });
 

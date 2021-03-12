@@ -41,7 +41,7 @@
                             <td>{{$loop -> iteration}}</td>
                             <td>{{$row  -> code}}</td>
                             <td>{{$row  -> name}}</td>
-                            <td>{{($row  -> weight) * 100}}%</td>
+                            <td>{{($row -> weight) * 100}}%</td>
                             <td>{{$row  -> character}}</td>
                             <td>
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
@@ -91,7 +91,7 @@
                             <th>Nama</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($criterias->where('status', 0) as $row)
+                        @foreach($criterias2 as $row)
                         <tr>
                             <td>{{$loop -> iteration}}</td>
                             <td>{{$row  -> code}}</td>
@@ -263,7 +263,6 @@
     </div>
 </div>
 @endforeach
-
 
 {{-- Modal Tambah Bobot --}}
 @foreach($criterias as $row)

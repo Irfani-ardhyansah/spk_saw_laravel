@@ -23,11 +23,6 @@
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#pengumuman">Pengumuman Penerima</a></li>
-                    </ul>
-                </div>
             </div>
         </nav>
         <!-- Masthead-->
@@ -41,54 +36,6 @@
                 </div>
             </div>
         </header>
-        <!-- Contact-->
-        <section class="contact-section" style="background-color: #131C21;" id="pengumuman">
-            <div class="container">
-                <div class="row mb-4">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <h1 class="mx-auto my-0 mb-3 text-white-50">Pengumuman Penerimaan Beasiswa</h1>
-                    </div>
-                    <div class="col-2"></div>
-                </div>
-                <div class="row">
-                    @forelse($anouncements as $row)
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="far fa-circle text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0 mb-2">Periode Beasiswa</h4>
-                                <h5 class="text-uppercase m-0">
-                                    {{date('d', strtotime($row->period->start))}}-{{date('F', strtotime($row->period->start))}}-{{date('Y', strtotime($row->period->start))}}
-                                     
-                                    {{date('d', strtotime($row->period->end))}}-{{date('F', strtotime($row->period->end))}}-{{date('Y', strtotime($row->period->end))}}</h5>
-                                <hr class="my-4" />
-                                <a class="btn btn-success btn-sm text-white-50">Unduh</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    @empty
-                    <div class="col-md-4 mb-3 mb-md-0">
-                    </div>
-
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="far fa-circle text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0 mb-2">Tidak Ada File Pengumuman</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 mb-3 mb-md-0">
-                    </div>
-
-                    @endforelse
-
-                </div>
-            </div>
-        </section>
         <!-- Footer-->
         <footer class="footer small text-center text-white-50" style="background-color: #131C21"><div class="container">Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://gitlab.com/Irfani-ardhyansah/">Mochamad Irfani Ardhyansah</a></div></footer>
         <!-- Bootstrap core JS-->

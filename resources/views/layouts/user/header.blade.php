@@ -12,6 +12,7 @@
       <li class="nav-item {{ (request()->is('user/profile')) ? 'active' : ''}}"><a href="{{route('user.profile')}}" class="nav-link">Profile</a></li>
       <li class="nav-item {{ (request()->is('user/beasiswa')) ? 'active' : ''}}"><a href="{{route('user.period')}}" class="nav-link">Beasiswa</a></li>
       <li class="nav-item {{ (request()->is('user/kriteria')) ? 'active' : ''}}"><a href="{{route('user.criteria')}}" class="nav-link">Kriteria</a></li>
+      <li class="nav-item {{ (request()->is('user/pengumuman')) ? 'active' : ''}}"><a href="{{route('user.pengumuman')}}" class="nav-link">Pengumuman</a></li>
     </ul>
   </div>
   <ul class="navbar-nav navbar-right ml-auto">

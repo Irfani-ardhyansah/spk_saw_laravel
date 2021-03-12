@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Anouncement;
 use App\Period;
+use File;
 
 class PengumumanController extends Controller
 {
@@ -30,12 +31,22 @@ class PengumumanController extends Controller
                 'file.max'          =>  'File Maksimal 2MB!'
             ]);
 
+            $period = Period::where('id', $request->period_id)->first();
+
+            if($request->hasFile('file')){
+                $file = $request->file('file'); //memasukkan dalam variable
+                $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
+                $nama_file = $period->start . '_' . $period->end .'_' . 'PengemumanBeasiswa' . '.' . $extension; //merename file
+                $request->file('file')->move('pengumuman_beasiswa/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
+                $item = $nama_file; //memasukkan dalam variable
+            }
+
             //lalu menyimpan berdasarkan inputan dari view
             $pengumuman = Anouncement::create([
                 'admin_id'      =>  Auth()->user()->id,
                 'period_id'     =>  $request->period_id,
                 'status'        =>  $request->status,
-                'file'          =>  $request->file
+                'file'          =>  $item
             ]);
 
             return redirect()->back()->with(['success' => 'Berhasil Membuat Pengumuman ID ' . $pengumuman->period_id]);
@@ -52,6 +63,18 @@ class PengumumanController extends Controller
             $data = $request->all();
             Anouncement::where(['id' => $id])->update(['status'=>$data['status']]);
             return redirect()->back()->with(['success' => 'Status Pengumuman Berhasil Diganti!']);
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $anouncement = Anouncement::findOrFail($id); //Mengambil data berdasarkan id
+            File::delete('pengumuman_beasiswa/'.$anouncement->file); //melakukan delete file pada server
+            $anouncement -> delete(); //menghapus data
+            return redirect()->back()->with(['success' => 'Data Pengumuman Berhasil Dihapus!' ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with(['error' => 'Gagal Menghapus Data!']);
         }
     }
 }
