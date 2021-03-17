@@ -31,8 +31,9 @@ class PeriodController extends Controller
     {
         try {
             // $this->validate($request, [
-            //     'value'     => 'required',
-            //     'file'     => 'mimes:jpeg,pdf|max:20000'
+            //     'file'     => 'mimes:pdf|max:20000'
+            // ], [
+            //     'file.mimes'    =>  'File Harus Berjenis JPEG atau PDF'
             // ]);
 
             $data = $request->all();

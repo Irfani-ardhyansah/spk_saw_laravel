@@ -191,7 +191,7 @@
                             <label for="">Dimulai</label>
                             <input type="date" class="form-control {{ $errors->has('start') ? 'is-invalid' : '' }}" name="start" value="{{ $row->start }}">
                             <div class="invalid-feedback">
-                                Tanggal Mulai Harus Beda Dengan Tanggal Berakhir!
+                                {{ $errors->first('start') }}
                             </div>
                         </div>
                         <div class="form-group col-1"></div>
@@ -199,7 +199,7 @@
                             <label for="">Akhir</label>
                             <input type="date" class="form-control {{ $errors->has('end') ? 'is-invalid' : '' }}" name="end" value="{{ $row->end }}">
                             <div class="invalid-feedback">
-                                Tanggal Berakhir Harus Beda Dengan Tanggal Mulai!
+                                {{ $errors->first('end') }}
                             </div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@
                             <label for="">File</label>
                             <input type="file" class="form-control-file" name="file">
                             <div class="invalid-feedback">
-                                File harus PDF!
+                                {{ $errors->first('file') }}
                             </div>
                         </div>
                     </div>
