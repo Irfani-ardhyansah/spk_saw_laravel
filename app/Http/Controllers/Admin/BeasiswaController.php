@@ -9,6 +9,7 @@ use App\Period;
 use App\Mahasiswa;
 use App\Value;
 use App\Criteria;
+use \PDF;
 
 class BeasiswaController extends Controller
 {
@@ -47,8 +48,21 @@ class BeasiswaController extends Controller
     {
         //Mengambil Data kriteria, periode beasiswa yang didaftarkan, hasil inputan dari mahasiswa
         $criterias = Criteria::where('status',1)->get();
+        $criterias_count = Criteria::where('status',1)->get()->count();
+        $user_periods = User_period::where('period_id', $period_id)->offset(0)->limit(10)->get();
+        $values = Value::all();
+        return view('admin.period.analisis', compact('criterias', 'user_periods', 'period_id', 'values', 'criterias_count'));
+    }
+
+    public function cetak_pdf($period_id)
+    {
+        //Mengambil Data kriteria, periode beasiswa yang didaftarkan, hasil inputan dari mahasiswa
+        $criterias = Criteria::where('status',1)->get();
+        $criterias_count = Criteria::where('status',1)->get()->count();
         $user_periods = User_period::where('period_id', $period_id)->get();
         $values = Value::all();
-        return view('admin.period.analisis', compact('criterias', 'user_periods', 'period_id', 'values'));
+    
+        $pdf = PDF::loadview('admin.period.perhitungan', compact('criterias', 'user_periods', 'values', 'period_id', 'criterias_count'));
+        return $pdf->download('hasil-perhitungan-pdf');
     }
 }

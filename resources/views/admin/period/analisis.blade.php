@@ -86,10 +86,7 @@
                         </tr>
                         {{-- Membuat Variabel Hasil --}}
                         @php($hasil = array())
-                        {{-- Mengambil Variabel no--}}
-                        @php($no = 0)
                         @foreach($user_periods as $row)
-                        @php($no++)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$row->user->mahasiswa->name}}</td>
@@ -138,6 +135,11 @@
         <div class="card">
             <div class="card-header">
                 <h5>Hasil Hitung</h5>
+                <div class="ml-auto">
+                    <a href="{{ route('admin.beasiswa.pdf', ['period_id' => $period_id]) }}" class="btn-sm btn-outline-danger">
+                        <i class="fas fa-file-pdf"></i>
+                    </a>
+                </div> 
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -157,7 +159,7 @@
                         {{-- Membuat array $nilai --}}
                         @php($nilai = array())
                         {{-- Memecah array $hasil --}}
-                        @php($result = array_chunk($hasil, $no+1))
+                        @php($result = array_chunk($hasil, $criterias_count))
                             {{-- Mengambil data result --}}
                             @foreach($result as $r)
                                 {{-- menghitung total nilai dan memasukkan kedalam variable $hasil_pembobotan --}}
@@ -174,7 +176,6 @@
                                 @foreach($hasil as $name => $value) 
                                 <tr>
                                     <td>{{ $name }}</td>
-        
                                     <td>{{ $value }}</td>
                                 </tr>
                             @endforeach
