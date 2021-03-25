@@ -61,7 +61,7 @@
             @php($hasil = array_combine($nama,$nilai))
                 @php(arsort($hasil))
                 @foreach($hasil as $name => $value) 
-                <tr>
+                <tr id="tr{{ $no }}">
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $name }}</td>
                     <td>{{ $value }}</td>
@@ -71,4 +71,5 @@
     </table>
 
 </body>
+
 </html>

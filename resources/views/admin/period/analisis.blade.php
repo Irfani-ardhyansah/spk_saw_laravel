@@ -132,7 +132,14 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="form-group row ml-auto mt-5">
+                <h6 class="col-sm-2 mt-2"> Jumlah Yang Diterima </h6>
+                <div class="col-sm-4">
+                    <input type="number" id="batas" class="form-control">
+                </div>
+        </div>
+
+        <div class="card mt-2">
             <div class="card-header">
                 <h5>Hasil Hitung</h5>
                 <div class="ml-auto">
@@ -143,7 +150,7 @@
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
+                    <table id="table-hasil" class="table table-md">
                         <tr>
                             <th>Nama</th>
                             <th>Nilai</th>
@@ -172,13 +179,14 @@
                             @php($hasil = array_combine($nama,$nilai))
                                 {{-- Mensortir Data DESC dari value array $array --}}
                                 @php(arsort($hasil))
-                                {{-- {{dd($array)}} --}}
-                                @foreach($hasil as $name => $value) 
-                                <tr>
-                                    <td>{{ $name }}</td>
-                                    <td>{{ $value }}</td>
-                                </tr>
-                            @endforeach
+                                @php($no = 0)
+                                @foreach($hasil as $name => $value)
+                                    @php($no++)
+                                    <tr id="tr{{ $no }}">
+                                        <td>{{ $name }}</td>
+                                        <td>{{ $value }}</td>
+                                    </tr>
+                                @endforeach
 
                     </table>
                 </div>
@@ -188,4 +196,27 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('footer')
+    <script>
+        $(document).ready(function () {
+            $("#batas").keyup(function () {
+                var value = parseInt($(this).val());
+                console.log(value);
+                
+                for (i = 1; i <= value; i++) {
+                    // document.getElementById('tr'+i).bgColor='#9cdfe7';
+                    $('#tr'+i).css('background-color', '#9cdfe7'); 
+                }
+
+                if(value == 0) {
+                    for (i = 1; i <= {{$no}}; i++) {
+                        $("#tr"+i).removeAttr("style");
+                    }
+
+                }
+            });
+        });
+    </script>
 @endsection
