@@ -17,7 +17,7 @@
                         <tr>
                         {{-- Mengambil Kriteria --}}
                         @foreach($criterias as $row)
-                            <th>{{$row->code}} = {{$row->name}}</th>
+                            <th>{{$row->code}} = {{$row->name}} - {{ $row->character }}</th>
                         @endforeach
                         </tr>
                         <tr>
@@ -132,25 +132,27 @@
             </div>
         </div>
 
-        <div class="form-group row ml-auto mt-5">
-                <h6 class="col-sm-2 mt-2"> Jumlah Yang Diterima </h6>
-                <div class="col-sm-4">
-                    <input type="number" id="batas" class="form-control">
-                </div>
-        </div>
+            <div class="form-group row mt-5">
+                <form action="{{ route('admin.beasiswa.search', ['period_id' => $period_id]) }}" class="form-inline" method="GET">
+                    <h6 class="col-sm-2 mt-2"> Jumlah </h6>
+                    <div class="col-sm-5">
+                        <input type="number" id="batas" name="batas" class="form-control">
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="submit"><i class="fas fa-file-pdf"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
 
         <div class="card mt-2">
             <div class="card-header">
                 <h5>Hasil Hitung</h5>
-                <div class="ml-auto">
-                    <a href="{{ route('admin.beasiswa.pdf', ['period_id' => $period_id]) }}" class="btn-sm btn-outline-danger">
-                        <i class="fas fa-file-pdf"></i>
-                    </a>
-                </div> 
+
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table id="table-hasil" class="table table-md">
+                    <table id="table-datatables" class="table table-md">
                         <tr>
                             <th>Nama</th>
                             <th>Nilai</th>
@@ -217,6 +219,7 @@
 
                 }
             });
+
         });
     </script>
 @endsection

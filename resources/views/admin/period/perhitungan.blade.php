@@ -60,8 +60,9 @@
 
             @php($hasil = array_combine($nama,$nilai))
                 @php(arsort($hasil))
-                @foreach($hasil as $name => $value) 
-                <tr id="tr{{ $no }}">
+                @php($result = array_slice($hasil, 0, $batas))
+                @foreach($result as $name => $value) 
+                <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $name }}</td>
                     <td>{{ $value }}</td>
@@ -71,5 +72,4 @@
     </table>
 
 </body>
-
 </html>
