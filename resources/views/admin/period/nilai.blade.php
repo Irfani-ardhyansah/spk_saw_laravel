@@ -22,7 +22,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{$row->criteria->name}}</td>
                             <td>{{$row->value}}</td>
-                            <td> <a href="#"><button>File</button></a> </td>
+                            <td> <a href="{{ url('/') }}/periode/{{$row->period->start.'_'.$row->period->end}}/{{ $mahasiswa->user->npm }}/{{$row->file}}"><button>File</button></a> </td>
                         </tr>
                         @endforeach
                     </table>

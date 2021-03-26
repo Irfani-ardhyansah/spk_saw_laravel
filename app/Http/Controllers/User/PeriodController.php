@@ -19,7 +19,7 @@ class PeriodController extends Controller
         return view('user.period.index', compact('periods'));
     }
 
-    public function create($id)
+    public function register($id)
     {
         $criterias = Criteria::all();
         $weight = Weight::first();
@@ -37,14 +37,25 @@ class PeriodController extends Controller
             // ]);
 
             $data = $request->all();
-
             foreach ($data['criteria_id'] as $item => $value) {
+
+                $criteria = Criteria::findOrFail($data['criteria_id'][$item]);
+                $period = Period::findOrFail($id);
+                
+                $extension =  $data['file'][$item]->extension(); //mengambil ekstensi oroginal dari inputan
+                $nama_file = Auth::user()->npm. '_' .$criteria->name.  '.'. $extension; //merename file\
+                // $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/' . Auth::user()->npm . '/', $nama_file);
+                
+                $data['file'][$item]->move('periode/' . $period->start . '_' . $period->end . '/' . Auth::user()->npm . '/', $nama_file);
+                // $file->store('periode/' . $request->start . '_' . $request->end . '/' . Auth::user()->npm . '/', $nama_file);
+                $file_upload = $nama_file; //memasukkan dalam variable
+
                 $data2 = array(
                     'period_id' => $id,
                     'criteria_id' => $data['criteria_id'][$item],
                     'mahasiswa_id'  =>  Auth::user()->mahasiswa->id,
                     'value'  => $data['value'][$item],
-                    'file' => $data['file'][$item],
+                    'file' => $file_upload,
                 );
                 Value::create($data2);
             }

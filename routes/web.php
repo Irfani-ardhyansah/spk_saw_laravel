@@ -42,7 +42,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['prevent-back-history','auth'
     
     //Route Beasiswa Halaman User
     Route::get('/beasiswa', 'User\PeriodController@index')->name('user.period');
-    Route::get('/beasiswa/{id}/daftar', 'User\PeriodController@create')->name('user.period.create');
+    Route::get('/beasiswa/{id}/daftar', 'User\PeriodController@register')->name('user.period.register');
     Route::post('/beasiswa/{id}/save', 'User\PeriodController@save')->name('user.period.save');
 
     Route::get('/pengumuman', 'User\PengumumanController@index')->name('user.pengumuman');

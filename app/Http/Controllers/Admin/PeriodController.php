@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Period;
 use Auth;
+use \PDF;
 use File;
 
 class PeriodController extends Controller
@@ -33,12 +35,14 @@ class PeriodController extends Controller
                 'file.required'     => 'File Pengumuman Harus Diisi!',
                 'file.mimes'        => 'File Pengumuman Harus Berupa PDF!'
             ]);
+
                 //jika inputan ada file
             if($request->hasFile('file')){
                 $file = $request->file('file'); //memasukkan dalam variable
                 $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
                 $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanPeriodeBeasiswa' . '.' . $extension; //merename file
-                $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
+                // $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
+                $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
                 $item = $nama_file; //memasukkan dalam variable
             }
     
@@ -50,6 +54,7 @@ class PeriodController extends Controller
                     'file'      =>  $item,
                     'status'    =>  $request->status 
                 ]);
+
             } else {
                 return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']); //jika tidak ada maka menampilkan pesan error
             }
@@ -64,7 +69,7 @@ class PeriodController extends Controller
     {
         try {
             $period = Period::findOrFail($id); //Mengambil data berdasarkan id
-            File::delete('pengumuman_periode/'.$period->file); //melakukan delete file pada server
+            File::deleteDirectory('periode/' . $period->start . '_' . $period->end); //melakukan delete file pada server
             $period -> delete(); //menghapus data
             return redirect()->back()->with(['success' => 'Data ' . $period->start . ' Berhasil Dihapus!' ]);
         } catch(\Exception $e) {

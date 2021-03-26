@@ -43,7 +43,8 @@
                             </td>
                             <td> {{$row->user_periods->count()}} </td>
                             <td>
-                                <button type="button" data-toggle="modal" data-target="#modalShowPDF-{{ $row->id }}" class="btn btn-light btn-sm">File</button>
+                                {{-- <button type="button" data-toggle="modal" data-target="#modalShowPDF-{{ $row->id }}" class="btn btn-light btn-sm">File</button> --}}
+                                <a href="{{ url('/') }}/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" target="_blank" class="btn btn-light btn-sm">File</a>
                                 {{-- <iframe src="/pengumuman_periode/{{$row->file }}" width="50%" height="250">
                                 </iframe> --}}
                             </td>
@@ -145,7 +146,7 @@
 </div>
 
 {{-- Modal Pop Up PDF --}}
-@foreach($periods as $row)
+{{-- @foreach($periods as $row)
 <div class="modal fade" id="modalShowPDF-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -158,7 +159,7 @@
             </div>
     
             <div class="modal-body">
-                <iframe src="/pengumuman_periode/{{$row->file }}" width="90%" height="500">
+                <iframe src="localhost:8000/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" width="90%" height="500">
                 </iframe>
             </div>
             
@@ -168,7 +169,7 @@
         </div>
     </div>
 </div>
-@endforeach
+@endforeach --}}
 
 {{-- Modal Edit Periode --}}
 @foreach($periods as $row)

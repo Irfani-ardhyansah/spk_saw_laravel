@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body width">
           @foreach($criterias as $row)
-            <form action="{{ route('user.period.save', ['id' => $period_id]) }}" method="POST">
+            <form action="{{ route('user.period.save', ['id' => $period_id]) }}" method="POST" enctype="multipart/form-data">
               {{csrf_field()}}
               <input type="hidden" name="criteria_id[]" value="{{ $row->id }}">
                 <div class="form-group">
@@ -31,7 +31,7 @@
                       </select>
                     </div>
                     <div class="col-4">
-                      <input type="file" name="file[]">
+                      <input type="file" name="file[]"  multiple>
                     </div>
                   </div>
                 </div>
