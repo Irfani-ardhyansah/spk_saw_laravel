@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
     Route::group(['middleware' => 'can:isSuper'], function() {
 
         Route::get('/super', 'Super_admin\AdminController@index')->name('super_admin.index');
+        Route::match(['get', 'post'], '/super/update/{id}', 'Super_admin\AdminController@update')->name('super_admin.update');
         Route::post('/super/save', 'Super_admin\AdminController@save')->name('super_admin.save');
         Route::get('/super/delete/{id}', 'Super_admin\AdminController@delete');
         Route::get('/pimpinan', 'Pimpinan\PengumumanController@index')->name('pimpinan.index');
@@ -78,8 +79,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
         Route::get('/mahasiswa', 'Admin\MahasiswaController@index')->name('admin.mahasiswa'); 
         Route::get('/mahasiswa', 'Admin\MahasiswaController@search')->name('admin.mahasiswa.search'); 
         Route::get('/mahasiswa/pdf', 'Admin\MahasiswaController@cetak_pdf')->name('admin.mahasiswa.pdf');
-        Route::get('/mahasiswa/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail');
-        Route::delete('/mahasiswa/delete/{id}', 'Admin\MahasiswaController@delete')->name('admin.mahasiswa.delete');
+        Route::get('/mahasiswa/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail'); //Menggunakan SweetAlert Delete
+        Route::get('/mahasiswa/delete/{id}', 'Admin\MahasiswaController@delete')->name('admin.mahasiswa.delete');
         Route::match(['get', 'post'], '/mahasiswa/import', 'Admin\MahasiswaController@store')->name('admin.mahasiswa.store');
 
         // Route Halaman Kriteria

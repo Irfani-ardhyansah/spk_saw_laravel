@@ -62,12 +62,8 @@
                             <td>{{$row->semester}}</td>
                             <td>{{$row->prodi}}</td>
                             <td>
-                                <form method="POST" action="{{ route('admin.mahasiswa.delete', ['id' => $row->id]) }}">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
                                     <a href="{{ route('admin.mahasiswa.detail', ['id' => $row->id]) }}" class="btn btn-info btn-sm">Info</a>
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin Menghapus Data {{ $row->name }} ?');" >Delete</button>
-                                </form>
+                                    <a href="#" class="btn btn-danger btn-sm mahasiswa-delete" mahasiswa_id="{{ $row->id }}" mahasiswa="{{ $row->name }}">Delete</a>
                             </td>
                         </tr>
                         @endforeach
@@ -125,4 +121,27 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+    <script>
+        $('.mahasiswa-delete').click(function(){
+            var mahasiswa_id = $(this).attr('mahasiswa_id');
+            var mahasiswa = $(this).attr('mahasiswa');
+            swal({
+                backdrop:false,
+                title: "Yakin",
+                text: "Menghapus " + mahasiswa + " ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "/admin/mahasiswa/delete/" + mahasiswa_id;
+                    }
+                });
+                event.preventDefault();
+        });
+    </script>
 @endsection

@@ -42,6 +42,30 @@ class AdminController extends Controller
         }
     }
 
+    public function update(Request $request, $id)
+    {
+        $period = Admin::findOrFail($id); //mengambil data berdasarkan id
+        try {
+            if($request->isMethod('post')) { //jika method post
+                //melakukan validasi data
+                $this->validate($request, [
+                    'name'      =>  'required',
+                    'email'     =>  'required',
+                ], [
+                    'name.required'     =>  'Nama Harus Diisi!',
+                    'email.required'    =>  'Email Harus Diisi!',
+                ]);
+
+                $data = $request->all(); //mengambil semua inputan dan dimasukkan pada variable
+                Admin::where(['id'=>$id])->update(['name'=>$data['name'], 'email'=>$data['email']]); //melakukan proses update
+                return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+                
+            }
+        }catch(\Exception $e) {
+            return redirect()->back()->with(['error' => 'Update ' . $request->name . ' Gagal!']);
+        }
+    }
+
     public function delete($id)
     {
         try {

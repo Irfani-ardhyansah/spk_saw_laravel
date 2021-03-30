@@ -23,11 +23,13 @@
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($anouncements as $row)
+                        @forelse($anouncements as $row)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$row->period->start}} S/D {{$row->period->end}}</td>
-                            <td>{{$row->file}}</td>
+                            <td>
+                                <a href="{{ url('/') }}/pengumuman_beasiswa/{{$row->file}}">{{$row->file}}</a>
+                            </td>
                             <td>
                                 @if($row->status == 0)
                                 <span class="badge badge-secondary">Belum Disahkan</span>
@@ -39,7 +41,11 @@
                                 <a href="#" class="btn btn-outline-danger btn-sm anouncement-delete" anouncement_id="{{ $row->id }}">Hapus</a>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="5" style="text-align:center;">Tidak Ada Data</td>
+                        </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>

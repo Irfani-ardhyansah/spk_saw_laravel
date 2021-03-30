@@ -28,7 +28,10 @@
                             <td>{{$row->name}}</td>
                             <td>{{$row->created_at}}</td>
                             <td>
-                                <a href="#" class="btn btn-danger btn-sm data-delete" data_id="{{ $row->id }}" data_name="{{ $row->name }}" >Delete</a>
+                                @if($row->role != 0)
+                                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalEditAdmin-{{ $row->id }}">Edit</button>
+                                    <a href="#" class="btn btn-danger btn-sm data-delete" data_id="{{ $row->id }}" data_name="{{ $row->name }}" >Delete</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -100,6 +103,53 @@
         </div>
     </div>
 </div>
+
+{{-- Modal Edit Admin --}}
+@foreach($admins as $row)
+<div class="modal fade" id="modalEditAdmin-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Akun Admin</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+    
+            <div class="modal-body">
+                <form method="POST" action="{{ route('super_admin.update', ['id' => $row->id]) }}" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="form-group col-5 {{ $errors->has('name') ? 'has-error' : '' }}">
+                            <label for="">Name</label>
+                            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ $row->name }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('name') }}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-7 {{ $errors->has('email') ? 'has-error' : '' }}">
+                            <label for="">Email</label>
+                            <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ $row->email }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('email') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+@endforeach
 
 @endsection
 

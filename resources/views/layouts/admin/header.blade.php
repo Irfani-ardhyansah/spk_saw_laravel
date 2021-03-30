@@ -8,9 +8,9 @@
       <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
         <div class="dropdown-menu dropdown-menu-right">
           @can('isAdmin')
-          <a href="features-profile.html" class="dropdown-item has-icon">
+          {{-- <a href="features-profile.html" class="dropdown-item has-icon">
             <i class="far fa-user"></i> {{Auth::user()->password}}
-          </a>
+          </a> --}}
           @endcan
           <div class="dropdown-divider"></div>
           {{-- <a href="#" class="dropdown-item has-icon text-danger">

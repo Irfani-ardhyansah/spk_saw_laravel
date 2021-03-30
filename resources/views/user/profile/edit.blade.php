@@ -85,7 +85,7 @@
                                 <label>Prodi</label>
                                     <select class="form-control select2" required name="prodi">
                                         <option selected>-</option>
-                                        <option {{ $mahasiswa->prodi == "Teknologi Informasi" ? 'selected' : '' }}>Teknologi Informasi</option>
+                                        <option {{ $mahasiswa->prodi == "TI" ? 'selected' : '' }}>Teknologi Informasi</option>
                                         <option {{ $mahasiswa->prodi == "Meto" ? 'selected' : '' }}>Mesin Otomotif</option>
                                         <option {{ $mahasiswa->prodi == "TKK" ? 'selected' : '' }}>Teknik Komputer Kontrol</option>
                                         <option {{ $mahasiswa->prodi == "Teklis" ? 'selected' : '' }}>Teknik Listrik</option>

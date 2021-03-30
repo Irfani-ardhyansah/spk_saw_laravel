@@ -36,7 +36,7 @@ class PengumumanController extends Controller
             if($request->hasFile('file')){
                 $file = $request->file('file'); //memasukkan dalam variable
                 $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
-                $nama_file = $period->start . '_' . $period->end .'_' . 'PengemumanBeasiswa' . '.' . $extension; //merename file
+                $nama_file = $period->start . '_' . $period->end .'_' . 'PengumumanBeasiswa' . '.' . $extension; //merename file
                 $request->file('file')->move('pengumuman_beasiswa/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
                 $item = $nama_file; //memasukkan dalam variable
             }

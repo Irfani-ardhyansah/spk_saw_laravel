@@ -90,7 +90,7 @@ class PeriodController extends Controller
                 ]);
 
                 $data = $request->all(); //mengambil semua inputan dan dimasukkan pada variable
-                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'status'=>$data['status']]); //melakukan proses update
+                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end']]); //melakukan proses update
                 return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
             } else { //jika inputan file ada 
 
