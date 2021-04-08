@@ -15,8 +15,8 @@ class CreateMahasiswasTable extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->string('npm');
             $table->string('prodi');
             $table->string('semester');
             $table->string('photo')->nullable();

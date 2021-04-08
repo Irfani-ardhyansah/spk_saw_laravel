@@ -14,7 +14,6 @@ class AddFieldUserIdToMahasiswasTable extends Migration
     public function up()
     {
         Schema::table('mahasiswas', function(Blueprint $table) {
-            $table->integer('user_id')->unsigned()->after('id');
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
         });

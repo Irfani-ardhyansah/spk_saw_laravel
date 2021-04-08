@@ -20,6 +20,8 @@ class CreateCriteriasTable extends Migration
             $table->string('name');
             $table->double('weight')->nullable();
             $table->string('character');
+            $table->text('information');
+            $table->integer('status');
             $table->timestamps();
         });
     }

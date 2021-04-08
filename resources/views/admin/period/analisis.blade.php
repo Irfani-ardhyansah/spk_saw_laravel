@@ -39,15 +39,17 @@
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            {{-- Mengambil Kode Kriteria --}}
-                            @foreach($criterias as $row)
-                            <th>{{$row->code}}</th>
-                            @endforeach
-                        </tr>
+                    <table class="table table-md">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                {{-- Mengambil Kode Kriteria --}}
+                                @foreach($criterias as $row)
+                                <th>{{$row->code}}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
                         {{-- Mengambil Data Mahasiswa --}}
                         @foreach($user_periods as $row)
                         <tr>
@@ -75,15 +77,17 @@
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            {{-- Mengambil Data Kriteria --}}
-                            @foreach($criterias as $row)
-                            <th>{{$row->code}}</th>
-                            @endforeach
-                        </tr>
+                    <table class="table table-md">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                {{-- Mengambil Data Kriteria --}}
+                                @foreach($criterias as $row)
+                                <th>{{$row->code}}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
                         {{-- Membuat Variabel Hasil --}}
                         @php($hasil = array())
                         @foreach($user_periods as $row)
@@ -209,7 +213,7 @@
                 
                 for (i = 1; i <= value; i++) {
                     // document.getElementById('tr'+i).bgColor='#9cdfe7';
-                    $('#tr'+i).css('background-color', '#9cdfe7'); 
+                    $('#tr'+i).css('background-color', '#FAFAFA'); 
                 }
 
                 if(value == 0) {

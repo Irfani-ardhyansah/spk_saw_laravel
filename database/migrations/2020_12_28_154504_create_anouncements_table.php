@@ -18,6 +18,7 @@ class CreateAnouncementsTable extends Migration
             $table->unsignedInteger('admin_id')->nullable();
             $table->unsignedInteger('period_id')->nullable();
             $table->string('file');
+            $table->integer('status');
             $table->timestamps();
         });
     }

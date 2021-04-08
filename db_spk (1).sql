@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Mar 2021 pada 14.28
+-- Waktu pembuatan: 08 Apr 2021 pada 09.31
 -- Versi server: 10.1.35-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -68,7 +68,7 @@ CREATE TABLE `anouncements` (
 --
 
 INSERT INTO `anouncements` (`id`, `admin_id`, `period_id`, `status`, `file`, `created_at`, `updated_at`) VALUES
-(1, 1, 19, 0, '2021-03-27_2021-03-31_PengumumanBeasiswa.pdf', '2021-03-29 03:04:18', '2021-03-29 03:04:18');
+(2, 1, 19, 1, '2021-03-27_2021-03-31_PengumumanBeasiswa.pdf', '2021-04-04 10:12:47', '2021-04-04 10:13:11');
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,8 @@ CREATE TABLE `mahasiswas` (
 
 INSERT INTO `mahasiswas` (`id`, `name`, `prodi`, `semester`, `photo`, `address`, `gender`, `phone`, `religion`, `created_at`, `updated_at`, `user_id`) VALUES
 (4, 'Mochamad irfani ardhyansah', 'TI', '4', '371_2021-02-24__profile.jpeg', 'Madiun', 'Laki - laki', '081332695709', 'Islam', '2021-02-04 06:07:33', '2021-02-24 08:57:53', 13),
-(5, 'James John', 'Meto', '2', NULL, 'Tawangrejo', 'Laki - laki', '0812347912', 'Protestan', '2021-02-20 09:14:24', '2021-02-20 09:14:24', 14);
+(5, 'James John', 'Meto', '2', NULL, 'Tawangrejo', 'Laki - laki', '0812347912', 'Protestan', '2021-02-20 09:14:24', '2021-02-20 09:14:24', 14),
+(6, 'Ayu Risqi', 'TI', '4', NULL, 'Kwangsen', 'Perempuan', '0812374', 'Islam', '2021-04-05 05:08:32', '2021-04-05 05:08:32', 15);
 
 -- --------------------------------------------------------
 
@@ -204,7 +205,7 @@ CREATE TABLE `periods` (
 --
 
 INSERT INTO `periods` (`id`, `admin_id`, `start`, `end`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(19, 1, '2021-03-27', '2021-03-31', '2021-03-28_2021-03-31_pengumumanPeriodeBeasiswa.pdf', 1, '2021-03-28 13:19:00', '2021-03-29 02:51:57');
+(19, 1, '2021-03-27', '2021-03-31', '2021-03-28_2021-03-31_pengumumanPeriodeBeasiswa.pdf', 0, '2021-03-28 13:19:00', '2021-03-29 02:51:57');
 
 -- --------------------------------------------------------
 
@@ -227,8 +228,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `npm`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(13, '183307009', 'user@ymail.com', '$2y$10$WcxqXJIL/dd79WSLjpevTepiBcgUopwHdTtB26U1Pt/nyJhpCZzUu', 'tFFZl5tlHifIqupVINMMFbKkNExkExtZDL23hUaCL0TCuzyjvLTDCrvoS2uZ', '2021-02-04 06:07:33', '2021-02-16 08:31:13'),
-(14, '183307008', 'user2@ymail.com', '$2y$10$uj7iE2qW4YHIZzCMDvZM0u3e.y1KxYx4sAq9Urt8XmzIJZ1RaBfI6', '3hYmUTIpuhEONHGreQHLsNmmz7f9tLMVJN1mCZxAojksW1uxnFfbHyUTyvqD', '2021-02-20 09:14:24', '2021-02-20 09:14:24');
+(13, '183307009', 'user@ymail.com', '$2y$10$WcxqXJIL/dd79WSLjpevTepiBcgUopwHdTtB26U1Pt/nyJhpCZzUu', '7kuYHt2OJ9vxNp8TVESu16Y3kTlrdWMTHl82s5Mdjx8pfIfq18aoijChvXqf', '2021-02-04 06:07:33', '2021-02-16 08:31:13'),
+(14, '183307008', 'user2@ymail.com', '$2y$10$uj7iE2qW4YHIZzCMDvZM0u3e.y1KxYx4sAq9Urt8XmzIJZ1RaBfI6', 'jTbiTPSB9Dvgp7j7whyT25AnCVoPXgN9ByvG88SzTqHFHoELRCmUETeW90Ah', '2021-02-20 09:14:24', '2021-02-20 09:14:24'),
+(15, '183307037', 'user@gmail.com', '$2y$10$54VfbmcnoMW4QhO.ssQI1ud.ZXvDrFE3gCUPj8rJD4O9ml9q39hq6', 'dcbUpGAfQM1xbIug7BFs9OV30VKTFbBuHxR406CzoN6fJLOe8txA9lw5EPoe', '2021-04-05 05:08:31', '2021-04-05 05:08:31');
 
 -- --------------------------------------------------------
 
@@ -244,6 +246,15 @@ CREATE TABLE `user_periods` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `user_periods`
+--
+
+INSERT INTO `user_periods` (`id`, `user_id`, `period_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 14, 19, 0, '2021-04-05 05:06:43', '2021-04-05 05:06:43'),
+(2, 13, 19, 0, '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
+(3, 15, 19, 0, '2021-04-05 05:09:20', '2021-04-05 05:09:20');
 
 -- --------------------------------------------------------
 
@@ -261,6 +272,27 @@ CREATE TABLE `values` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `values`
+--
+
+INSERT INTO `values` (`id`, `period_id`, `criteria_id`, `mahasiswa_id`, `value`, `file`, `created_at`, `updated_at`) VALUES
+(1, 19, 2, 5, '0.25', '183307008_IPK.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
+(2, 19, 3, 5, '0.5', '183307008_Gaji Orang Tua.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
+(3, 19, 5, 5, '0.5', '183307008_Tanggungan Orang Tua.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
+(4, 19, 8, 5, '1', '183307008_Prestasi.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
+(5, 19, 9, 5, '-', '183307008_Surat Keternangan.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
+(6, 19, 2, 4, '0.75', '183307009_IPK.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
+(7, 19, 3, 4, '0.5', '183307009_Gaji Orang Tua.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
+(8, 19, 5, 4, '0.5', '183307009_Tanggungan Orang Tua.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
+(9, 19, 8, 4, '1', '183307009_Prestasi.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
+(10, 19, 9, 4, '-', '183307009_Surat Keternangan.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
+(11, 19, 2, 6, '1', '183307037_IPK.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
+(12, 19, 3, 6, '1', '183307037_Gaji Orang Tua.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
+(13, 19, 5, 6, '1', '183307037_Tanggungan Orang Tua.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
+(14, 19, 8, 6, '1', '183307037_Prestasi.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
+(15, 19, 9, 6, '-', '183307037_Surat Keternangan.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20');
 
 -- --------------------------------------------------------
 
@@ -397,7 +429,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT untuk tabel `anouncements`
 --
 ALTER TABLE `anouncements`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `criterias`
@@ -409,7 +441,7 @@ ALTER TABLE `criterias`
 -- AUTO_INCREMENT untuk tabel `mahasiswas`
 --
 ALTER TABLE `mahasiswas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -427,19 +459,19 @@ ALTER TABLE `periods`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_periods`
 --
 ALTER TABLE `user_periods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `values`
 --
 ALTER TABLE `values`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `weights`
