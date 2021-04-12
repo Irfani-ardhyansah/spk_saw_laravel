@@ -38,7 +38,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="#" class="btn btn-outline-danger btn-sm anouncement-delete" anouncement_id="{{ $row->id }}">Hapus</a>
+                                <a href="#" class="btn btn-outline-danger btn-sm anouncement-delete" anouncement_id="{{ $row->id }}">Delete</a>
                             </td>
                         </tr>
                         @empty

@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $admins = Admin::all();
+        $admins = Admin::where('role' ,'!=', '0')->get();
         return view('super_admin.data_admin.index', compact('admins'));
     }
 

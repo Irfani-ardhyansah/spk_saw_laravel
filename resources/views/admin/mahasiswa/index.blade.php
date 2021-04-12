@@ -60,7 +60,7 @@
                             <td>{{$row->name}}</td>
                             <td>{{$row->phone}}</td>
                             <td>{{$row->semester}}</td>
-                            <td>{{$row->prodi}}</td>
+                            <td>{{ prodi($row->prodi) }}</td>
                             <td>
                                     <a href="{{ route('admin.mahasiswa.detail', ['id' => $row->id]) }}" class="btn btn-info btn-sm">Info</a>
                                     <a href="#" class="btn btn-danger btn-sm mahasiswa-delete" mahasiswa_id="{{ $row->id }}" mahasiswa="{{ $row->name }}">Delete</a>

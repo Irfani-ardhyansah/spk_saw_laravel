@@ -34,9 +34,9 @@ class MahasiswaController extends Controller
     public function cetak_pdf()
     {
         $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->get();
-    
-        $pdf = PDF::loadview('admin.mahasiswa.mahasiswa_pdf', compact('mahasiswas'));
-        return $pdf->download('laporan-mahasiswa-pdf');
+        $now = Carbon::now();
+        $pdf = PDF::loadview('admin.mahasiswa.mahasiswa_pdf', compact('mahasiswas', 'now'));
+        return $pdf->download('data-mahasiswa-'.$now->year);
     }
 
     public function detail($id)

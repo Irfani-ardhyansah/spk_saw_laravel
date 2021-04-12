@@ -12,11 +12,23 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
-            'name' => 'super_admin',
-            'email' => 'super_admin@admin.com',
-            'password' => bcrypt('password'),
-            'role'  =>  '0'
-        ]);
+        Admin::create(
+            [
+                'name' => 'super_admin',
+                'email' => 'super_admin@admin.com',
+                'password' => bcrypt('password'),
+                'role'  =>  '0'
+            ], [
+                'name'  =>  'admin',
+                'email' =>  'admin@admin.com',
+                'password'  =>  bcrypt('password'),
+                'role'  =>  '1'
+            ], [
+                'name'  =>  'pimpinan',
+                'email' =>  'pimpinan@admin.com',
+                'password'  =>  bcrypt('password'),
+                'role'  =>  '2'
+            ]
+        );
     }
 }
