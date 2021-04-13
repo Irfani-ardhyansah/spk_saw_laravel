@@ -36,8 +36,8 @@ class PengumumanController extends Controller
             if($request->hasFile('file')){
                 $file = $request->file('file'); //memasukkan dalam variable
                 $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
-                $nama_file = $period->start . '_' . $period->end .'_' . 'PengumumanBeasiswa' . '.' . $extension; //merename file
-                $request->file('file')->move('pengumuman_beasiswa/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
+                $nama_file = 'Hasil Beasiswa' . '.' . $extension; //merename file
+                $request->file('file')->move('periode/' . $period->start . '_' . $period->end . '/pengumuman_beasiswa/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
                 $item = $nama_file; //memasukkan dalam variable
             }
 
@@ -70,7 +70,7 @@ class PengumumanController extends Controller
     {
         try {
             $anouncement = Anouncement::findOrFail($id); //Mengambil data berdasarkan id
-            File::delete('pengumuman_beasiswa/'.$anouncement->file); //melakukan delete file pada server
+            File::deleteDirectory('periode/' . $anouncement->period->start . '_' . $anouncement->period->end . '/pengumuman_beasiswa'); //melakukan delete file pada server
             $anouncement -> delete(); //menghapus data
             return redirect()->back()->with(['success' => 'Data Pengumuman Berhasil Dihapus!' ]);
         } catch(\Exception $e) {

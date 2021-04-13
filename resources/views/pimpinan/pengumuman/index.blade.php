@@ -25,7 +25,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$row->period->start}} S/D {{$row->period->end}}</td>
                             <td>
-                                <a href="{{ url('/') }}/periode/{{$row->period->start .'_'.$row->period->end }}/pengumuman/{{ $row->file }}">{{$row->file}}</a>
+                                <a href="/periode/{{$row->period->start .'_'.$row->period->end }}/pengumuman_beasiswa/{{ $row->file }}">{{$row->file}}</a>
                             </td>
                             <td>
                                 @if($row->status == 0)

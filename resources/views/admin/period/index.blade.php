@@ -44,7 +44,7 @@
                             <td> {{$row->user_periods->count()}} </td>
                             <td>
                                 {{-- <button type="button" data-toggle="modal" data-target="#modalShowPDF-{{ $row->id }}" class="btn btn-light btn-sm">File</button> --}}
-                                <a href="{{ url('/') }}/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" target="_blank" class="btn btn-light btn-sm">File</a>
+                                <a href="/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" target="_blank" class="btn btn-light btn-sm">File</a>
                                 {{-- <iframe src="/pengumuman_periode/{{$row->file }}" width="50%" height="250">
                                 </iframe> --}}
                             </td>

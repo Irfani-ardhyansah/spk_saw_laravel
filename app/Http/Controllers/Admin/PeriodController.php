@@ -40,7 +40,7 @@ class PeriodController extends Controller
             if($request->hasFile('file')){
                 $file = $request->file('file'); //memasukkan dalam variable
                 $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
-                $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanPeriodeBeasiswa' . '.' . $extension; //merename file
+                $nama_file = 'pengumuman' . '.' . $extension; //merename file
                 // $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
                 $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
                 $item = $nama_file; //memasukkan dalam variable
@@ -90,6 +90,7 @@ class PeriodController extends Controller
                 ]);
 
                 $data = $request->all(); //mengambil semua inputan dan dimasukkan pada variable
+                rename(public_path('periode/' . $period->start . '_' . $period->end), public_path('periode/' . $request->start . '_' . $request->end));
                 Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end']]); //melakukan proses update
                 return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
             } else { //jika inputan file ada 
@@ -101,13 +102,13 @@ class PeriodController extends Controller
                     'file'   => 'required|mimes:pdf|max:2000',
                 ]);
 
-                File::delete('pengumuman_periode/'.$period->file); //Menghapus file yang diupdate
+                File::delete('periode/' . $period->start . '_' . $period->end . '/pengumuman/', $period->file); //Menghapus file yang diupdate
 
                 //melakukan proses upload
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension();
-                $nama_file = $request->start . '_' . $request->end .'_' . 'pengumumanUpdatePeriodeBeasiswa' . '.' . $extension;
-                $request->file('file')->move('pengumuman_periode/', $nama_file);
+                $nama_file = 'pengumuman' . '.' . $extension;
+                $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
                 $item = $nama_file;
 
                 $data = $request->all();
