@@ -30,8 +30,8 @@
                   {{ csrf_field() }}
 
                   <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <label for="">Email</label>
-                    <input id="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
+                    <label for="">Email / Username</label>
+                    <input id="email" type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" tabindex="1" value="{{ old('email') }}" required autofocus>
                     <div class="invalid-feedback">
                       {{ $errors->first('email') }}
                     </div>
