@@ -13,11 +13,8 @@ class CriteriaController extends Controller
 {
     public function index()
     {
-        //Mengambil Kriteria berdasarkan status jika 1 maka ada pilihan nilai jika 0 tidak ada pilihan nilai
-        $criterias1 = Criteria::where('status', 1)->get();
-        $criterias2 = Criteria::where('status', 0)->get();
         $criterias = Criteria::all();
-        return view('admin.criteria.index', compact('criterias1', 'criterias2', 'criterias'));
+        return view('admin.criteria.index', compact('criterias'));
     }
 
     public function save(Request $request) 
@@ -101,11 +98,23 @@ class CriteriaController extends Controller
     public function update(Request $request, $id)
     {
         //jika methode yang dipilih post
+        $limit = DB::table('criterias')->select('weight')->sum('weight');
+        $weight = DB::table('criterias')->where('id', $id)->select('weight')->sum('weight');
+
         if($request->isMethod('post')) {
+            $this->validate($request, [
+                'code'          => 'required|unique:criterias,code,'.$id,
+            ], [
+                'code.unique'   =>  'Kode Harus Unik!',
+            ]);  
             //melakukan update berdasarkan id data yang dipilih
             $data = $request->all();
-            Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'weight'=>$data['weight'], 'character'=>$data['character'], 'information'=>$data['information']]);
-            return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+            if(($limit - $weight) + $data['weight'] <= '1') { 
+                Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'weight'=>$data['weight'], 'character'=>$data['character'], 'information'=>$data['information']]);
+                return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+            } else {
+                return redirect()->back()->with(['error' => 'Weight total sudah Melebihi Batas 1.0']);
+            }
         }
     }
 }

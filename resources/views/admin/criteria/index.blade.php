@@ -91,7 +91,7 @@
                             <th>Nama</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($criterias2 as $row)
+                        @foreach($criterias->where('status', 0) as $row)
                         <tr>
                             <td>{{$loop -> iteration}}</td>
                             <td>{{$row  -> code}}</td>
@@ -337,8 +337,9 @@
                         {{csrf_field()}}
                         <div class="row">
                             <div class="form-group col-5">
-                                <label for="">ID Criteria</label>
-                                <input type="text" class="form-control" name="criteria_id" value="{{ $weight->criteria_id }}" readonly>
+                                <label for="">Kriteria</label>
+                                <input type="hidden" class="form-control" name="criteria_id" value="{{ $weight->criteria_id }}">
+                                <input type="text" class="form-control" value="{{ $weight->criteria->name }}" readonly>
                             </div>
                         </div>
 
@@ -346,10 +347,16 @@
                             <div class="form-group col-6 {{ $errors->has('information') ? 'has-error' : '' }}">
                                 <label for="">Keterangan</label>
                                 <input type="text" class="form-control {{ $errors->has('information')  ? 'is-invalid' : ''}}" name="information" value="{{ $weight->information }}">
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('information') }}
+                                </div>
                             </div>
                             <div class="form-group col-6 {{ $errors->has('value') ? 'has-error' : '' }}">
                                 <label for="">Nilai</label>
                                 <input type="number" step="0.01" class="form-control {{ $errors->has('value') ? 'is-invalid' : '' }}" name="value" value="{{ $weight->value }}">
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('value') }}
+                                </div>
                             </div>
                         </div>
 
