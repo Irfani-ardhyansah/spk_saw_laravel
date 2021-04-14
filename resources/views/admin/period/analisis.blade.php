@@ -57,7 +57,7 @@
                             <td>{{$row->user->mahasiswa->name}}</td>
                             {{-- Mengambil Nilai Mahasiswa --}}
                             @foreach($row->user->mahasiswa->values as $value)
-                                {{-- Mengecek menampilkan berdasarkan periode beasiswa dan status kriteria yang 1 --}}
+                                {{-- Memanggil helper untuk memanggil value --}}
                                 <td>{{ values($value, $period_id) }}</td>
                             @endforeach
                         </tr>
@@ -86,8 +86,6 @@
                                 @endforeach
                             </tr>
                         </thead>
-                        {{-- Membuat Variabel Hasil --}}
-                        @php($hasil = array())
                         @foreach($user_periods as $row)
                         <tr>
                             <td>{{$loop->iteration}}</td>
@@ -96,7 +94,6 @@
                             @foreach($row->user->mahasiswa->values as $value)
                                 <td>{{ normalisasi($values, $value, $period_id) }}</td>
                             @endforeach
-
                         </tr>
                         @endforeach
 
@@ -111,7 +108,7 @@
                 <form action="{{ route('admin.beasiswa.search', ['period_id' => $period_id]) }}" class="form-inline" method="GET">
                     <h6 class="col-sm-2 mt-2"> Jumlah </h6>
                     <div class="col-sm-5">
-                        <input type="number" id="batas" name="batas" class="form-control">
+                        <input type="number" id="batas" name="batas" value="0" class="form-control">
                     </div>
                     <div class="col-sm-4">
                         <button type="submit"><i class="fas fa-file-pdf"></i>
@@ -165,7 +162,8 @@
                 
                 for (i = 1; i <= value; i++) {
                     // document.getElementById('tr'+i).bgColor='#9cdfe7';
-                    $('#tr'+i).css('background-color', '#FAFAFA'); 
+                    $('#tr'+i).css('background-color', '#A1ACBD'); 
+                    $('#tr'+i).css('color', 'white'); 
                 }
 
                 if(value == 0) {
