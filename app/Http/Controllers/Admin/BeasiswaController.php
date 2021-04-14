@@ -22,17 +22,6 @@ class BeasiswaController extends Controller
         return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
     }
 
-    public function changeStatus(Request $request, $id)
-    {
-        //Jika method yang dipilih post
-        if($request->isMethod('post')) {
-            //Maka menjalankan proses update status
-            $data = $request->all();
-            User_period::where(['id' => $id])->update(['status'=>$data['status']]);
-            return redirect()->back()->with(['success' => 'Status Pendaftar Beasiswa Berhasil Diganti!']);
-        }
-    }
-
     public function nilai($period_id, $mahasiswa_id)
     {   
         //Mengambil data dari inputan mahasiswa 

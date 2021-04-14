@@ -17,7 +17,6 @@ class CreateUserPeriodsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('period_id')->nullable();
-            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -63,7 +63,6 @@ class PeriodController extends Controller
             User_period::create([
                 'user_id'   =>  Auth::user()->id,
                 'period_id' =>  $id,
-                'status'    =>  0,
             ]);
             return redirect()->route('user.period')->with(['success' => 'Berhasil Mendaftar Beasiswa!']);
         } catch(\Exception $e) {
