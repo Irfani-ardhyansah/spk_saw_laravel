@@ -58,7 +58,9 @@
                             {{-- Mengambil Nilai Mahasiswa --}}
                             @foreach($row->user->mahasiswa->values as $value)
                                 {{-- Mengecek menampilkan berdasarkan periode beasiswa dan status kriteria yang 1 --}}
-                                <td>{{ values($value, $period_id) }}</td>
+                                @if($value->period_id == $period_id && $value->criteria->status == 1)
+                                    <td>{{$value->value}}</td>
+                                @endif
                             @endforeach
                         </tr>
                         @endforeach
@@ -94,7 +96,34 @@
                             <td>{{$row->user->mahasiswa->name}}</td>
                             {{-- Mengambil Nilai Mahasiswa --}}                            
                             @foreach($row->user->mahasiswa->values as $value)
-                                <td>{{ normalisasi($values, $value, $period_id) }}</td>
+                                {{-- Cek Apabila Kriteria Termasuk Cost --}}
+                                @if($value->period_id == $period_id && $value->criteria->status == 1)
+                                    @if($value->criteria->character == 'Cost')
+                                        {{-- Menghitung Nilai Normalisasi Apabila COST --}}
+                                        @php($minimum = (min($values->where('criteria_id', $value->criteria_id)->pluck('value')->toArray())))
+                                        @php($cost = $minimum / $value->value)
+                                        {{-- Mendapat Nilai Normalisasi COST --}}
+                                        <td>{{ $cost }}</td>
+                                        {{-- Menghitung hasil normalisasi dengan bobot kriteria --}}
+                                        @php($nilai = $cost * $value->criteria->weight)
+                                        {{-- Memasukkan Dalam Array $hasil --}}                                        
+                                        @php(array_push($hasil,$nilai))
+                                
+                                    {{-- Cek Apabila Kriteria Termasuk Benefit --}}
+                                    @elseif($value->criteria->character == 'Benefit')
+                                        {{-- Menghitung Nilai Normalisasi Apabila BENEFIT --}}
+                                        @php($maximum = (max($values->where('criteria_id', $value->criteria_id)->pluck('value')->toArray())))
+                                        @php($benefit = $value->value / $maximum)
+                                        {{-- Mendapat Nilai Normalisasi BENEFIT --}}
+                                        <td>{{ $benefit }}</td>
+                                        {{-- Menghitung hasil normalisasi dengan bobot kriteria --}}
+                                        @php($nilai = $benefit * $value->criteria->weight)
+                                        {{-- Memasukkan Dalam Array $hasil --}}                                        
+                                        @php(array_push($hasil,$nilai))
+
+                                    @endif
+                                @endif
+
                             @endforeach
 
                         </tr>
@@ -133,18 +162,47 @@
                             <th>Prodi</th>
                             <th>Nilai</th>
                         </tr>
-                        @php($hasil = analisis($values, $period_id, $user_periods, $criterias_count))
-                        @php($no = 0)
-                        @php(arsort($hasil))
-                        @foreach($hasil as $name => $value)
-                            @php($no++)
-                            <tr id="tr{{ $no }}">
-                                @php($prodi = explode(" - ",$name) )
-                                <td>{{ $prodi[0] }}</td>
-                                <td>{{$prodi[1]}}</td>
-                                <td>{{ $value }}</td>
-                            </tr>
-                        @endforeach
+                        {{-- Membuat array $nama --}}
+                        @php($nama = array())
+                        @php($np =array())
+                            {{-- Mengambil data mahasiswa --}}
+                            @foreach($user_periods as $row)
+                                {{-- Memasukkan Nama Mahasiswa dalam array $nama --}}
+                                @php(array_push($nama,$row->user->mahasiswa->name))
+                                @php(array_push($nama, prodi($row->user->mahasiswa->prodi)))
+                                @php($coba = array_chunk($nama, 2))
+                                @foreach($coba as $cob)
+                                    @php($co = implode(" - ",$cob))  
+                                @endforeach
+                                @php(array_push($np,$co))
+                            @endforeach
+                        
+                        {{-- Membuat array $nilai --}}
+                        @php($nilai = array())
+                        {{-- Memecah array $hasil --}}
+                        @php($result = array_chunk($hasil, $criterias_count))
+                            {{-- Mengambil data result --}}
+                            @foreach($result as $r)
+                                {{-- menghitung total nilai dan memasukkan kedalam variable $hasil_pembobotan --}}
+                                @php($hasil_pembobotan = array_sum($r))
+                                {{-- Memasukkan hasil_pembobotan ke dalam array  --}}
+                                @php(array_push($nilai,$hasil_pembobotan))
+                            @endforeach
+
+                            {{-- Menggabung array $nama dan $nilai --}}
+                            @php($hasil = array_combine($np,$nilai))
+                                {{-- Mensortir Data DESC dari value array $array --}}
+                                @php(arsort($hasil))
+                                @php($no = 0)
+                                @foreach($hasil as $name => $value)
+                                    @php($no++)
+                                    <tr id="tr{{ $no }}">
+                                        @php($prodi = explode(" - ",$name) )
+                                        <td>{{ $prodi[0] }}</td>
+                                        <td>{{$prodi[1]}}</td>
+                                        <td>{{ $value }}</td>
+                                    </tr>
+                                @endforeach
 
                     </table>
                 </div>

@@ -64,6 +64,6 @@ class BeasiswaController extends Controller
         $values = Value::all();
     
         $pdf = PDF::loadview('admin.period.perhitungan', compact('criterias', 'user_periods', 'values', 'period_id', 'criterias_count', 'batas'));
-        return $pdf->download('hasil-perhitungan-pdf');
+        return $pdf->download('hasil-perhitungan-pdf.pdf');
     }
 }
