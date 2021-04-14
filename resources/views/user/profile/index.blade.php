@@ -18,10 +18,10 @@
             <div class="col-12 col-md-12 col-lg-5">
                 <div class="card profile-widget">
                     <div class="profile-widget-header">
-                        @if(!file_exists($mahasiswa->photo))
+                        @if(empty($mahasiswa->photo))
                             <img alt="image" src="{{ url('/profile_images/default.png')}}" class="rounded-circle profile-widget-picture">
                         @else
-                            <img alt="image" src="{{ url('/profile_images/' . $mahasiswa->photo)}}" class="rounded-circle profile-widget-picture">
+                            <img alt="image" src="{{ url('/profile_images/' . $mahasiswa->user->npm . '/' . $mahasiswa->photo)}}" class="rounded-circle profile-widget-picture" style="height:150px; width:150px;">
                         @endif
                     </div>
                     <div class="profile-widget-description">

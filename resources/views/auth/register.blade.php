@@ -115,7 +115,7 @@
                         <option value="Kompak">Komputer Akuntansi</option>
                         <option value="Akuntansi">Akuntansi</option>
                         <option value="Adbis">Administrasi Bisnis</option>
-                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                        <option value="Bing">Bahasa Inggris</option>
                       </select>
                     </div>
                     <div class="form-group col-4">

@@ -18,7 +18,7 @@
           <li class="nav-link {{ (request()->is('admin/kriteria')) ? 'active' : ''}}"><a href="/admin/kriteria"><i class="ion ion-ios-browsers"></i> <span>Data</span></a></li>
           <li class="menu-header">Beasiswa</li>
           <li class="nav-link {{ (request()->is('admin/periode')) ? 'active' : ''}}"><a href="/admin/periode"><i class="ion ion-ios-bookmarks"></i> <span>Data</span></a></li>
-          <li class="nav-link {{ (request()->is('admin/pengumuman')) ? 'active' : ''}}"><a href="/admin/pengumuman"><i class="fas fa-bullhorn"></i> <span>Pengumuman</span></a></li>
+          <li class="nav-link {{ (request()->is('admin/pengumuman')) ? 'active' : ''}}"><a href="/admin/pengumuman"><i class="ion ion-share"></i> <span>Pengumuman</span></a></li>
         @endcan
         </ul>
 

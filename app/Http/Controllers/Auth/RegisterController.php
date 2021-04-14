@@ -99,8 +99,8 @@ class RegisterController extends Controller
             //memecah array dan memasukkan ke dalam variabel
             (is_array($file = $data['photo']));
             $extension = $file->getClientOriginalExtension();
-            $nama_file = rand(99,999) . '_' . Carbon::now()->format('Y-m-d') . '_' . '_profile' . '.' . $extension;
-            $data['photo']->move('profile_images/', $nama_file);
+            $nama_file = 'profile' . '.' . $extension;
+            $data['photo']->move('profile_images/'. $data['npm'] . '/', $nama_file);
             $profile = $nama_file;
         } else {
             $profile = NULL;

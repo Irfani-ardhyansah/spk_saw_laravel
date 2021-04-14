@@ -9,6 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use Importer;
 use \PDF;
+use File;
 
 class MahasiswaController extends Controller
 {
@@ -50,6 +51,7 @@ class MahasiswaController extends Controller
     {
         //Memilih data Berdasarkan ID dan Menghapusnya
         $mahasiswa = Mahasiswa::findOrFail($id);
+        File::delete('profile_images/'. $mahasiswa->user->npm . '/' .$mahasiswa->photo);
         User::where('id', $mahasiswa->user_id)->delete();
         $mahasiswa -> delete();
         return redirect()->back()->with(['success' => 'Data ' . $mahasiswa->name . ' Berhasil Dihapus!' ]);

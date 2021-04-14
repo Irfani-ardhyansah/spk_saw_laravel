@@ -12,7 +12,7 @@
     </div>
 
         <form action="{{ route('admin.mahasiswa.search') }}" class="form-inline" method="GET">
-            <a href="{{ route('admin.mahasiswa.pdf') }}" class="btn-sm btn-outline-danger"><i class="fas fa-file-pdf"></i></a>
+            <a href="{{ route('admin.mahasiswa.pdf') }}" class="btn-sm btn-outline-danger"><i class="ion ion-document"></i></a>
         <div class="row ml-auto">
             <div class="col-2 mt-1">
                 <div class="form-group">
@@ -31,7 +31,7 @@
                         <option value="Kompak">Komputer Akuntansi</option>
                         <option value="Akuntansi">Akuntansi</option>
                         <option value="Adbis">Administrasi Bisnis</option>
-                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                        <option value="Bing">Bahasa Inggris</option>
                     </select>
                 </div>
             </div>

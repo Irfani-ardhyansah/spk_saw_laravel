@@ -68,12 +68,12 @@ class ProfileController extends Controller
                     'email'     => $request->email
                 ]);
             } else {
-                File::delete('public/profile_images/'.$mahasiswa->photo);
+                File::delete('profile_images/'. $mahasiswa->user->npm . '/' .$mahasiswa->photo);
                 
                 $file = $request->file('photo');
                 $extension = $file->getClientOriginalExtension();
-                $nama_file = rand(99,999) . '_' . Carbon::now()->format('Y-m-d') . '_' . '_profile' . '.' . $extension;
-                $request->file('photo')->move('profile_images/', $nama_file);
+                $nama_file = 'profile' . '.' . $extension;
+                $request->file('photo')->move('profile_images/'. $mahasiswa->user->npm . '/', $nama_file);
                 $profile = $nama_file;
 
                 $mahasiswa->update([

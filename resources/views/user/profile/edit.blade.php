@@ -85,15 +85,15 @@
                                 <label>Prodi</label>
                                     <select class="form-control select2" required name="prodi">
                                         <option selected>-</option>
-                                        <option {{ $mahasiswa->prodi == "TI" ? 'selected' : '' }}>Teknologi Informasi</option>
-                                        <option {{ $mahasiswa->prodi == "Meto" ? 'selected' : '' }}>Mesin Otomotif</option>
-                                        <option {{ $mahasiswa->prodi == "TKK" ? 'selected' : '' }}>Teknik Komputer Kontrol</option>
-                                        <option {{ $mahasiswa->prodi == "Teklis" ? 'selected' : '' }}>Teknik Listrik</option>
-                                        <option {{ $mahasiswa->prodi == "Kereta" ? 'selected' : '' }}>Teknik Kereta</option>
-                                        <option {{ $mahasiswa->prodi == "Kompak" ? 'selected' : '' }}>Komputer Akuntansi</option>
-                                        <option {{ $mahasiswa->prodi == "Akuntansi" ? 'selected' : '' }}>Akuntansi</option>
-                                        <option {{ $mahasiswa->prodi == "Adbis" ? 'selected' : '' }}>Administrasi Bisnis</option>
-                                        <option {{ $mahasiswa->prodi == "Bahasa Inggris" ? 'selected' : '' }}>Bahasa Inggris</option>
+                                        <option {{ $mahasiswa->prodi == "TI" ? 'selected' : '' }} value="TI">Teknologi Informasi</option>
+                                        <option {{ $mahasiswa->prodi == "Meto" ? 'selected' : '' }} value="Meto">Mesin Otomotif</option>
+                                        <option {{ $mahasiswa->prodi == "TKK" ? 'selected' : '' }} value="TKK">Teknik Komputer Kontrol</option>
+                                        <option {{ $mahasiswa->prodi == "Teklis" ? 'selected' : '' }} value="Teklis">Teknik Listrik</option>
+                                        <option {{ $mahasiswa->prodi == "Kereta" ? 'selected' : '' }} value="Kereta">Teknik Kereta</option>
+                                        <option {{ $mahasiswa->prodi == "Kompak" ? 'selected' : '' }} value="Kompak">Komputer Akuntansi</option>
+                                        <option {{ $mahasiswa->prodi == "Akuntansi" ? 'selected' : '' }} value="Akuntansi">Akuntansi</option>
+                                        <option {{ $mahasiswa->prodi == "Adbis" ? 'selected' : '' }} Value="Adbis">Administrasi Bisnis</option>
+                                        <option {{ $mahasiswa->prodi == "Bing" ? 'selected' : '' }} value="Bing">Bahasa Inggris</option>
                                     </select>
                                 </div>
                             <div class="form-group col-md-6 col-12">
