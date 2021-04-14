@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Criteria;
 use App\Weight;
 use Auth;
+use DB;
 
 class CriteriaController extends Controller
 {
@@ -21,23 +22,24 @@ class CriteriaController extends Controller
 
     public function save(Request $request) 
     {
-
+        $limit = DB::table('criterias')->select('weight')->sum('weight');
         try {
             //Jika ada inputan dari weight
-            if($request->weight) {
+            if($request->weight && $request->weight + $limit <= '1.0') {
                 //memvalidasi inputan
                 $this->validate($request, [
                     'code'          => 'required|unique:criterias',
                     'name'          => 'required|max:40',
-                    'weight'        => 'required|numeric|between:0, 0.5',
+                    'weight'        => 'required|numeric|between: 0.0 , 0.5',
                     'character'     => 'required',
                     'information'   => 'required'
                 ], [
                     'code.required' =>  'Kode Harus Diisi!',
                     'code.unique'   =>  'Kode Harus Unik!',
                     'name.required' =>  'Nama Harus Diisi!',
+                    'weight.required' =>  'Bobot Harus Diisi!',
                     'name.max'          =>  'Nama Maksimal 40 Huruf!',
-                    'weight.between'    =>  'Bobot Bernilai 0 =< 0,5',
+                    'weight.between'    =>  'Bobot Harus  0 <= 0.5',
                     'information.required'  => 'Keterangan Harus Diisi!',
                 ]);    
                     //jika tervalidasi maka menyimpan ke dalam database
@@ -50,12 +52,11 @@ class CriteriaController extends Controller
                     'information'   =>  $request->information,
                     'status'        =>  1
                 ]);
-            } else {
+            } elseif(empty($request->weight)) {
                 //jika tidak ada inputan weight maka
                 $this->validate($request, [
                     'code'          => 'required|unique:criterias',
                     'name'          => 'required|max:40',
-                    'weight'        => 'between:0, 0.5',
                     'character'     => 'required',
                     'information'   => 'required'
                 ], [
@@ -63,7 +64,6 @@ class CriteriaController extends Controller
                     'code.unique'   =>  'Kode Harus Unik!',
                     'name.required' =>  'Nama Harus Diisi!',
                     'name.max'          =>  'Nama Maksimal 40 Huruf!',
-                    'weight.between'    =>  'Bobot Bernilai 0 =< 0,5',
                     'information.required'  => 'Keterangan Harus Diisi!',
                 ]);    
 
@@ -76,6 +76,8 @@ class CriteriaController extends Controller
                     'information'   =>  $request->information,
                     'status'        =>  0
                 ]);
+            } else {
+                return redirect()->back()->with(['error' => 'Weight total sudah 1.0!']);
             }
 
             return redirect()->back()->with(['success' => 'Berhasil Menambah Data ' . $criteria->name]);
