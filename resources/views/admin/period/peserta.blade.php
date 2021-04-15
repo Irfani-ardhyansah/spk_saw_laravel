@@ -3,9 +3,9 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Data Peserta Periode {{ $beasiswa->start }} s/d {{ $beasiswa->end }}</h1>
+        <h1>Periode Beasiswa {{ date('d', strtotime($beasiswa->start)) }} {{ date('F', strtotime($beasiswa->start)) }} {{ date('Y', strtotime($beasiswa->start)) }} s/d {{ date('d', strtotime($beasiswa->end)) }} {{ date('F', strtotime($beasiswa->end)) }} {{ date('Y', strtotime($beasiswa->end)) }}</h1>
     </div>
-
+    <h2 class="section-title">Data Peserta</h2>
     <div class="section-body">
         <div class="card">
             <div class="card-body p-0">
@@ -38,10 +38,8 @@
                         </tr>
                         @endforelse
                     </table>
+                {{$pendaftar->links()}}
                 </div>
-            </div>
-            <div class="card-footer text-right">
-
             </div>
           </div>
     </div>

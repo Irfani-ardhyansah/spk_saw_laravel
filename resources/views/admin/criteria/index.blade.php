@@ -74,9 +74,6 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer text-right">
-
-            </div>
           </div>
     </div>
 
@@ -104,9 +101,6 @@
                         @endforeach
                     </table>
                 </div>
-            </div>
-            <div class="card-footer text-right">
-
             </div>
           </div>
     </div>
@@ -176,9 +170,6 @@
                     <button type="submit" class="btn btn-primary">Save changes</button>
 
                 </form>
-            </div>
-            
-            <div class="modal-footer">
             </div>
 
         </div>
@@ -255,9 +246,6 @@
 
                 </form>
             </div>
-            
-            <div class="modal-footer">
-            </div>
 
         </div>
     </div>
@@ -308,9 +296,6 @@
                     <button type="submit" class="btn btn-primary">Save changes</button>
 
                 </form>
-            </div>
-            
-            <div class="modal-footer">
             </div>
 
         </div>
@@ -363,9 +348,6 @@
                         <button type="submit" class="btn btn-primary">Update changes</button>
 
                     </form>
-                </div>
-                
-                <div class="modal-footer">
                 </div>
 
             </div>

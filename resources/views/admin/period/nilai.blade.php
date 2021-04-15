@@ -3,9 +3,9 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Nilai Seleksi <b>{{$mahasiswa->name}}</b> Prodi <b>Teknologi Informasi</b> </h1>
+        <h1>Nilai Seleksi  </h1>
     </div>
-
+    <h2 class="section-title"><b>{{$mahasiswa->name}}</b> - {{prodi($mahasiswa->prodi)}} {{$mahasiswa->semester}}</h2>
     <div class="section-body">
         <div class="card">
             <div class="card-body p-0">
@@ -27,9 +27,6 @@
                         @endforeach
                     </table>
                 </div>
-            </div>
-            <div class="card-footer text-right">
-
             </div>
           </div>
     </div>

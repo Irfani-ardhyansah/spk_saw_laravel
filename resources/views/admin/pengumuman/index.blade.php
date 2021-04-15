@@ -49,9 +49,6 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer text-right">
-
-            </div>
           </div>
     </div>
 </section>
