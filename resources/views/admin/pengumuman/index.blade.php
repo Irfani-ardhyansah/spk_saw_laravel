@@ -69,7 +69,7 @@
                 <form method="POST" action="{{ route('admin.pengumuman.save') }}" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-6 {{ $errors->has('period_id') ? 'has-error' : '' }}">
                             <label>Periode</label>
                             <select class="form-control selectric" name="period_id">
                                 <option selected>-</option>
@@ -77,6 +77,9 @@
                                 <option value="{{$row->id}}">{{$row->start}}</option>
                                 @endforeach
                             </select>
+                            <div class="invalid-feedback">
+                                {{ $errors->first('period_id') }}
+                            </div>
                         </div>
                     </div>
 

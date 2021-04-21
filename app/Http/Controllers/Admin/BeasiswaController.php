@@ -47,12 +47,12 @@ class BeasiswaController extends Controller
     {
         //Mengambil Data kriteria, periode beasiswa yang didaftarkan, hasil inputan dari mahasiswa
         $batas = $request->input('batas');
-        $criterias = Criteria::where('status',1)->get();
         $criterias_count = Criteria::where('status',1)->get()->count();
         $user_periods = User_period::where('period_id', $period_id)->get();
         $values = Value::all();
-    
-        $pdf = PDF::loadview('admin.period.perhitungan', compact('criterias', 'user_periods', 'values', 'period_id', 'criterias_count', 'batas'));
-        return $pdf->download('hasil-perhitungan-pdf.pdf');
+        $period = Period::where('id', $period_id)->first();
+
+        $pdf = PDF::loadview('admin.period.perhitungan', compact('user_periods', 'values', 'period_id', 'criterias_count', 'batas'));
+        return $pdf->download('Hasil Analisis Beasiswa PPA Periode ' . date('Y', strtotime($period->start)) . '.pdf');
     }
 }

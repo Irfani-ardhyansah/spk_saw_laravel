@@ -3,14 +3,14 @@
 @section('content')
 
 <div class="section-header">
-  <h1>Form Daftar Beasiswa</h1>
+  <h1>Beasiswa {{ date('d', strtotime($period->start)) }} {{ date('F', strtotime($period->start)) }} {{ date('Y', strtotime($period->start)) }} s/d {{ date('d', strtotime($period->end)) }} {{ date('F', strtotime($period->end)) }} {{ date('Y', strtotime($period->end)) }}</h1>
   <div class="section-header-breadcrumb">
   <div class="breadcrumb-item active"><a href="{{ url('/user') }}">Dashboard</a></div>
   <div class="breadcrumb-item"><a href="{{ url('/user/beasiswa') }}">Beasiswa</a></div>
   <div class="breadcrumb-item">Daftar</div>
   </div>
 </div>
-
+<h2 class="section-title">Form Daftar </h2>
 <div class="section-body">
     <div class="card">
         <div class="card-body width">
@@ -42,7 +42,7 @@
                     <div class="col-2"></div>
                     <div class="col-4"></div>
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary ml-auto mr-5">Save changes</button>
+                        <button type="submit" class="btn btn-primary ml-auto mr-5">Daftar</button>
                     </div>
                 </div>
             </form>

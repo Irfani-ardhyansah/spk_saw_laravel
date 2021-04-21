@@ -33,7 +33,7 @@
 
                     <div class="col-3">
                         <div class="mt-4">
-                            <a href="{{ url('/') }}/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="fas fa-file"></i> File Pengumuman</a>
+                            <a href="{{ url('/') }}/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="ion ion-document"></i> File Pengumuman</a>
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@
                                 @if($checker->contains('period_id', $row->id))
                                 <a href="#" class="btn btn-outline-secondary btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
                                 @else
-                                <a href="{{route('user.period.register', ['id' => $row->id])}}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="far fa-user"></i> Daftar Beasiswa</a>
+                                <a href="{{route('user.period.register', ['id' => $row->id])}}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="ion ion-person-add"></i> Daftar Beasiswa</a>
                                 @endif
                         </div>
                     </div>

@@ -7,11 +7,11 @@ function normalisasi($values, $value, $period_id)
         {
             $minimum = (min($values->where('criteria_id', $value->criteria_id)->pluck('value')->toArray()));
             $cost = $minimum / $value->value;
-            return($cost);
+            return(round($cost, 3));
         } else {
             $maximum = (max($values->where('criteria_id', $value->criteria_id)->pluck('value')->toArray()));
             $benefit = $value->value / $maximum;
-            return($benefit);
+            return(round($benefit, 3));
         }
     }
 }

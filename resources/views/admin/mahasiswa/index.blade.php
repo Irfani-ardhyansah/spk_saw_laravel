@@ -43,16 +43,18 @@
         <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-striped table-md">
-                        <tr>
-                            <th>#</th>
-                            <th>NPM</th>
-                            <th>Nama</th>
-                            <th>No HP</th>
-                            <th>Semester</th>
-                            <th>Prodi</th>
-                            <th>Action</th>
-                        </tr>
+                    <table id="tablemahasiswa" class="table table-striped table-md">
+                            <tr>
+                                <thead>
+                                    <th>#</th>
+                                    <th>NPM</th>
+                                    <th>Nama</th>
+                                    <th>No HP</th>
+                                    <th>Semester</th>
+                                    <th>Prodi</th>
+                                    <th>Action</th>
+                                </thead>
+                            </tr>
                         @foreach($mahasiswas as $row)
                         <tr>
                             <td>{{$loop->iteration}}</td>
@@ -140,5 +142,23 @@
                 });
                 event.preventDefault();
         });
+
+
+        // $('#tablemahasiswa').DataTable({
+        //     processing: true,
+        //     serverSide: true,
+        //     ajax: {
+        //         url: '{{ route('admin.data.mahasiswa') }}'
+        //     },
+        //     columns: [
+        //         {data: 'npm', name: 'npm'},
+        //         {data: 'name', name: 'name'},
+        //         {data: 'phone', name: 'phone', orderable: false},
+        //         {data: 'semester', name: 'semester'},
+        //         {data: 'prodi', name: 'prodi'},
+        //         {data: 'action', name: 'action', orderable: false, searchable: false},
+        //     ],
+        // });
+
     </script>
 @endsection

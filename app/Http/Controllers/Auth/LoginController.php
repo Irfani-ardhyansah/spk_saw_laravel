@@ -45,4 +45,5 @@ class LoginController extends Controller
         }
         return $request->only($this->username(), 'password');
     }
+    
 }

@@ -146,9 +146,12 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-12">
+                    <div class="form-group col-3">
                       <label>Profile Picture</label>
-                      <input type="file" class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}" name="photo">
+                      <img id="preview" class="profile-user-img img-responsive" style="height: 150px; width: 150px; display: block;">
+                    </div>
+                    <div class="form-group col-6 mt-4">
+                      <input type="file" class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}" name="photo" id="photo">
                       <div class="invalid-feedback">
                         {{ $errors->first('photo') }}
                       </div>
@@ -198,5 +201,24 @@
 
   <!-- Page Specific JS File -->
   <script src="{{ asset('assets/js/page/auth-register.js')}}"></script>
+  <script type="text/javascript">
+    function bacaGambar(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+      
+          reader.onload = function (e) {
+              $('#preview').attr('src', e.target.result);
+          }
+      
+          reader.readAsDataURL(input.files[0]);
+        }
+    }
+  
+    $("#photo").change(function(){
+        bacaGambar(this);
+    });
+  
+  </script>
+  
 </body>
 </html>

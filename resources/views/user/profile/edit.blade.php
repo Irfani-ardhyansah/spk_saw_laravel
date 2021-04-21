@@ -117,10 +117,21 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="form-group col-md-12 col-12">
+                            <div class="form-group col-3">
                                 <label>Profile Picture</label>
-                                <input type="file" class="form-control" name="photo">
+                                {{-- <div class="gallery gallery-md">
+                                    <div class="gallery-item" id="preview" data-image="{{ url('/profile_images/' . $mahasiswa->user->npm . '/' . $mahasiswa->photo)}}" data-title="Image 1"></div>
+                                </div> --}}
+                                
+                                <img id="preview" src="{{ url('/profile_images/' . $mahasiswa->user->npm . '/' . $mahasiswa->photo)}}" class="profile-user-img img-responsive" style="height: 150px; width: 150px; display: block;">
+                            </div>
+                            <div class="form-group col-6 mt-4">
+                            <input type="file" class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}" name="photo" id="photo">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('photo') }}
+                            </div>
                             </div>
                         </div>
                     </div>

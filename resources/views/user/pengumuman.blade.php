@@ -16,7 +16,7 @@
       <div class="col-12 col-md-4 col-lg-4">
       </div>
 
-      @foreach($anouncements as $row)
+      @forelse($anouncements as $row)
       <div class="col-12 col-md-4 col-lg-4">
         <div class="pricing pricing-highlight">
           <div class="pricing-title">
@@ -34,7 +34,25 @@
           </div>
         </div>
       </div>
-      @endforeach
+      @empty
+      <div class="col-12 col-md-4 col-lg-4">
+        <div class="pricing pricing-highlight">
+          <div class="pricing-title">
+            Periode Beasiswa
+          </div>
+          <div class="pricing-padding">
+            <div class="pricing-price">
+              <h5>Tidak Ada</h5>
+              <div class="mt-5"></div>
+              <h5>Pengumuman</h5>
+            </div>
+            <div class="pricing-cta">
+              <a href="#">Download</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endforelse
 
       <div class="col-12 col-md-4 col-lg-4">
       </div>

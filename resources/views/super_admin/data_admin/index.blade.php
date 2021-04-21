@@ -92,6 +92,17 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label>Role</label>
+                            <select class="form-control selectric" name="role">
+                                <option selected>-</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Pimpinan</option>
+                            </select>
+                          </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Save</button>
 
                 </form>

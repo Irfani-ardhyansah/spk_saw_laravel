@@ -17,6 +17,7 @@
     <table align="center" style="border-collapse: collapse;">
         <tr>
             <th style="border: 1px solid #999; padding: 8px 15px;">Urutan</th>
+            <th style="border: 1px solid #999; padding: 8px 15px;">NPM</th>
             <th style="border: 1px solid #999; padding: 8px 15px;">Nama</th>
             <th style="border: 1px solid #999; padding: 8px 15px;">Prodi</th>
             <th style="border: 1px solid #999; padding: 8px 15px;">Nilai</th>
@@ -27,10 +28,11 @@
         @php($result = array_slice($hasil, 0, $batas))
         @foreach($result as $name => $value) 
         <tr>
-            <td style="border: 1px solid #999; padding: 8px 15px;">{{ $loop->iteration }}</td>
+            <td style="border: 1px solid #999; padding: 8px 15px;">{{ $loop->iteration }}.</td>
             @php($prodi = explode(" - ",$name) )
             <td style="border: 1px solid #999; padding: 8px 15px;">{{ $prodi[0] }}</td>
             <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[1]}}</td>
+            <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[2]}}</td>
             <td style="border: 1px solid #999; padding: 8px 15px;">{{ $value }}</td>
         </tr>
         @endforeach

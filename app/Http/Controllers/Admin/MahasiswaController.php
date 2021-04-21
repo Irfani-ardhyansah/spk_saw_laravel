@@ -10,15 +10,28 @@ use Carbon\Carbon;
 use Importer;
 use \PDF;
 use File;
+use Yajra\Datatables\Datatables;
 
 class MahasiswaController extends Controller
 {
+
     public function index()
     {
-        //Mengambil Data Mahasiswa dari DB
+        // //Mengambil Data Mahasiswa dari DB
         $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->paginate(10);
         return view('admin.mahasiswa.index', compact('mahasiswas'));
     }
+
+    // public function getData()
+    // {
+    //     $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->get();
+    //     return datatables($mahasiswas)->addColumn('action', function ($mahasiswas) {
+    //         return '<a href="/admin/mahasiswa/detail/'.$mahasiswas->id.'" class="btn btn-info btn-sm">Info</a>
+    //                 <button type="button" class="button-delete btn btn-danger btn-sm" data-remote="'.$mahasiswas->id.'" mahasiswa="'.$mahasiswas->name.'">Delete</button>';
+    //     })->addColumn('npm', function (Mahasiswa $mahasiswa) {
+    //         return $mahasiswa->user->npm;
+    //     })->addIndexColumn()->toJson();
+    // }
 
     public function search(Request $request) 
     {

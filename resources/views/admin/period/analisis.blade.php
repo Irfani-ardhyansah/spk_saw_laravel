@@ -29,8 +29,6 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer text-right">
-            </div>
         </div>
 
         <div class="card">
@@ -43,6 +41,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>NPM</th>
                                 <th>Nama</th>
                                 {{-- Mengambil Kode Kriteria --}}
                                 @foreach($criterias as $row)
@@ -53,7 +52,8 @@
                         {{-- Mengambil Data Mahasiswa --}}
                         @foreach($user_periods as $row)
                         <tr>
-                            <td>{{$loop->iteration}}</td>
+                            <td>{{$loop->iteration}}.</td>
+                            <td>{{$row->user->npm}}</td>
                             <td>{{$row->user->mahasiswa->name}}</td>
                             {{-- Mengambil Nilai Mahasiswa --}}
                             @foreach($row->user->mahasiswa->values as $value)
@@ -64,8 +64,6 @@
                         @endforeach
                     </table>
                 </div>
-            </div>
-            <div class="card-footer text-right">
             </div>
         </div>
 
@@ -79,6 +77,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>NPM</th>
                                 <th>Nama</th>
                                 {{-- Mengambil Data Kriteria --}}
                                 @foreach($criterias as $row)
@@ -88,7 +87,8 @@
                         </thead>
                         @foreach($user_periods as $row)
                         <tr>
-                            <td>{{$loop->iteration}}</td>
+                            <td>{{$loop->iteration}}.</td>
+                            <td>{{$row->user->npm}}</td>
                             <td>{{$row->user->mahasiswa->name}}</td>
                             {{-- Mengambil Nilai Mahasiswa --}}                            
                             @foreach($row->user->mahasiswa->values as $value)
@@ -100,8 +100,6 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer text-right">
-            </div>
         </div>
 
             <div class="form-group row mt-5">
@@ -111,7 +109,7 @@
                         <input type="number" id="batas" name="batas" value="0" class="form-control">
                     </div>
                     <div class="col-sm-4">
-                        <button type="submit"><i class="fas fa-file-pdf"></i>
+                        <button type="submit"><i class="ion ion-document-text"></i>
                         </button>
                     </div>
                 </form>
@@ -126,6 +124,7 @@
                 <div class="table-responsive">
                     <table id="table-datatables" class="table table-md">
                         <tr>
+                            <th>NPM</th>
                             <th>Nama</th>
                             <th>Prodi</th>
                             <th>Nilai</th>
@@ -139,14 +138,13 @@
                                 @php($prodi = explode(" - ",$name) )
                                 <td>{{ $prodi[0] }}</td>
                                 <td>{{$prodi[1]}}</td>
+                                <td>{{$prodi[2]}}</td>
                                 <td>{{ $value }}</td>
                             </tr>
                         @endforeach
 
                     </table>
                 </div>
-            </div>
-            <div class="card-footer text-right">
             </div>
         </div>
     </div>

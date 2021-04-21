@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Period;
+use Carbon\Carbon;
 use Auth;
 use \PDF;
 use File;
@@ -40,7 +41,7 @@ class PeriodController extends Controller
             if($request->hasFile('file')){
                 $file = $request->file('file'); //memasukkan dalam variable
                 $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
-                $nama_file = 'pengumuman' . '.' . $extension; //merename file
+                $nama_file = 'Pengumuman Pendaftaran PPA' . ' ' . Carbon::now()->format('Y') . '.' . $extension; //merename file
                 // $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
                 $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
                 $item = $nama_file; //memasukkan dalam variable
@@ -107,7 +108,7 @@ class PeriodController extends Controller
                 //melakukan proses upload
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension();
-                $nama_file = 'pengumuman' . '.' . $extension;
+                $nama_file = 'Pengumuman Pendaftaran PPA' . ' ' . Carbon::now()->format('Y') . '.' . $extension;
                 $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
                 $item = $nama_file;
 

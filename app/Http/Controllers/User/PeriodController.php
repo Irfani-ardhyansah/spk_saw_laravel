@@ -21,10 +21,11 @@ class PeriodController extends Controller
 
     public function register($id)
     {
-        $criterias = Criteria::all();
+        $criterias = Criteria::orderBy('code', 'ASC')->get();
         $weight = Weight::first();
         $period_id =  $id;
-        return view('user.period.daftar', compact('criterias', 'weight', 'period_id'));
+        $period = Period::where('id', $id)->first();
+        return view('user.period.daftar', compact('criterias', 'weight', 'period_id', 'period'));
     }
 
     public function save(Request $request, $id)

@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
 
             // Route Halaman Mahasiswa
         Route::get('/mahasiswa', 'Admin\MahasiswaController@index')->name('admin.mahasiswa'); 
+        Route::get('/mahasiswa/json', 'Admin\MahasiswaController@getData')->name('admin.data.mahasiswa'); 
         Route::get('/mahasiswa/search', 'Admin\MahasiswaController@search')->name('admin.mahasiswa.search'); 
         Route::get('/mahasiswa/pdf', 'Admin\MahasiswaController@cetak_pdf')->name('admin.mahasiswa.pdf');
         Route::get('/mahasiswa/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail'); //Menggunakan SweetAlert Delete

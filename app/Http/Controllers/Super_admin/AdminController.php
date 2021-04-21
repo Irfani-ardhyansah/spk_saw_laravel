@@ -20,7 +20,8 @@ class AdminController extends Controller
             $this->validate($request, [
                 'name'      =>  'required',
                 'email'     =>  'required',
-                'password'  =>  'required|min:6|confirmed'
+                'password'  =>  'required|min:6|confirmed',
+                'role'      =>  'required|between: 1 , 2'
             ], [
                 'name.required'     =>  'Nama Harus Diisi!',
                 'email.required'    =>  'Email Harus Diisi!',
@@ -33,7 +34,7 @@ class AdminController extends Controller
                 'name'      => $request->name,
                 'email'     =>  $request->email,
                 'password'  =>  bcrypt($request->password),
-                'role'      =>  1
+                'role'      =>  $request->role
             ]);
 
             return redirect()->back()->with(['success' => 'Berhasil Menambah Akun ' . $admin->name]);

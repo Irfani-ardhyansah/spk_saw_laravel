@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ asset('node_modules/ionicons201/css/ionicons.min.css')}}">
   
   <!-- Template CSS -->
+  <link rel="stylesheet" href="{{ asset('node_modules/chocolat/dist/css/chocolat.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
@@ -67,6 +68,7 @@
   <script src="{{ asset('/assets/js/moment.min.js')}}"></script>
   <script src="{{ asset('node_modules/prismjs/prism.js')}}"></script>
   <script src="{{ asset('node_modules/summernote/dist/summernote-bs4.js')}}"></script>
+  <script src="{{ asset('node_modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
   <script src="{{ asset('assets/js/stisla.js')}}"></script>
 
   <!-- JS Libraies -->
@@ -90,5 +92,23 @@
         toastr.error("{{ Session::get('error') }}");
       @endif
     </script>
+      <script type="text/javascript">
+        function bacaGambar(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+          
+              reader.onload = function (e) {
+                  $('#preview').attr('src', e.target.result);
+              }
+          
+              reader.readAsDataURL(input.files[0]);
+            }
+        }
+      
+        $("#photo").change(function(){
+            bacaGambar(this);
+        });
+      
+      </script>
 </body>
 </html>
