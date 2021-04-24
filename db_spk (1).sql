@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Apr 2021 pada 09.31
+-- Waktu pembuatan: 24 Apr 2021 pada 11.03
 -- Versi server: 10.1.35-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -68,7 +68,7 @@ CREATE TABLE `anouncements` (
 --
 
 INSERT INTO `anouncements` (`id`, `admin_id`, `period_id`, `status`, `file`, `created_at`, `updated_at`) VALUES
-(2, 1, 19, 1, '2021-03-27_2021-03-31_PengumumanBeasiswa.pdf', '2021-04-04 10:12:47', '2021-04-04 10:13:11');
+(1, 1, 22, 0, 'Hasil Beasiswa.pdf', '2021-04-20 09:05:54', '2021-04-20 09:05:54');
 
 -- --------------------------------------------------------
 
@@ -97,8 +97,8 @@ INSERT INTO `criterias` (`id`, `admin_id`, `code`, `name`, `weight`, `character`
 (2, 1, 'C1', 'IPK', 0.3, 'Benefit', 'Kriteria ini tergantung dari nilai IPK mahasiswa yang mendaftar pada beasiswa PPA, mahasiswa dengan IPK lebih bagus lebih mendapat prioritas.', 1, '2021-02-04 09:18:52', '2021-02-05 00:40:43'),
 (3, 1, 'C2', 'Gaji Orang Tua', 0.25, 'Cost', 'Kriteria ini tergantung dari Gaji orang tua mahasiswa yang mendaftar pada beasiswa PPA, orang tua dengan gaji lebih sedikit lebih mendapat prioritas.', 1, '2021-02-09 06:48:11', '2021-02-25 03:55:57'),
 (5, 1, 'C3', 'Tanggungan Orang Tua', 0.25, 'Benefit', 'Tanggungan Orang Tua Dalam Mengeluarkan Biaya.', 1, '2021-02-18 03:10:53', '2021-02-25 03:56:09'),
-(8, 1, 'C4', 'Prestasi', 0.2, 'Benefit', 'Prestasi Yang Pernah Diraih Mahasiswa', 1, '2021-02-25 03:56:48', '2021-02-25 04:26:01'),
-(9, 1, 'C5', 'Surat Keternangan', NULL, '-', 'Surat Keterangan aktif kuliah dari kampus', 0, '2021-02-25 04:21:39', '2021-02-25 04:21:39');
+(9, 1, 'C5', 'Surat Keternangan', NULL, '-', 'Surat Keterangan aktif kuliah dari kampus', 0, '2021-02-25 04:21:39', '2021-02-25 04:21:39'),
+(13, 1, 'C4', 'Prestasi', 0.2, 'Benefit', 'Prestasi Yang Pernah Diraih Mahasiswas', 1, '2021-04-14 15:32:01', '2021-04-14 16:37:07');
 
 -- --------------------------------------------------------
 
@@ -126,9 +126,12 @@ CREATE TABLE `mahasiswas` (
 --
 
 INSERT INTO `mahasiswas` (`id`, `name`, `prodi`, `semester`, `photo`, `address`, `gender`, `phone`, `religion`, `created_at`, `updated_at`, `user_id`) VALUES
-(4, 'Mochamad irfani ardhyansah', 'TI', '4', '371_2021-02-24__profile.jpeg', 'Madiun', 'Laki - laki', '081332695709', 'Islam', '2021-02-04 06:07:33', '2021-02-24 08:57:53', 13),
-(5, 'James John', 'Meto', '2', NULL, 'Tawangrejo', 'Laki - laki', '0812347912', 'Protestan', '2021-02-20 09:14:24', '2021-02-20 09:14:24', 14),
-(6, 'Ayu Risqi', 'TI', '4', NULL, 'Kwangsen', 'Perempuan', '0812374', 'Islam', '2021-04-05 05:08:32', '2021-04-05 05:08:32', 15);
+(4, 'Mochamad irfani ardhyansah', 'TI', '3', 'profile.jpg', 'Madiun', 'Laki - laki', '081332695709', 'Islam', '2021-02-04 06:07:33', '2021-04-20 07:45:49', 13),
+(5, 'James John', 'Meto', '3', NULL, 'Tawangrejo', 'Laki - laki', '0812347912', 'Protestan', '2021-02-20 09:14:24', '2021-02-20 09:14:24', 14),
+(6, 'Chelia', 'TI', '5', NULL, 'Kwangsen', 'Perempuan', '0812374', 'Islam', '2021-04-05 05:08:32', '2021-04-22 03:14:06', 15),
+(7, 'James', 'TI', '5', '784_2021-04-11__profile.jpeg', 'Magetan', 'Laki - laki', '081237641', 'Islam', '2021-04-11 11:26:54', '2021-04-11 11:26:54', 16),
+(8, 'John', 'TKK', '3', 'profile.jpeg', 'Madiun', 'Laki - laki', '08123412', 'Islam', '2021-04-14 13:14:33', '2021-04-14 13:31:17', 17),
+(9, 'Gunn', 'Kereta', '3', NULL, 'Maospati', 'Laki - laki', '0812347', 'Islam', '2021-04-20 08:10:02', '2021-04-20 08:10:02', 18);
 
 -- --------------------------------------------------------
 
@@ -205,7 +208,7 @@ CREATE TABLE `periods` (
 --
 
 INSERT INTO `periods` (`id`, `admin_id`, `start`, `end`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(19, 1, '2021-03-27', '2021-03-31', '2021-03-28_2021-03-31_pengumumanPeriodeBeasiswa.pdf', 0, '2021-03-28 13:19:00', '2021-03-29 02:51:57');
+(22, 1, '2021-04-16', '2021-04-25', 'Pengumuman Pendaftaran PPA 2021.pdf', 1, '2021-04-16 02:56:15', '2021-04-16 02:59:41');
 
 -- --------------------------------------------------------
 
@@ -228,9 +231,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `npm`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(13, '183307009', 'user@ymail.com', '$2y$10$WcxqXJIL/dd79WSLjpevTepiBcgUopwHdTtB26U1Pt/nyJhpCZzUu', '7kuYHt2OJ9vxNp8TVESu16Y3kTlrdWMTHl82s5Mdjx8pfIfq18aoijChvXqf', '2021-02-04 06:07:33', '2021-02-16 08:31:13'),
-(14, '183307008', 'user2@ymail.com', '$2y$10$uj7iE2qW4YHIZzCMDvZM0u3e.y1KxYx4sAq9Urt8XmzIJZ1RaBfI6', 'jTbiTPSB9Dvgp7j7whyT25AnCVoPXgN9ByvG88SzTqHFHoELRCmUETeW90Ah', '2021-02-20 09:14:24', '2021-02-20 09:14:24'),
-(15, '183307037', 'user@gmail.com', '$2y$10$54VfbmcnoMW4QhO.ssQI1ud.ZXvDrFE3gCUPj8rJD4O9ml9q39hq6', 'dcbUpGAfQM1xbIug7BFs9OV30VKTFbBuHxR406CzoN6fJLOe8txA9lw5EPoe', '2021-04-05 05:08:31', '2021-04-05 05:08:31');
+(13, '183307009', 'user@ymail.com', '$2y$10$WcxqXJIL/dd79WSLjpevTepiBcgUopwHdTtB26U1Pt/nyJhpCZzUu', 'qyg6bkNqDLvfsrd3Dt4ORJSLmEdciWLgkhD23GtN146t7EfkK3LSWe0tjDFr', '2021-02-04 06:07:33', '2021-02-16 08:31:13'),
+(14, '183307008', 'user2@ymail.com', '$2y$10$uj7iE2qW4YHIZzCMDvZM0u3e.y1KxYx4sAq9Urt8XmzIJZ1RaBfI6', 'wTDuF29xRqJseuXGnABZ1GYVqUG2np3nWiVcSmUDoSO7IwA1VK4PKRvFIpNR', '2021-02-20 09:14:24', '2021-02-20 09:14:24'),
+(15, '183307004', 'user@gmail.com', '$2y$10$54VfbmcnoMW4QhO.ssQI1ud.ZXvDrFE3gCUPj8rJD4O9ml9q39hq6', '5NrPA5NreGmZiGjZBVMlfMFb5goTrBieFglXizSys0xYnOoy1MVJgmbOdX5G', '2021-04-05 05:08:31', '2021-04-22 03:14:06'),
+(16, '183307001', 'James@gmail.com', '$2y$10$jk9R3NR3KyORfz.fYbSKYOh/rzynLYW0fX8ZZuVIFQHXqVhlvFZ/2', 'E7MS391KXqzvUxiuBJQkKP5BaDupNZVmsvlVbRBeS4w5MdWXSeGGcA30rUjc', '2021-04-11 11:26:54', '2021-04-11 11:26:54'),
+(17, '183307002', 'coba@gmail.com', '$2y$10$3P0aRYH8uNw.LgtYIeSMduMBVJVCr7tJb9I9O61t9hm4chOpOopnS', 'Ww80Xpll8l1uTOTrHkOqedrUIwVppCbickgDEw0Nh73jUMR1qcqDJGv7DoAi', '2021-04-14 13:14:33', '2021-04-14 13:14:33'),
+(18, '183307003', 'user3@gmail.com', '$2y$10$4kk4JV5W0V0OHvUr7sIRZOMBeTAVcPFvPDQwNnaLlpsuKYgQrgqD6', 'YCKd81DqUlQYkKprg4ZEOAe3bFIowQSClTb24IujDL0gNjSlRpnZke8w3HV9', '2021-04-20 08:10:01', '2021-04-20 08:10:01');
 
 -- --------------------------------------------------------
 
@@ -242,7 +248,6 @@ CREATE TABLE `user_periods` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `period_id` int(10) UNSIGNED DEFAULT NULL,
-  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -251,10 +256,12 @@ CREATE TABLE `user_periods` (
 -- Dumping data untuk tabel `user_periods`
 --
 
-INSERT INTO `user_periods` (`id`, `user_id`, `period_id`, `status`, `created_at`, `updated_at`) VALUES
-(1, 14, 19, 0, '2021-04-05 05:06:43', '2021-04-05 05:06:43'),
-(2, 13, 19, 0, '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
-(3, 15, 19, 0, '2021-04-05 05:09:20', '2021-04-05 05:09:20');
+INSERT INTO `user_periods` (`id`, `user_id`, `period_id`, `created_at`, `updated_at`) VALUES
+(8, 16, 22, '2021-04-16 04:10:30', '2021-04-16 04:10:30'),
+(9, 17, 22, '2021-04-16 04:20:51', '2021-04-16 04:20:51'),
+(10, 13, 22, '2021-04-16 04:21:53', '2021-04-16 04:21:53'),
+(11, 14, 22, '2021-04-16 04:22:37', '2021-04-16 04:22:37'),
+(12, 15, 22, '2021-04-16 04:23:40', '2021-04-16 04:23:40');
 
 -- --------------------------------------------------------
 
@@ -278,21 +285,31 @@ CREATE TABLE `values` (
 --
 
 INSERT INTO `values` (`id`, `period_id`, `criteria_id`, `mahasiswa_id`, `value`, `file`, `created_at`, `updated_at`) VALUES
-(1, 19, 2, 5, '0.25', '183307008_IPK.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
-(2, 19, 3, 5, '0.5', '183307008_Gaji Orang Tua.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
-(3, 19, 5, 5, '0.5', '183307008_Tanggungan Orang Tua.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
-(4, 19, 8, 5, '1', '183307008_Prestasi.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
-(5, 19, 9, 5, '-', '183307008_Surat Keternangan.pdf', '2021-04-05 05:06:42', '2021-04-05 05:06:42'),
-(6, 19, 2, 4, '0.75', '183307009_IPK.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
-(7, 19, 3, 4, '0.5', '183307009_Gaji Orang Tua.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
-(8, 19, 5, 4, '0.5', '183307009_Tanggungan Orang Tua.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
-(9, 19, 8, 4, '1', '183307009_Prestasi.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
-(10, 19, 9, 4, '-', '183307009_Surat Keternangan.pdf', '2021-04-05 05:07:34', '2021-04-05 05:07:34'),
-(11, 19, 2, 6, '1', '183307037_IPK.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
-(12, 19, 3, 6, '1', '183307037_Gaji Orang Tua.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
-(13, 19, 5, 6, '1', '183307037_Tanggungan Orang Tua.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
-(14, 19, 8, 6, '1', '183307037_Prestasi.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20'),
-(15, 19, 9, 6, '-', '183307037_Surat Keternangan.pdf', '2021-04-05 05:09:20', '2021-04-05 05:09:20');
+(21, 22, 2, 7, '0.5', '183307001_IPK.pdf', '2021-04-16 04:10:29', '2021-04-16 04:10:29'),
+(22, 22, 3, 7, '0.5', '183307001_Gaji Orang Tua.pdf', '2021-04-16 04:10:29', '2021-04-16 04:10:29'),
+(23, 22, 5, 7, '0.5', '183307001_Tanggungan Orang Tua.pdf', '2021-04-16 04:10:29', '2021-04-16 04:10:29'),
+(24, 22, 13, 7, '1', '183307001_Prestasi.pdf', '2021-04-16 04:10:29', '2021-04-16 04:10:29'),
+(25, 22, 9, 7, '-', '183307001_Surat Keternangan.pdf', '2021-04-16 04:10:30', '2021-04-16 04:10:30'),
+(26, 22, 2, 8, '0.25', '183307002_IPK.pdf', '2021-04-16 04:20:51', '2021-04-16 04:20:51'),
+(27, 22, 3, 8, '0.25', '183307002_Gaji Orang Tua.pdf', '2021-04-16 04:20:51', '2021-04-16 04:20:51'),
+(28, 22, 5, 8, '0.25', '183307002_Tanggungan Orang Tua.pdf', '2021-04-16 04:20:51', '2021-04-16 04:20:51'),
+(29, 22, 13, 8, '1', '183307002_Prestasi.pdf', '2021-04-16 04:20:51', '2021-04-16 04:20:51'),
+(30, 22, 9, 8, '-', '183307002_Surat Keternangan.pdf', '2021-04-16 04:20:51', '2021-04-16 04:20:51'),
+(31, 22, 2, 4, '0.5', '183307009_IPK.pdf', '2021-04-16 04:21:52', '2021-04-16 04:21:52'),
+(32, 22, 3, 4, '0.75', '183307009_Gaji Orang Tua.pdf', '2021-04-16 04:21:52', '2021-04-16 04:21:52'),
+(33, 22, 5, 4, '0.25', '183307009_Tanggungan Orang Tua.pdf', '2021-04-16 04:21:53', '2021-04-16 04:21:53'),
+(34, 22, 13, 4, '0.5', '183307009_Prestasi.pdf', '2021-04-16 04:21:53', '2021-04-16 04:21:53'),
+(35, 22, 9, 4, '-', '183307009_Surat Keternangan.pdf', '2021-04-16 04:21:53', '2021-04-16 04:21:53'),
+(36, 22, 2, 5, '0.25', '183307008_IPK.pdf', '2021-04-16 04:22:37', '2021-04-16 04:22:37'),
+(37, 22, 3, 5, '0.25', '183307008_Gaji Orang Tua.pdf', '2021-04-16 04:22:37', '2021-04-16 04:22:37'),
+(38, 22, 5, 5, '0.25', '183307008_Tanggungan Orang Tua.pdf', '2021-04-16 04:22:37', '2021-04-16 04:22:37'),
+(39, 22, 13, 5, '0.5', '183307008_Prestasi.pdf', '2021-04-16 04:22:37', '2021-04-16 04:22:37'),
+(40, 22, 9, 5, '-', '183307008_Surat Keternangan.pdf', '2021-04-16 04:22:37', '2021-04-16 04:22:37'),
+(41, 22, 2, 6, '0.75', '183307037_IPK.pdf', '2021-04-16 04:23:39', '2021-04-16 04:23:39'),
+(42, 22, 3, 6, '0.75', '183307037_Gaji Orang Tua.pdf', '2021-04-16 04:23:39', '2021-04-16 04:23:39'),
+(43, 22, 5, 6, '0.5', '183307037_Tanggungan Orang Tua.pdf', '2021-04-16 04:23:40', '2021-04-16 04:23:40'),
+(44, 22, 13, 6, '1', '183307037_Prestasi.pdf', '2021-04-16 04:23:40', '2021-04-16 04:23:40'),
+(45, 22, 9, 6, '-', '183307037_Surat Keternangan.pdf', '2021-04-16 04:23:40', '2021-04-16 04:23:40');
 
 -- --------------------------------------------------------
 
@@ -329,8 +346,8 @@ INSERT INTO `weights` (`id`, `criteria_id`, `information`, `value`, `created_at`
 (29, 5, '2 =< 3', 0.5, '2021-02-24 03:29:30', '2021-02-24 03:29:30'),
 (30, 5, '3 =< 4', 0.75, '2021-02-24 03:29:46', '2021-02-24 03:29:46'),
 (31, 5, '4 =<8', 1, '2021-02-24 03:30:06', '2021-02-24 03:30:06'),
-(34, 8, 'Ada', 1, '2021-02-25 03:57:04', '2021-03-01 09:34:12'),
-(35, 8, 'Tidak Ada', 0.5, '2021-02-25 04:02:07', '2021-02-25 04:02:07');
+(36, 13, 'Tidak Ada', 0.5, '2021-04-14 15:32:19', '2021-04-14 16:36:41'),
+(37, 13, 'Ada', 1, '2021-04-14 15:32:27', '2021-04-14 15:32:27');
 
 --
 -- Indexes for dumped tables
@@ -429,19 +446,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT untuk tabel `anouncements`
 --
 ALTER TABLE `anouncements`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `criterias`
 --
 ALTER TABLE `criterias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `mahasiswas`
 --
 ALTER TABLE `mahasiswas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -453,31 +470,31 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `periods`
 --
 ALTER TABLE `periods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_periods`
 --
 ALTER TABLE `user_periods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `values`
 --
 ALTER TABLE `values`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `weights`
 --
 ALTER TABLE `weights`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

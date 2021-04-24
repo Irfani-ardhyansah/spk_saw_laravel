@@ -38,6 +38,7 @@ class BeasiswaController extends Controller
         //Mengambil Data kriteria, periode beasiswa yang didaftarkan, hasil inputan dari mahasiswa
         $criterias = Criteria::where('status',1)->get();
         $criterias_count = Criteria::where('status',1)->get()->count();
+        // $user_periods = User_period::where('period_id', $period_id)->with('user')->get()->sortBy('user.npm');
         $user_periods = User_period::where('period_id', $period_id)->get();
         $values = Value::all();
         return view('admin.period.analisis', compact('criterias', 'user_periods', 'period_id', 'values', 'criterias_count'));

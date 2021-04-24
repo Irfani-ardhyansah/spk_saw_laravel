@@ -100,10 +100,7 @@
                                 <label>Semester</label>
                                     <select class="form-control select2" required name="semester" value="{{ $mahasiswa->semester }}">
                                         <option selected>-</option>
-                                        <option {{ $mahasiswa->semester == "1" ? 'selected' : '' }}>1</option>
-                                        <option {{ $mahasiswa->semester == "2" ? 'selected' : '' }}>2</option>
                                         <option {{ $mahasiswa->semester == "3" ? 'selected' : '' }}>3</option>
-                                        <option {{ $mahasiswa->semester == "4" ? 'selected' : '' }}>4</option>
                                         <option {{ $mahasiswa->semester == "5" ? 'selected' : '' }}>5</option>
                                     </select>
                             </div>
