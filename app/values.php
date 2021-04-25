@@ -1,7 +1,7 @@
 <?php
-function values($value, $period_id)
+function values($value, $idPeriod)
 {            
-    if($value->period_id == $period_id && $value->criteria->status == 1){
+    if($value->period_id == $idPeriod && $value->criteria->status == 1){
         return($value->value);
     }
 }

@@ -8,13 +8,6 @@
 
     <div class="section-body">
         <div class="card card-hero">
-            {{-- <div class="card-header">
-              <div class="card-icon">
-                <i class="far fa-question-circle"></i>
-              </div>
-              <h4>14</h4>
-              <div class="card-description">Customers need help</div>
-            </div> --}}
             <div class="card-body p-0">
               <div class="tickets-list">
                 <span href="#" class="ticket-item">
@@ -31,7 +24,9 @@
                 </span>
               </div>
               <div class="tickets-list">
+                <div class="row">
                 @foreach($prodis as $row)
+                  <div class="col-4">
                     <span href="#" class="ticket-item">
                         <div class="ticket-title">
                             <h4>
@@ -49,13 +44,20 @@
                           <div class="text-primary">{{$pendaftar = $mahasiswas->where('prodi_id', $row->id)->count()}}</div>
                         </div>
                         <div class="ticket-info">
-                          <div>Kuota</div>
+                          <div>Kuota Prodi</div>
                           <div class="bullet"></div>
                           @php($kuota_prodi = $pendaftar / $total_mahasiswa * $kuota)
                           <div class="text-primary">{{round($kuota_prodi)}}</div>
-                      </div>
+                        </div>
+                        <br>
+                        <div class="ticket-info">
+                          {{ session()->put('kuota_'.$row->name, round($kuota_prodi))}}
+                          <a href="{{route('admin.beasiswa.analisisProdi', ['id' => $period->id, 'period_id' => $row->id])}}" class="btn-outline-info btn-sm">Analisis</a>
+                        </div>
                     </span>
+                  </div>
                 @endforeach
+                </div>
               </div>
             </div>
           </div>

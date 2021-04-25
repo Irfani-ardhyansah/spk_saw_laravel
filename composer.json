@@ -31,7 +31,9 @@
             "app/konversi.php",
             "app/values.php",
             "app/normalisasi.php",
-            "app/analisis.php"
+            "app/analisis.php",
+            "app/analisis_prodi.php",
+            "app/normalisasi_prodi.php"
         ]
     },
     "scripts": {

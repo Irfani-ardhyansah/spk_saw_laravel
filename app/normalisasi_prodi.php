@@ -1,7 +1,7 @@
 <?php
-function normalisasi($values, $value, $period_id)
+function normalisasi_prodi($values, $value)
 {            
-    if($value->period_id == $period_id && $value->criteria->status == 1)
+    if($value->criteria->status == 1)
     {
         if($value->criteria->character == 'Cost')
         {

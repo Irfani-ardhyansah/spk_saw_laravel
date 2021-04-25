@@ -26,7 +26,7 @@ class BeasiswaController extends Controller
 
     public function kuota($id)
     {
-        $prodis = Prodi::all();
+        $prodis = Prodi::orderBy('name', 'ASC')->get();
         $user_period = User_period::where('period_id', $id)->get();
         $period = Period::findOrFail($id);
         //Menghitung Prodi Yang terdaftar
@@ -34,6 +34,18 @@ class BeasiswaController extends Controller
         // dd($mahasiswas->where('prodi_id', 10)->count());
         return view('admin.period.kuota', compact('prodis', 'mahasiswas', 'period'));
     }
+
+    public function analisisProdi($id, $period_id)
+    {
+        $prodi = Prodi::where('id', $period_id)->orderBy('name', 'ASC')->first();
+        $user_period = User_period::where('period_id', $id)->get();
+        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->where('prodi_id', $period_id)->get();
+        $criterias = Criteria::where('status',1)->get();
+        $criterias_count = Criteria::where('status',1)->get()->count();
+        $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
+        return view('admin.period.analisis_prodi', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'period_id'));
+    }
+
 
     public function nilai($period_id, $mahasiswa_id)
     {   

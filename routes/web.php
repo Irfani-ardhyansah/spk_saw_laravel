@@ -106,6 +106,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
         Route::match(['get', 'post'], 'periode/change_status/{id}', 'Admin\PeriodController@changeStatus')->name('admin.period.status');
 
         Route::get('/periode/{id}/kuota', 'Admin\BeasiswaController@kuota')->name('admin.beasiswa.kuota');
+        Route::get('/periode/{id}/kuota/{period_id}/analisis', 'Admin\BeasiswaController@analisisProdi')->name('admin.beasiswa.analisisProdi');
 
         Route::get('/periode/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
         Route::match(['get', 'post'], 'periode/peserta/change_status/{id}', 'Admin\BeasiswaController@changeStatus')->name('admin.beasiswa.status.peserta');
