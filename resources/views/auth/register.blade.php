@@ -105,19 +105,14 @@
                   <div class="row">
                     <div class="form-group col-8">
                       <label>Prodi</label>
-                      <select class="form-control selectric" name="prodi">
+                      <select class="form-control selectric" name="prodi_id">
                         <option selected>-</option>
-                        <option value="TI">Teknologi Informasi</option>
-                        <option value="Meto">Mesin Otomotif</option>
-                        <option value="TKK">Teknik Komputer Kontrol</option>
-                        <option value="Teklis">Teknik Listrik</option>
-                        <option value="Kereta">Teknik Perkeretaapian</option>
-                        <option value="Kompak">Komputer Akuntansi</option>
-                        <option value="Akuntansi">Akuntansi</option>
-                        <option value="Adbis">Administrasi Bisnis</option>
-                        <option value="Bing">Bahasa Inggris</option>
+                        @foreach($prodis as $row)
+                        <option value="{{ $row->id }}">{{$row->name}}</option>
+                        @endforeach
                       </select>
                     </div>
+
                     <div class="form-group col-4">
                       <label>Semester</label>
                       <select class="form-control selectric" name="semester">

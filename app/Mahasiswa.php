@@ -17,4 +17,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany('App\Value');
     }
+
+    public function prodi()
+    {
+        return $this->belongsTo('App\Prodi', 'prodi_id');
+    }
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Prodi;
 use Auth;
 use Carbon\Carbon;
 
@@ -54,11 +55,11 @@ class RegisterController extends Controller
     {
         // Validasi Inputan Dari Form Register
         return Validator::make($data, [
+            'prodi_id'     => 'required',
             'npm'       => 'required|max:9|unique:users,npm',
             'email'     => 'required|email|max:255|unique:users,email',
             'password'  => 'required|min:6|confirmed',
             'name'      => 'required|max:50',
-            'prodi'     => 'required',
             'semester'  => 'required',
             'address'   => 'required|max:100',
             'gender'    => 'required',
@@ -66,6 +67,7 @@ class RegisterController extends Controller
             'religion'  => 'required',
             'photo'     => 'mimes:jpg,jpeg,png|max:20000'
         ],[
+            'prodi_id.required' => 'Prodi Harus Dipilih',
             'npm.unique'        => 'NPM Sudah Terdaftar!',
             'npm.digits'        => 'NPM Harus 9!',
             'name.required'     => 'Nama Harus Diisi!',
@@ -84,6 +86,12 @@ class RegisterController extends Controller
      * @return User
      */
     
+    public function showRegistrationForm()
+    {
+        $prodis = Prodi::orderBy('name', 'ASC')->get();
+        return view('auth.register', compact('prodis'));
+    }
+
     //method untuk menghandle inputan register
     protected function create(array $data)
     {
@@ -109,8 +117,8 @@ class RegisterController extends Controller
         //Menginput pada tabel Mahasiswa
         Mahasiswa::create([
             'user_id'   => $user->id,
+            'prodi_id'     => $data['prodi_id'],
             'name'      => $data['name'],
-            'prodi'     => $data['prodi'],
             'semester'  => $data['semester'],
             'address'   => $data['address'],
             'gender'    => $data['gender'],

@@ -14,6 +14,7 @@
           @elsecan('isAdmin')
           <li class="menu-header">Mahasiswa</li>
           <li class="nav-link {{ (request()->is('admin/mahasiswa')) ? 'active' : ''}}"><a href="/admin/mahasiswa"><i class="ion ion-ios-people"></i> <span>Data</span></a></li>
+          <li class="nav-link {{ (request()->is('admin/mahasiswa')) ? 'active' : ''}}"><a href="/admin/prodi"><i class="ion ion-university"></i> <span>Prodi</span></a></li>
           <li class="menu-header">Kriteria & Bobot</li>
           <li class="nav-link {{ (request()->is('admin/kriteria')) ? 'active' : ''}}"><a href="/admin/kriteria"><i class="ion ion-ios-browsers"></i> <span>Data</span></a></li>
           <li class="menu-header">Beasiswa</li>
@@ -31,7 +32,7 @@
           <a href="#" style="font-size: 20px; font-family:monaco;">Pimpinan</a>
         </div>
         @elsecan('isAdmin')
-        <div class="sidebar-brand" style="margin-top:100px">
+        <div class="sidebar-brand" style="margin-top:35px">
           <a href="#" style="font-size: 20px; font-family:monaco;">Admin</a>
         </div>
         @endcan

@@ -9,6 +9,8 @@ use App\Period;
 use App\Mahasiswa;
 use App\Value;
 use App\Criteria;
+use App\Prodi;
+use App\User;
 use \PDF;
 
 class BeasiswaController extends Controller
@@ -20,6 +22,17 @@ class BeasiswaController extends Controller
         $pendaftar = User_period::where('period_id', $id)->paginate(10);
         $period_id = $id;
         return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
+    }
+
+    public function kuota($id)
+    {
+        $prodis = Prodi::all();
+        $user_period = User_period::where('period_id', $id)->get();
+        $period = Period::findOrFail($id);
+        //Menghitung Prodi Yang terdaftar
+        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->whereIn('prodi_id', $prodis->pluck('id'))->get();
+        // dd($mahasiswas->where('prodi_id', 10)->count());
+        return view('admin.period.kuota', compact('prodis', 'mahasiswas', 'period'));
     }
 
     public function nilai($period_id, $mahasiswa_id)

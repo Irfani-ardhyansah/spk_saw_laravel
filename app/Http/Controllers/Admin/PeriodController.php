@@ -29,12 +29,15 @@ class PeriodController extends Controller
                 'start'  => 'required|unique:periods,end',
                 'end'    => 'required|unique:periods,start',
                 'file'   => 'required|mimes:pdf|max:2000',
-                'status' => 'required'
+                'status' => 'required',
+                'quota'  => 'required|numeric'
             ], [
                 'start.required'    => 'Tanggal Mulai Harus Diisi!',
                 'end.required'      => 'Tanggal Selesai Harus Diisi!',
                 'file.required'     => 'File Pengumuman Harus Diisi!',
-                'file.mimes'        => 'File Pengumuman Harus Berupa PDF!'
+                'file.mimes'        => 'File Pengumuman Harus Berupa PDF!',
+                'quota.required'    => 'Kuota Beasiswa Harus Diisi!',
+                'quota.numeric'     => 'Kuota Beasiswa Harus Angka!'
             ]);
 
                 //jika inputan ada file
@@ -53,7 +56,8 @@ class PeriodController extends Controller
                     'start'     =>  $request->start,
                     'end'       =>  $request->end,
                     'file'      =>  $item,
-                    'status'    =>  $request->status 
+                    'status'    =>  $request->status,
+                    'quota'     =>  $request->quota 
                 ]);
 
             } else {
@@ -92,8 +96,8 @@ class PeriodController extends Controller
 
                 $data = $request->all(); //mengambil semua inputan dan dimasukkan pada variable
                 rename(public_path('periode/' . $period->start . '_' . $period->end), public_path('periode/' . $request->start . '_' . $request->end));
-                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end']]); //melakukan proses update
-                return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
+                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'quota'=>$data['quota']]); //melakukan proses update
+                return redirect()->back()->with(['success' => 'Update ' . date('d', strtotime($period->start)) . ' ' . date('F', strtotime($period->start)) . ' ' . date('Y', strtotime($period->start)) . ' Berhasil!']);
             } else { //jika inputan file ada 
 
                 //melakukan validasi
@@ -113,8 +117,8 @@ class PeriodController extends Controller
                 $item = $nama_file;
 
                 $data = $request->all();
-                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'], 'file' => $item]); //menyimpan pada database
-                return redirect()->back()->with(['success' => 'Update ' . $request->start . ' Berhasil!']);
+                Period::where(['id'=>$id])->update(['start'=>$data['start'], 'end'=>$data['end'],'quota'=>$data['quota'], 'file' => $item]); //menyimpan pada database
+                return redirect()->back()->with(['success' => 'Update ' . date('d', strtotime($period->start)) . ' ' . date('F', strtotime($period->start)) . ' ' . date('Y', strtotime($period->start)) . ' Berhasil!']);
             }
         }
     }

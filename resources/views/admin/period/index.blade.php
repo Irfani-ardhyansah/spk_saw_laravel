@@ -20,6 +20,7 @@
                             <th>#</th>
                             <th>Periode</th>
                             <th>Pendaftar</th>
+                            <th>Kuota Beasiswa</th>
                             <th>Pengumuman</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -42,6 +43,7 @@
                                 </table>
                             </td>
                             <td> {{$row->user_periods->count()}} </td>
+                            <td> {{ $row->quota }}</td>
                             <td>
                                 {{-- <button type="button" data-toggle="modal" data-target="#modalShowPDF-{{ $row->id }}" class="btn btn-light btn-sm">File</button> --}}
                                 <a href="/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" target="_blank" class="btn btn-light btn-sm">File</a>
@@ -63,6 +65,7 @@
                                 <br>
                                 
                                 <a href="/admin/periode/{{$row->id}}/analisis" class="btn btn-outline-info btn-sm mt-2">Analisis</a>
+                                <a href="/admin/periode/{{ $row->id }}/kuota" class="btn btn-outline-secondary btn-sm mt-2">Kuota</a>
                                 <button type="button" class="btn btn-outline-warning btn-sm mt-2" data-toggle="modal" data-target="#modalGantiStatus-{{ $row->id }}">Ganti Status</button>
                             </td>
                         </tr>
@@ -113,11 +116,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-6 {{ $errors->has('file') ? 'has-error' : '' }}">
-                            <label for="">File</label>
-                            <input type="file" class="form-control-file" name="file">
+                        <div class="form-group col-6 {{ $errors->has('quota') ? 'has-error' : '' }}">
+                            <label>Kuota</label>
+                            <input type="number" class="form-control" name="quota">
                             <div class="invalid-feedback">
-                                {{ $errors->first('file') }}
+                                {{ $errors->first('quota') }}
                             </div>
                         </div>
                         <div class="form-group col-6">
@@ -130,7 +133,19 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <div class="row">
+                        <div class="form-group col-6 {{ $errors->has('file') ? 'has-error' : '' }}">
+                            <label for="">File</label>
+                            <input type="file" class="form-control-file" name="file">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('file') }}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary mt-4">Save changes</button>
+                        </div>
+                    </div>
+
 
                 </form>
             </div>
@@ -208,6 +223,13 @@
                             <input type="file" class="form-control-file" name="file">
                             <div class="invalid-feedback">
                                 {{ $errors->first('file') }}
+                            </div>
+                        </div>
+                        <div class="form-group col-6 {{ $errors->has('quota') ? 'has-error' : '' }}">
+                            <label for="">Kuota Beasiswa</label>
+                            <input type="number" class="form-control" name="quota" value="{{ $row->quota }}">
+                            <div class="invalid-feedback">
+                                {{ $errors->first('quota') }}
                             </div>
                         </div>
                     </div>

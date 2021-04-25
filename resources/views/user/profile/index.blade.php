@@ -44,7 +44,7 @@
                                             <tr>
                                                 <td>Prodi</td>
                                                 <td>:</td>
-                                                <td>{{prodi($mahasiswa->prodi)}}</td>
+                                                <td>{{($mahasiswa->prodi->name)}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Semester</td>

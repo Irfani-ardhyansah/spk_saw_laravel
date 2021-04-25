@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mahasiswa;
 use App\User;
+use App\Prodi;
 use Auth;
 use File;
 use Carbon\Carbon;
@@ -23,7 +24,8 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $mahasiswa = Mahasiswa::where('id', $id)->first();
-        return view('user.profile.edit', compact('mahasiswa'));
+        $prodis = Prodi::orderBy('name', 'Asc')->get();
+        return view('user.profile.edit', compact('mahasiswa', 'prodis'));
     }
 
     //method untuk mengupdate profile berdasarkan inputan edit
@@ -32,9 +34,9 @@ class ProfileController extends Controller
 
         try {
             $this->validate($request, [
+                'prodi_id'     => 'required',
                 'npm'       => 'required|digits:9|unique:users,npm,' . auth()->user()->id . ',id',
                 'name'      => 'required',
-                'prodi'     => 'required',
                 'semester'  => 'required',
                 'address'   => 'required',
                 'gender'    => 'required',
@@ -42,6 +44,7 @@ class ProfileController extends Controller
                 'religion'  => 'required',
                 'photo'     => 'nullable|mimes:jpg,jpeg,png|max:20000'
             ],[
+                'prodi_id.required' => 'Prodi Harus Diisi!',
                 'npm.unique'        => 'NPM Sudah Terdaftar!',
                 'npm.digits'        => 'NPM Harus 9!',
                 'name.required'     => 'Nama Harus Diisi!',
@@ -54,8 +57,8 @@ class ProfileController extends Controller
             $user = User::where('id', $mahasiswa->user_id)->first();
             if($request->file('photo') == "") {
                 $mahasiswa->update([
+                    'prodi_id'     => $request->prodi_id,
                     'name'      => $request->name,
-                    'prodi'     => $request->prodi,
                     'semester'  => $request->semester,
                     'address'   => $request->address,
                     'gender'    => $request->gender,
@@ -77,8 +80,8 @@ class ProfileController extends Controller
                 $profile = $nama_file;
 
                 $mahasiswa->update([
+                    'prodi_id'     => $request->prodi_id,
                     'name'      => $request->name,
-                    'prodi'     => $request->prodi,
                     'semester'  => $request->semester,
                     'address'   => $request->address,
                     'gender'    => $request->gender,

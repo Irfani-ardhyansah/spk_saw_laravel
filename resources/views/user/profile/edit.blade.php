@@ -81,21 +81,17 @@
                             </div>
                         </div>
                         <div class="row">
+
                             <div class="form-group col-md-6 col-12">
                                 <label>Prodi</label>
-                                    <select class="form-control select2" required name="prodi">
+                                    <select class="form-control select2" required name="prodi_id">
                                         <option selected>-</option>
-                                        <option {{ $mahasiswa->prodi == "TI" ? 'selected' : '' }} value="TI">Teknologi Informasi</option>
-                                        <option {{ $mahasiswa->prodi == "Meto" ? 'selected' : '' }} value="Meto">Mesin Otomotif</option>
-                                        <option {{ $mahasiswa->prodi == "TKK" ? 'selected' : '' }} value="TKK">Teknik Komputer Kontrol</option>
-                                        <option {{ $mahasiswa->prodi == "Teklis" ? 'selected' : '' }} value="Teklis">Teknik Listrik</option>
-                                        <option {{ $mahasiswa->prodi == "Kereta" ? 'selected' : '' }} value="Kereta">Teknik Kereta</option>
-                                        <option {{ $mahasiswa->prodi == "Kompak" ? 'selected' : '' }} value="Kompak">Komputer Akuntansi</option>
-                                        <option {{ $mahasiswa->prodi == "Akuntansi" ? 'selected' : '' }} value="Akuntansi">Akuntansi</option>
-                                        <option {{ $mahasiswa->prodi == "Adbis" ? 'selected' : '' }} Value="Adbis">Administrasi Bisnis</option>
-                                        <option {{ $mahasiswa->prodi == "Bing" ? 'selected' : '' }} value="Bing">Bahasa Inggris</option>
+                                        @foreach($prodis as $row)
+                                        <option {{ $mahasiswa->prodi_id == $row->id ? 'selected' : '' }} value="{{$row->id}}">{{$row->name}}</option>
+                                        @endforeach
                                     </select>
-                                </div>
+                            </div>
+
                             <div class="form-group col-md-6 col-12">
                                 <label>Semester</label>
                                     <select class="form-control select2" required name="semester" value="{{ $mahasiswa->semester }}">
