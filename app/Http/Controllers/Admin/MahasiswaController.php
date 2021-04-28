@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mahasiswa;
 use App\User;
+use App\Prodi;
 use Carbon\Carbon;
 use Importer;
 use \PDF;
@@ -19,7 +20,8 @@ class MahasiswaController extends Controller
     {
         // //Mengambil Data Mahasiswa dari DB
         $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->paginate(10);
-        return view('admin.mahasiswa.index', compact('mahasiswas'));
+        $prodis = Prodi::orderBy('name', 'ASC')->get();
+        return view('admin.mahasiswa.index', compact('mahasiswas', 'prodis'));
     }
 
     // public function getData()
@@ -35,14 +37,15 @@ class MahasiswaController extends Controller
 
     public function search(Request $request) 
     {
-        if($request->input('prodi') != 'All') {
-            $mahasiswas = Mahasiswa::where('prodi', 'like', '%' . $request->input('prodi') . '%')
+        if($request->input('prodi_id') != 'All') {
+            $mahasiswas = Mahasiswa::where('prodi_id', 'like', '%' . $request->input('prodi_id') . '%')
             ->orderBy('semester', 'ASC')
             ->paginate(10);
         } else {
             $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->paginate(10);
         }
-        return view('admin.mahasiswa.index', compact('mahasiswas'));
+        $prodis = Prodi::orderBy('name', 'ASC')->get();
+        return view('admin.mahasiswa.index', compact('mahasiswas', 'prodis'));
     }
 
     public function cetak_pdf()

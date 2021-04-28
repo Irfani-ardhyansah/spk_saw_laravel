@@ -21,17 +21,11 @@
             </div>
             <div class="col-2">
                 <div class="form-group">
-                    <select class="form-control" name="prodi">
+                    <select class="form-control" name="prodi_id">
                         <option selected>All</option>
-                        <option value="TI">Teknologi Informasi</option>
-                        <option value="Meto">Mesin Otomotif</option>
-                        <option value="TKK">Teknik Komputer Kontrol</option>
-                        <option value="Teklis">Teknik Listrik</option>
-                        <option value="Kereta">Teknik Perkeretaapian</option>
-                        <option value="Kompak">Komputer Akuntansi</option>
-                        <option value="Akuntansi">Akuntansi</option>
-                        <option value="Adbis">Administrasi Bisnis</option>
-                        <option value="Bing">Bahasa Inggris</option>
+                        @foreach($prodis as $row)
+                        <option value="{{$row->id}}">{{$row->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -62,7 +56,7 @@
                             <td>{{$row->name}}</td>
                             <td>{{$row->phone}}</td>
                             <td>{{$row->semester}}</td>
-                            <td>{{ prodi($row->prodi) }}</td>
+                            <td>{{ $row->prodi->name }}</td>
                             <td>
                                     <a href="{{ route('admin.mahasiswa.detail', ['id' => $row->id]) }}" class="btn btn-info btn-sm">Info</a>
                                     <a href="#" class="btn btn-danger btn-sm mahasiswa-delete" mahasiswa_id="{{ $row->id }}" mahasiswa="{{ $row->name }}">Delete</a>

@@ -67,15 +67,15 @@ class RegisterController extends Controller
             'religion'  => 'required',
             'photo'     => 'mimes:jpg,jpeg,png|max:20000'
         ],[
-            'prodi_id.required' => 'Prodi Harus Dipilih',
-            'npm.unique'        => 'NPM Sudah Terdaftar!',
-            'npm.digits'        => 'NPM Harus 9!',
-            'name.required'     => 'Nama Harus Diisi!',
-            'email.required'    => 'Email Harus Diisi!',
-            'email.unique'      => 'Email Sudah Terdaftar!',
-            'phone.required'    => 'No Hp Harus Diisi!',
-            'address.required'  => 'Alamt Harus Diisi!',
-            'photo.mimes'  => 'Foto Harus Berformat jpg,jpeg,png!',
+            'prodi_id.required' => 'Prodi Harus Dipilih !',
+            'npm.unique'        => 'NPM Sudah Terdaftar !',
+            'npm.digits'        => 'NPM Harus 9 !',
+            'name.required'     => 'Nama Harus Diisi !',
+            'email.required'    => 'Email Harus Diisi !',
+            'email.unique'      => 'Email Sudah Terdaftar !',
+            'phone.required'    => 'No Hp Harus Diisi !',
+            'address.required'  => 'Alamt Harus Diisi !',
+            'photo.mimes'  => 'Foto Harus Berformat jpg,jpeg,png !',
         ]);
     }
 

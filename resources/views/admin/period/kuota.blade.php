@@ -4,6 +4,11 @@
 <section class="section">
     <div class="section-header">
         <h1>Data Kuota Beasiswa</h1>
+        <div class="ml-auto">
+          <a href="{{route('admin.beasiswa.analisisFull', ['id' => $id])}}" class="btn btn-outline-info">
+              Analisis
+          </a>
+      </div>  
     </div>
 
     <div class="section-body">
@@ -52,7 +57,7 @@
                         <br>
                         <div class="ticket-info">
                           {{ session()->put('kuota_'.$row->name, round($kuota_prodi))}}
-                          <a href="{{route('admin.beasiswa.analisisProdi', ['id' => $period->id, 'period_id' => $row->id])}}" class="btn-outline-info btn-sm">Analisis</a>
+                          <a href="{{route('admin.beasiswa.analisisProdi', ['id' => $period->id, 'prodi_id' => $row->id])}}" class="btn-outline-info btn-sm">Analisis</a>
                         </div>
                     </span>
                   </div>

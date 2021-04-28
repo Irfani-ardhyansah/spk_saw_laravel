@@ -13,6 +13,7 @@
 
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('/node_modules/summernote/dist/summernote-bs4.css')}}">
     <link rel="stylesheet" href="{{ asset('/node_modules/jqvmap/dist/jqvmap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('/node_modules/summernote/dist/summernote-bs4.css')}}">
     <link rel="stylesheet" href="{{ asset('/node_modules/owl.carousel/dist/assets/owl.carousel.min.css')}}">

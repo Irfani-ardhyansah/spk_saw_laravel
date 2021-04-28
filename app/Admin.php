@@ -36,4 +36,8 @@ class Admin extends Authenticatable
     public function periods(){
     	return $this->hasMany('App\Period');
     }
+
+    public function dashboard(){
+        return $this->hasOne('App\Dashboard');
+    }
 }

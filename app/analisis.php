@@ -27,7 +27,7 @@ function analisis($values, $period_id, $user_periods, $criterias_count)
     foreach($user_periods as $row){
         array_push($nama, $row->user->npm);
         array_push($nama,$row->user->mahasiswa->name);
-        array_push($nama, prodi($row->user->mahasiswa->prodi));
+        array_push($nama, $row->user->mahasiswa->prodi->name);
         $coba = array_chunk($nama, 3);
         foreach($coba as $cob){
             $co = implode(" - ",$cob);  

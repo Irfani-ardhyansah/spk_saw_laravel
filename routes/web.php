@@ -26,9 +26,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'user', 'middleware' => ['prevent-back-history','auth']], function() {
-    Route::get('/', function () {
-        return view('user.index');
-    });
+    Route::get('/', 'User\DashboardController@index')->name('user.index');
     
     //Route Profile User
     Route::get('/profile', 'User\ProfileController@index')->name('user.profile');
@@ -77,12 +75,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
 
             // Route Halaman Mahasiswa
         Route::get('/mahasiswa', 'Admin\MahasiswaController@index')->name('admin.mahasiswa'); 
-        // Route::get('/mahasiswa/json', 'Admin\MahasiswaController@getData')->name('admin.data.mahasiswa'); 
+        Route::get('/mahasiswa/json', 'Admin\MahasiswaController@getData')->name('admin.data.mahasiswa'); 
         Route::get('/mahasiswa/search', 'Admin\MahasiswaController@search')->name('admin.mahasiswa.search'); 
         Route::get('/mahasiswa/pdf', 'Admin\MahasiswaController@cetak_pdf')->name('admin.mahasiswa.pdf');
         Route::get('/mahasiswa/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail'); //Menggunakan SweetAlert Delete
         Route::get('/mahasiswa/delete/{id}', 'Admin\MahasiswaController@delete')->name('admin.mahasiswa.delete');
         Route::match(['get', 'post'], '/mahasiswa/import', 'Admin\MahasiswaController@store')->name('admin.mahasiswa.store');
+
+        Route::get('/dashboardUser', 'Admin\DashboardController@user')->name('admin.dashboard.user');
+        Route::post('/dashboardUser/save', 'Admin\DashboardController@save')->name('admin.dashboard.user.save');
+        Route::match(['get', 'post'], '/dashboardUser/update/{id}', 'Admin\DashboardController@update')->name('admin.dashboard.user.update'); 
 
         //Route Halaman Prodi
         Route::get('/prodi', 'Admin\ProdiController@index')->name('admin.prodi');
@@ -106,7 +108,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
         Route::match(['get', 'post'], 'periode/change_status/{id}', 'Admin\PeriodController@changeStatus')->name('admin.period.status');
 
         Route::get('/periode/{id}/kuota', 'Admin\BeasiswaController@kuota')->name('admin.beasiswa.kuota');
-        Route::get('/periode/{id}/kuota/{period_id}/analisis', 'Admin\BeasiswaController@analisisProdi')->name('admin.beasiswa.analisisProdi');
+        Route::get('/periode/{id}/kuota/{prodi_id}/analisis', 'Admin\BeasiswaController@analisisProdi')->name('admin.beasiswa.analisisProdi');
+        Route::get('/periode/{id}/kuota/analisis', 'Admin\BeasiswaController@analisisFull')->name('admin.beasiswa.analisisFull');
+        Route::get('/periode/pdf/{id}/analisis', 'Admin\BeasiswaController@analisis_cetak_pdf')->name('admin.beasiswa.analisis.pdf'); 
 
         Route::get('/periode/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
         Route::match(['get', 'post'], 'periode/peserta/change_status/{id}', 'Admin\BeasiswaController@changeStatus')->name('admin.beasiswa.status.peserta');

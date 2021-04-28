@@ -32,18 +32,43 @@ class BeasiswaController extends Controller
         //Menghitung Prodi Yang terdaftar
         $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->whereIn('prodi_id', $prodis->pluck('id'))->get();
         // dd($mahasiswas->where('prodi_id', 10)->count());
-        return view('admin.period.kuota', compact('prodis', 'mahasiswas', 'period'));
+        return view('admin.period.kuota', compact('prodis', 'mahasiswas', 'period', 'id'));
     }
 
-    public function analisisProdi($id, $period_id)
+    public function analisisProdi($id, $prodi_id)
     {
-        $prodi = Prodi::where('id', $period_id)->orderBy('name', 'ASC')->first();
+        $prodi = Prodi::where('id', $prodi_id)->orderBy('name', 'ASC')->first();
         $user_period = User_period::where('period_id', $id)->get();
-        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->where('prodi_id', $period_id)->get();
+        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->where('prodi_id', $prodi_id)->get();
         $criterias = Criteria::where('status',1)->get();
         $criterias_count = Criteria::where('status',1)->get()->count();
         $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
-        return view('admin.period.analisis_prodi', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'period_id'));
+        return view('admin.period.analisis_prodi', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'prodi_id'));
+    }
+
+    public function analisisFull($id)
+    {
+        $prodi = Prodi::orderBy('name', 'ASC')->get();
+        $user_period = User_period::where('period_id', $id)->get();
+        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->get();
+        $criterias = Criteria::where('status',1)->get();
+        $criterias_count = Criteria::where('status',1)->get()->count();
+        $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
+        return view('admin.period.analisis_full', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'id'));
+    }
+
+    public function analisis_cetak_pdf($id)
+    {
+        $prodi = Prodi::orderBy('name', 'ASC')->get();
+        $user_period = User_period::where('period_id', $id)->get();
+        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->get();
+        $criterias = Criteria::where('status',1)->get();
+        $criterias_count = Criteria::where('status',1)->get()->count();
+        $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
+        $period = Period::where('id', $id)->first();
+
+        $pdf = PDF::loadview('admin.period.perhitungan2', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'period'));
+        return $pdf->download('Hasil Analisis Beasiswa PPA Periode ' . date('Y', strtotime($period->start)) . '.pdf');
     }
 
 

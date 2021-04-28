@@ -1,21 +1,20 @@
 <?php
-function analisis_prodi($values, $mahasiswas, $criterias_count)
+function analisis_full($prod, $values, $mahasiswas, $criterias_count)
 {            
     $hasil = array();
-    foreach($mahasiswas as $row) {
+    foreach($mahasiswas->where('prodi_id', $prod->id) as $row) {
         foreach($row->values as $value) {
             if($value->criteria->status == 1)
             {
                 if($value->criteria->character == 'Cost')
                 {
-                    $minimum = (min($values->where('criteria_id', $value->criteria_id)->pluck('value')->toArray()));
-                    // dd($values->where('criteria_id', $value->criteria_id));
-                    // dd($values->where('criteria_id', $value->criteria_id));
+                    // $minimum = (min($values->where('criteria_id', $value->criteria_id)->pluck('value')->toArray()));
+                    $minimum = (min($values->where('criteria_id', $value->criteria_id)->whereIn('mahasiswa_id', $mahasiswas->where('prodi_id', $prod->id)->pluck('id'))->pluck('value')->toArray()));
                     $cost = $minimum / $value->value;
                     $nilai = round($cost, 3) * $value->criteria->weight;
                     array_push($hasil,round($nilai, 3));
                 } else {
-                    $maximum = (max($values->where('criteria_id', $value->criteria_id)->pluck('value')->toArray()));
+                    $maximum = (max($values->where('criteria_id', $value->criteria_id)->whereIn('mahasiswa_id', $mahasiswas->where('prodi_id', $prod->id)->pluck('id'))->pluck('value')->toArray()));
                     $benefit = $value->value / $maximum;
                     $nilai = round($benefit, 3) * $value->criteria->weight;              
                     array_push($hasil,round($nilai, 3));
@@ -28,7 +27,7 @@ function analisis_prodi($values, $mahasiswas, $criterias_count)
 
     $nama = array();
     $np = array();
-    foreach($mahasiswas as $row){
+    foreach($mahasiswas->where('prodi_id', $prod->id) as $row){
         array_push($nama, $row->user->npm);
         array_push($nama, $row->name);
         array_push($nama, $row->prodi->name);
@@ -46,5 +45,6 @@ function analisis_prodi($values, $mahasiswas, $criterias_count)
         array_push($nilai,$hasil_pembobotan);
     }
     $hasil = array_combine($np,$nilai);
+
     return $hasil;
 }

@@ -28,12 +28,12 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "app/konversi.php",
             "app/values.php",
             "app/normalisasi.php",
             "app/analisis.php",
             "app/analisis_prodi.php",
-            "app/normalisasi_prodi.php"
+            "app/normalisasi_prodi.php",
+            "app/analisis_full.php"
         ]
     },
     "scripts": {
