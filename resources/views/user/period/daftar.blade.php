@@ -23,17 +23,33 @@
                     <div class="col-2"> 
                       <p> {{$row->name}} </p>
                     </div>
-                    <div class="col-4">
-                      <select class="form-control selectric" name="value[]">
-                        <option selected>-</option>
-                        @foreach($row->weights as $weight)
-                        <option value="{{ $weight->value }}">{{$weight->information}}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                    <div class="col-4">
-                      <input type="file" name="file[]"  multiple>
-                    </div>
+                    {{-- @if($row->name == 'IPK')
+                      <div class="col-4">
+                          <select class="form-control select2" multiple="" name="value[][]">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                            <option>Option 5</option>
+                            <option>Option 6</option>
+                          </select>
+                      </div>
+                      <div class="col-4">
+                        <input type="file" name="file[]"  multiple>
+                      </div>
+                    @else --}}
+                      <div class="col-4">
+                        <select class="form-control selectric" name="value[]">
+                          <option selected>-</option>
+                          @foreach($row->weights as $weight)
+                          <option value="{{ $weight->value }}">{{$weight->information}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="col-4">
+                        <input type="file" name="file[]"  multiple>
+                      </div>
+                    {{-- @endif --}}
                   </div>
                 </div>
               @endforeach

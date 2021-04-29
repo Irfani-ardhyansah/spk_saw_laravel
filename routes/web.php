@@ -127,7 +127,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
     });
 
 });
-
-Route::get('/log', function() {
-    return view('login');
-});

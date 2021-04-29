@@ -22,10 +22,9 @@ class PeriodController extends Controller
     public function register($id)
     {
         $criterias = Criteria::orderBy('code', 'ASC')->get();
-        $weight = Weight::first();
         $period_id =  $id;
         $period = Period::where('id', $id)->first();
-        return view('user.period.daftar', compact('criterias', 'weight', 'period_id', 'period'));
+        return view('user.period.daftar', compact('criterias', 'period_id', 'period'));
     }
 
     public function save(Request $request, $id)
@@ -38,6 +37,7 @@ class PeriodController extends Controller
             // ]);
 
             $data = $request->all();
+            dd($data);
             foreach ($data['criteria_id'] as $item => $value) {
 
                 $criteria = Criteria::findOrFail($data['criteria_id'][$item]);

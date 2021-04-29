@@ -19,7 +19,8 @@ class BeasiswaController extends Controller
     {   
         //Mengambil Data Peserta Dari Beasiswa yang dipilih
         $beasiswa = Period::where('id', $id)->first();
-        $pendaftar = User_period::where('period_id', $id)->paginate(10);
+        $user_period = User_period::where('period_id', $id)->get();
+        $pendaftar = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->orderBy('semester', 'ASC')->paginate(10);
         $period_id = $id;
         return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
     }

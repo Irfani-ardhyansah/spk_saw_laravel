@@ -5,7 +5,7 @@
     <div class="section-header">
         <h1>Nilai Seleksi  </h1>
     </div>
-    <h2 class="section-title"><b>{{$mahasiswa->name}}</b> - {{prodi($mahasiswa->prodi)}} {{$mahasiswa->semester}}</h2>
+    <h2 class="section-title"><b>{{$mahasiswa->name}}</b> - {{$mahasiswa->prodi->name}} {{$mahasiswa->semester}}</h2>
     <div class="section-body">
         <div class="card">
             <div class="card-body p-0">

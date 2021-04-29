@@ -24,10 +24,10 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$row->user->npm}}</td>
-                            <td>{{$row->user->mahasiswa->name}}</td>
-                            <td>{{$row->user->mahasiswa->phone}}</td>
-                            <td>{{$row->user->mahasiswa->semester}}</td>
-                            <td>{{$row->user->mahasiswa->prodi}}</td>
+                            <td>{{$row->name}}</td>
+                            <td>{{$row->phone}}</td>
+                            <td>{{$row->semester}}</td>
+                            <td>{{$row->prodi->name}}</td>
                             <td>
                                 <a href="/admin/periode/{{$period_id}}/peserta/{{$row->user->mahasiswa->id}}/nilai" class="btn btn-outline-info btn-sm">Nilai</a>
                             </td>

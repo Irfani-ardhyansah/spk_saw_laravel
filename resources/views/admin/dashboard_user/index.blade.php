@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{$loop -> iteration}}</td>
                             <td>{{$row  -> title}}</td>
-                            <td>{!! $row  -> content !!}</td>
+                            <td style="text-align:justify;">{!! $row  -> content !!}</td>
                             <td>
                                 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditData-{{ $row->id }}">Edit</button>
                             </td>
