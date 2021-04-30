@@ -20,6 +20,6 @@ class Mahasiswa extends Model
 
     public function prodi()
     {
-        return $this->belongsTo('App\Prodi', 'prodi_id');
+        return $this->belongsTo('App\Prodi', 'prodi_id')->orderBy('name', 'asc');
     }
 }

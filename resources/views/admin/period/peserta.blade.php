@@ -29,7 +29,8 @@
                             <td>{{$row->semester}}</td>
                             <td>{{$row->prodi->name}}</td>
                             <td>
-                                <a href="/admin/periode/{{$period_id}}/peserta/{{$row->user->mahasiswa->id}}/nilai" class="btn btn-outline-info btn-sm">Nilai</a>
+                                <a href="/admin/periode/{{$period_id}}/peserta/{{$row->id}}/nilai" class="btn btn-outline-info btn-sm">Nilai</a>
+                                <a href="#" class="btn btn-outline-danger btn-sm peserta-delete" period_id="{{ $period_id }}" peserta_id="{{ $row->id }}" peserta_name="{{ $row->name }}" >Delete</a>
                             </td>
                         </tr>
                         @empty
@@ -45,4 +46,28 @@
     </div>
 </section>
 
+@endsection
+
+@section('footer')
+    <script>
+        $('.peserta-delete').click(function(){
+            var period_id = $(this).attr('period_id');
+            var peserta_id = $(this).attr('peserta_id');
+            var peserta_name = $(this).attr('peserta_name');
+            swal({
+                backdrop:false,
+                title: "Yakin ?",
+                text: "Menghapus Data Dengan Nama " + peserta_name + " ?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/admin/periode/" + period_id + "/peserta/" + peserta_id + "/delete";
+                }
+                });
+                event.preventDefault();
+        });
+    </script>
 @endsection

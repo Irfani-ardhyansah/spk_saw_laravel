@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="{{ asset('node_modules/prismjs/themes/prism.css')}}">
   {{-- Toaster --}}
   <link rel="stylesheet" href="{{ asset('assets/css/toaster.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('node_modules/ionicons201/css/ionicons.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('node_modules/select2/dist/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('node_modules/ionicons201/css/ionicons.min.css')}}">  
+  <link rel="stylesheet" href="{{ asset('node_modules/selectric/public/selectric.css')}}">
   
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('node_modules/chocolat/dist/css/chocolat.css')}}">
@@ -68,8 +68,8 @@
   <script src="{{ asset('/assets/js/nicescroll.min.js')}}"></script>
   <script src="{{ asset('/assets/js/moment.min.js')}}"></script>
   <script src="{{ asset('node_modules/prismjs/prism.js')}}"></script>
-  <script src="{{ asset('node_modules/summernote/dist/summernote-bs4.js')}}"></script>
-  <script src="{{ asset('node_modules/select2/dist/js/select2.full.min.js')}}"></script>
+  <script src="{{ asset('node_modules/summernote/dist/summernote-bs4.js')}}"></script>  
+  <script src="{{ asset('node_modules/selectric/public/jquery.selectric.min.js')}}"></script>
   <script src="{{ asset('node_modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
   <script src="{{ asset('assets/js/stisla.js')}}"></script>
 

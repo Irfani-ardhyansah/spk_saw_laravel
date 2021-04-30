@@ -30,25 +30,30 @@ class PeriodController extends Controller
     public function save(Request $request, $id)
     {
         try {
-            // $this->validate($request, [
-            //     'file'     => 'mimes:pdf|max:20000'
-            // ], [
-            //     'file.mimes'    =>  'File Harus Berjenis JPEG atau PDF'
-            // ]);
+            $this->validate($request, [
+                'file.*'     => 'mimes:pdf|max:2000|required'
+            ], [
+                'file.*.required' => 'File Harus Ada !',
+                'file.*.mimes'    =>  'File Harus Berjenis JPEG atau PDF'
+            ]);
 
             $data = $request->all();
-            dd($data);
+            
+            if($data['value']['0']['0'] < $data['value']['0']['1']) {
+                $data['value']['0'] = $data['value']['0']['1'] + "0.25" ; 
+            } else {
+                $data['value']['0'] = $data['value']['0']['1'];
+            }
+
             foreach ($data['criteria_id'] as $item => $value) {
 
                 $criteria = Criteria::findOrFail($data['criteria_id'][$item]);
                 $period = Period::findOrFail($id);
                 
                 $extension =  $data['file'][$item]->extension(); //mengambil ekstensi oroginal dari inputan
-                $nama_file = Auth::user()->npm. '_' .$criteria->name.  '.'. $extension; //merename file\
-                // $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/' . Auth::user()->npm . '/', $nama_file);
+                $nama_file = Auth::user()->npm. '_' .$criteria->name.  '.'. $extension; //merename file
                 
                 $data['file'][$item]->move('periode/' . $period->start . '_' . $period->end . '/' . Auth::user()->npm . '/', $nama_file);
-                // $file->store('periode/' . $request->start . '_' . $request->end . '/' . Auth::user()->npm . '/', $nama_file);
                 $file_upload = $nama_file; //memasukkan dalam variable
 
                 $data2 = array(

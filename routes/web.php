@@ -113,6 +113,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
         Route::get('/periode/pdf/{id}/analisis', 'Admin\BeasiswaController@analisis_cetak_pdf')->name('admin.beasiswa.analisis.pdf'); 
 
         Route::get('/periode/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
+        Route::get('/periode/{id}/peserta/{mahasiswa_id}/delete', 'Admin\BeasiswaController@delete')->name('admin.beasiswa.peserta.delete');
         Route::match(['get', 'post'], 'periode/peserta/change_status/{id}', 'Admin\BeasiswaController@changeStatus')->name('admin.beasiswa.status.peserta');
         Route::get('/periode/{period_id}/peserta/{mahasiswa_id}/nilai', 'Admin\BeasiswaController@nilai')->name('admin.beasiswa.peserta.nilai');
         Route::get('/periode/{period_id}/analisis', 'Admin\BeasiswaController@analisis')->name('admin.beasiswa.analisis');

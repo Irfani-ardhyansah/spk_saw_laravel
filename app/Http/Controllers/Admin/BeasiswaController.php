@@ -12,6 +12,7 @@ use App\Criteria;
 use App\Prodi;
 use App\User;
 use \PDF;
+use File;
 
 class BeasiswaController extends Controller
 {
@@ -23,6 +24,26 @@ class BeasiswaController extends Controller
         $pendaftar = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->orderBy('semester', 'ASC')->paginate(10);
         $period_id = $id;
         return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
+    }
+
+    public function delete($id, $mahasiswa_id)
+    {
+        try {
+            //Mengambil data berdasarkan id lalu menghapusnya
+            $mahasiswa = Mahasiswa::findOrFail($mahasiswa_id);
+            $period = Period::findOrFail($id);
+            $user_period = User_period::where('period_id', $id)->where('user_id', $mahasiswa->user->id);
+            $values = Value::where('period_id', $period->id)->where('mahasiswa_id', $mahasiswa->id);
+            
+            File::deleteDirectory('periode/' . $period->start . '_' . $period->end . '/' . $mahasiswa->user->npm);
+
+            $user_period->delete();
+            $values->delete();
+
+            return redirect()->back()->with(['success' => 'Data Pendaftar ' . $mahasiswa->name . ' Berhasil Dihapus!' ]);
+        } catch(\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     public function kuota($id)
