@@ -76,7 +76,9 @@ class BeasiswaController extends Controller
         $criterias = Criteria::where('status',1)->get();
         $criterias_count = Criteria::where('status',1)->get()->count();
         $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
-        return view('admin.period.analisis_full', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'id'));
+        $period = Period::findOrFail($id);
+
+        return view('admin.period.analisis_full', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'period', 'values', 'id'));
     }
 
     public function analisis_cetak_pdf($id)
@@ -87,7 +89,7 @@ class BeasiswaController extends Controller
         $criterias = Criteria::where('status',1)->get();
         $criterias_count = Criteria::where('status',1)->get()->count();
         $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
-        $period = Period::where('id', $id)->first();
+        $period = Period::findOrFail($id);
 
         $pdf = PDF::loadview('admin.period.perhitungan2', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'period'));
         return $pdf->download('Hasil Analisis Beasiswa PPA Periode ' . date('Y', strtotime($period->start)) . '.pdf');

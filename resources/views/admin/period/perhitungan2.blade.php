@@ -29,14 +29,28 @@
             @php(arsort($hasil))
             @php($result = array_slice($hasil, 0, session()->get('kuota_'.$prod->name)))
             @foreach($result as $name => $value) 
-            <tr>
-                <td style="border: 1px solid #999; padding: 8px 15px;">{{ $no += 1 }}.</td>
-                @php($prodi = explode(" - ",$name) )
-                <td style="border: 1px solid #999; padding: 8px 15px;">{{ $prodi[0] }}</td>
-                <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[1]}}</td>
-                <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[2]}}</td>
-                <td style="border: 1px solid #999; padding: 8px 15px;">{{ $value }}</td>
-            </tr>
+            
+                @php($no += 1)
+                @if($no <= $period->quota)
+                    <tr id="tr{{ $no }}">
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{ $no  }}.</td>
+                        @php($prodi = explode(" - ",$name) )
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{ $prodi[0] }}</td>
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[1]}}</td>
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[2]}}</td>
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{ $value }}</td>
+                    </tr>
+                @else
+                    <tr id="tr{{ $no }}" style="background-color: #A1ACBD;">
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{ $no  }}.</td>
+                        @php($prodi = explode(" - ",$name) )
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{ $prodi[0] }}</td>
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[1]}}</td>
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{$prodi[2]}}</td>
+                        <td style="border: 1px solid #999; padding: 8px 15px;">{{ $value }}</td>
+                    </tr>
+                @endif
+
             @endforeach
         @endforeach
 

@@ -22,20 +22,32 @@
                             <th>Prodi</th>
                             <th>Nilai</th>
                         </tr>
+                        @php($no = 0)
                         @foreach($prodi as $prod)
                             @php($hasil = analisis_full($prod, $values, $mahasiswas, $criterias_count))
-                            @php($no = 0)
                             @php(arsort($hasil))
                             @php($result = array_slice($hasil, 0, session()->get('kuota_'.$prod->name)))
                             @foreach($result as $name => $value)
-                                @php($no++)
-                                <tr id="tr{{ $no }}">
-                                    @php($prodi = explode(" - ",$name) )
-                                    <td>{{ $prodi[0] }}</td>
-                                    <td>{{$prodi[1]}}</td>
-                                    <td>{{$prodi[2]}}</td>
-                                    <td>{{ $value }}</td>
-                                </tr>
+                                @php($no += 1)
+
+                                @if($no <= $period->quota)
+                                    <tr id="tr{{ $no }}">
+                                        @php($prodi = explode(" - ",$name) )
+                                        <td>{{ $prodi[0] }}</td>
+                                        <td>{{$prodi[1]}}</td>
+                                        <td>{{$prodi[2]}}</td>
+                                        <td>{{ $value }}</td>
+                                    </tr>
+                                @else
+                                    <tr id="tr{{ $no }}" style="background-color: #A1ACBD;">
+                                        @php($prodi = explode(" - ",$name) )
+                                        <td>{{ $prodi[0] }}</td>
+                                        <td>{{$prodi[1]}}</td>
+                                        <td>{{$prodi[2]}}</td>
+                                        <td>{{ $value }}</td>
+                                    </tr>
+                                @endif
+
                             @endforeach
                         @endforeach
                     </table>
