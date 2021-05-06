@@ -40,7 +40,7 @@
             <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->name}}</td>
             <td style="border: 1px solid #999; padding: 8px 15px;"> {{$row->phone}}</td>
             <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->semester}}</td>
-            <td style="border: 1px solid #999; padding: 8px 15px;">{{prodi($row->prodi)}}</td>
+            <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->prodi->name}}</td>
         </tr>
         @endforeach
     </table>

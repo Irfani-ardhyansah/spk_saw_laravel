@@ -25,21 +25,25 @@ class CriteriaController extends Controller
             if($request->weight && $request->weight + $limit <= '1.0') {
                 //memvalidasi inputan
                 $this->validate($request, [
-                    'code'          => 'required|unique:criterias',
-                    'name'          => 'required|max:40',
+                    'code'          => 'required|alpha_num|unique:criterias',
+                    'name'          => 'required|alpha|max:40',
                     'weight'        => 'required|numeric|between: 0.0 , 0.5',
-                    'character'     => 'required',
-                    'information'   => 'required'
+                    'character'     => 'required|alpha',
+                    'information'   => 'required|alpha'
                 ], [
+                    'code.alpha_num'=>  'Kode Harus Berupa Karakter dan Angka',
                     'code.required' =>  'Kode Harus Diisi!',
                     'code.unique'   =>  'Kode Harus Unik!',
                     'name.required' =>  'Nama Harus Diisi!',
+                    'name.alpha'    =>  'Nama Harus Berupa Karakter',
                     'weight.required' =>  'Bobot Harus Diisi!',
+                    'character.alpha'   =>  'Karakter Harus Berupa Karakter',
                     'name.max'          =>  'Nama Maksimal 40 Huruf!',
                     'weight.between'    =>  'Bobot Harus  0 <= 0.5',
+                    'information.alpha' =>  'Keterangan Harus Berupa Karakter',
                     'information.required'  => 'Keterangan Harus Diisi!',
                 ]);    
-                    //jika tervalidasi maka menyimpan ke dalam database
+                //jika tervalidasi maka menyimpan ke dalam database
                 $criteria = Criteria::create([
                     'admin_id'      =>  Auth::user()->id,
                     'code'          =>  $request->code,
@@ -49,18 +53,22 @@ class CriteriaController extends Controller
                     'information'   =>  $request->information,
                     'status'        =>  1
                 ]);
+            //jika tidak ada inputan weight maka
             } elseif(empty($request->weight)) {
-                //jika tidak ada inputan weight maka
                 $this->validate($request, [
-                    'code'          => 'required|unique:criterias',
-                    'name'          => 'required|max:40',
-                    'character'     => 'required',
-                    'information'   => 'required'
+                    'code'          => 'required|alpha_num|unique:criterias',
+                    'name'          => 'required|alpha|max:40',
+                    'character'     => 'required|alpha',
+                    'information'   => 'required|alpha'
                 ], [
+                    'code.alpha_num'=>  'Kode Harus Berupa Karakter dan Angka',
                     'code.required' =>  'Kode Harus Diisi!',
                     'code.unique'   =>  'Kode Harus Unik!',
                     'name.required' =>  'Nama Harus Diisi!',
+                    'name.alpha'    =>  'Nama Harus Berupa Karakter',
                     'name.max'          =>  'Nama Maksimal 40 Huruf!',
+                    'character.alpha'   =>  'Karakter Harus Berupa Karakter',
+                    'information.alpha' =>  'Keterangan Harus Berupa Karakter',
                     'information.required'  => 'Keterangan Harus Diisi!',
                 ]);    
 
@@ -100,6 +108,7 @@ class CriteriaController extends Controller
         //jika methode yang dipilih post
         $limit = DB::table('criterias')->select('weight')->sum('weight');
         $weight = DB::table('criterias')->where('id', $id)->select('weight')->sum('weight');
+        $criteria_status = Criteria::where('id', $id)->pluck('status')->first();
 
         if($request->isMethod('post')) {
             $this->validate($request, [
@@ -109,11 +118,16 @@ class CriteriaController extends Controller
             ]);  
             //melakukan update berdasarkan id data yang dipilih
             $data = $request->all();
-            if(($limit - $weight) + $data['weight'] <= '1') { 
-                Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'weight'=>$data['weight'], 'character'=>$data['character'], 'information'=>$data['information']]);
-                return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+            if($criteria_status != 0) {
+                if(($limit - $weight) + $data['weight'] <= '1') { 
+                    Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'weight'=>$data['weight'], 'character'=>$data['character'], 'information'=>$data['information']]);
+                    return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+                } else {
+                    return redirect()->back()->with(['error' => 'Weight total sudah Melebihi Batas 1.0']);
+                }
             } else {
-                return redirect()->back()->with(['error' => 'Weight total sudah Melebihi Batas 1.0']);
+                Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'information'=>$data['information']]);
+                return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
             }
         }
     }

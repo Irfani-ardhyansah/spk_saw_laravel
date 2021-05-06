@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Register</title>
-
+  
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{{ asset('node_modules/selectric/public/selectric.css')}}">
+  <link rel="stylesheet" href="{{ asset('node_modules/ionicons201/css/ionicons.min.css')}}">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
@@ -25,7 +25,11 @@
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Form Register Sistem</h4></div>
+              <div class="card-header"><h4>Form Register Sistem Beasiswa PPA</h4>
+                <div class="ml-auto">
+                  <a href="{{ url('/') }}"><i class="ion ion-close"></i></a>
+                </div>
+              </div>
 
               <div class="card-body">
 
@@ -36,7 +40,7 @@
 
                     <div class="form-group col-5 {{ $errors->has('npm') ? 'has-error' : '' }}">
                       <label for="">NPM</label>
-                      <input type="text" class="form-control {{ $errors->has('npm') ? 'is-invalid' : '' }}" name="npm" value="{{ old('npm') }}">
+                      <input type="number" class="form-control {{ $errors->has('npm') ? 'is-invalid' : '' }}" name="npm" value="{{ old('npm') }}">
                       <div class="invalid-feedback">
                         {{ $errors->first('npm') }}
                       </div>
@@ -62,7 +66,7 @@
                     </div>
                     <div class="form-group col-4">
                       <label for="">No HP</label>
-                      <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" value="{{ old('phone') }}">
+                      <input type="number" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" value="{{ old('phone') }}">
                       <div class="invalid-feedback">
                         {{ $errors->first('phone') }}
                       </div>
@@ -72,7 +76,7 @@
                   <div class="row">
                     <div class="form-group col-6">
                       <label>Agama</label>
-                      <select class="form-control selectric" name="religion">
+                      <select class="form-control selectric {{ $errors->has('religion') ? 'is-invalid' : '' }}" name="religion">
                         <option selected>-</option>
                         <option value="Islam">Islam</option>
                         <option value="Protestan">Protestan</option>
@@ -81,14 +85,20 @@
                         <option value="Buddha">Buddha</option>
                         <option value="Khonghucu">Khonghucu</option>
                       </select>
+                      <div class="invalid-feedback d-block">
+                        {{ $errors->first('religion') }}
+                      </div>
                     </div>
                     <div class="form-group col-6">
                       <label>Gender</label>
-                      <select class="form-control selectric" name="gender">
+                      <select class="form-control selectric {{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender">
                         <option selected>-</option>
                         <option value="Laki - laki">Laki - laki</option>
                         <option value="Perempuan">Perempuan</option>
                       </select>
+                      <div class="invalid-feedback d-block">
+                        {{ $errors->first('gender') }}
+                      </div>
                     </div>
                   </div>
 
@@ -105,21 +115,27 @@
                   <div class="row">
                     <div class="form-group col-8">
                       <label>Prodi</label>
-                      <select class="form-control selectric" name="prodi_id">
+                      <select class="form-control selectric {{ $errors->has('prodi_id') ? 'is-invalid' : '' }}" name="prodi_id">
                         <option selected>-</option>
                         @foreach($prodis as $row)
                         <option value="{{ $row->id }}">{{$row->name}}</option>
                         @endforeach
                       </select>
+                      <div class="invalid-feedback d-block">
+                        {{ $errors->first('prodi_id') }}
+                      </div>
                     </div>
 
                     <div class="form-group col-4">
                       <label>Semester</label>
-                      <select class="form-control selectric" name="semester">
+                      <select class="form-control selectric {{ $errors->has('semester') ? 'is-invalid' : '' }}" name="semester">
                         <option selected>-</option>
                         <option value="3">3</option>
                         <option value="5">5</option>
                       </select>
+                      <div class="invalid-feedback d-block">
+                        {{ $errors->first('semester') }}
+                      </div>
                     </div>
                   </div>
 
@@ -176,11 +192,11 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="{{ asset('/assets/js/jquery.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/popper.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/nicescroll.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/moment.min.js')}}"></script>
   <script src="{{ asset('assets/js/stisla.js')}}"></script>
 
   <!-- JS Libraies -->

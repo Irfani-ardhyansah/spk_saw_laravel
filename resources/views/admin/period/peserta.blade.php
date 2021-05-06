@@ -5,7 +5,26 @@
     <div class="section-header">
         <h1>Periode Beasiswa {{ date('d', strtotime($beasiswa->start)) }} {{ date('F', strtotime($beasiswa->start)) }} {{ date('Y', strtotime($beasiswa->start)) }} s/d {{ date('d', strtotime($beasiswa->end)) }} {{ date('F', strtotime($beasiswa->end)) }} {{ date('Y', strtotime($beasiswa->end)) }}</h1>
     </div>
-    <h2 class="section-title">Data Peserta</h2>
+
+    <form action="{{ route('admin.beasiswa.peserta.search', ['id' => $period_id ]) }}" class="form-inline" method="GET">
+        
+    <h2 class="section-title"> <a href="{{ route('admin.beasiswa.peserta', ['id' => $period_id]) }}">Data Peserta</a> </h2>
+
+    <div class="row ml-auto">
+        <div class="col-2 mt-1">
+            <div class="form-group">
+                <button class="btn-sm btn-outline-primary" type="submit">Cari</button>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" required placeholder="Masukkan Nama Peserta">
+            </div>
+        </div>
+    </div>
+
+    </form>
+
     <div class="section-body">
         <div class="card">
             <div class="card-body p-0">

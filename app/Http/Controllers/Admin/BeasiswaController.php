@@ -26,6 +26,18 @@ class BeasiswaController extends Controller
         return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
     }
 
+    public function search($id, Request $request) 
+    {
+        $beasiswa = Period::where('id', $id)->first();
+        $user_period = User_period::where('period_id', $id)->get();
+        $period_id = $id;
+        $pendaftar = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->where('name', 'like', '%' . $request->input('name') . '%')
+        ->orderBy('semester', 'ASC')
+        ->paginate(10);
+
+        return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
+    }
+
     public function delete($id, $mahasiswa_id)
     {
         try {

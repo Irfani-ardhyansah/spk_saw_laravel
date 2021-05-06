@@ -124,7 +124,7 @@
                     <div class="row">
                         <div class="form-group col-5 {{ $errors->has('code') ? 'has-error' : '' }}">
                             <label for="">Inisial</label>
-                            <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" value="{{ old('code') }}">
+                            <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" value="{{ old('code') }}" required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('code') }}
                             </div>
@@ -132,7 +132,7 @@
 
                         <div class="form-group col-7 {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="">Nama</label>
-                            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('name') }}
                             </div>
@@ -160,7 +160,7 @@
                     <div class="row">
                         <div class="form-group col-12 {{ $errors->has('information') ? 'has-error' : '' }}">
                             <label for="">Keterangan</label>
-                            <input type="text" class="form-control {{ $errors->has('information') ? 'is-invalid' : '' }}" name="information" value="{{ old('information') }}">
+                            <input type="text" class="form-control {{ $errors->has('information') ? 'is-invalid' : '' }}" name="information" value="{{ old('information') }}" required>
                             <div class="invalid-feedback">
                                 {{ $errors->first('information') }}
                             </div>

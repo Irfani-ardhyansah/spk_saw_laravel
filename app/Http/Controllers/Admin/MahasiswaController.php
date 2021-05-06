@@ -53,7 +53,7 @@ class MahasiswaController extends Controller
         $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->get();
         $now = Carbon::now();
         $pdf = PDF::loadview('admin.mahasiswa.mahasiswa_pdf', compact('mahasiswas', 'now'));
-        return $pdf->download('data-mahasiswa-'.$now->year);
+        return $pdf->download('Data Mahasiswa Tahun '.$now->year);
     }
 
     public function detail($id)

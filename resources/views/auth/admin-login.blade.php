@@ -7,7 +7,7 @@
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ asset('node_modules/ionicons201/css/ionicons.min.css')}}">
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{{ asset('node_modules/bootstrap-social/bootstrap-social.css')}}">
@@ -23,7 +23,12 @@
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Login Admin</h4></div>
+              <div class="card-header">
+                <h4>Login Admin</h4>
+                <div class="ml-auto">
+                  <a href="{{ url('/') }}"><i class="ion ion-close"></i></a>
+                </div>
+              </div>
 
               <div class="card-body">
                 <form method="POST" action="{{ route('admin.login.submit') }}" class="needs-validation" novalidate="">

@@ -55,17 +55,6 @@ class PengumumanController extends Controller
         }
     }
 
-    public function changeStatus(Request $request, $id)
-    {
-        //jika inputan post
-        if($request->isMethod('post')) {
-            //mengambil data lalu mengupdate pada kolom status
-            $data = $request->all();
-            Anouncement::where(['id' => $id])->update(['status'=>$data['status']]);
-            return redirect()->back()->with(['success' => 'Status Pengumuman Berhasil Diganti!']);
-        }
-    }
-
     public function delete($id)
     {
         try {

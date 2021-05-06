@@ -29,19 +29,24 @@ Route::group(['prefix' => 'user', 'middleware' => ['prevent-back-history','auth'
     Route::get('/', 'User\DashboardController@index')->name('user.index');
     
     //Route Profile User
-    Route::get('/profile', 'User\ProfileController@index')->name('user.profile');
-    Route::get('/profile/edit/{id}', 'User\ProfileController@edit')->name('user.profile.edit');
-    Route::put('/profile/update/{id}', 'User\ProfileController@update')->name('user.profile.update');
-    Route::get('/profile/changepassword', 'HomeController@changePasswordForm')->name('user.changePassword.form');
-    Route::post('/profile/changepassword', 'HomeController@changePassword')->name('user.changePassword');
+    Route::group(['prefix' => 'profile'], function() {
+        Route::get('/', 'User\ProfileController@index')->name('user.profile');
+        Route::get('/edit/{id}', 'User\ProfileController@edit')->name('user.profile.edit');
+        Route::put('/update/{id}', 'User\ProfileController@update')->name('user.profile.update');
+        Route::get('/changepassword', 'HomeController@changePasswordForm')->name('user.changePassword.form');
+        Route::post('/changepassword', 'HomeController@changePassword')->name('user.changePassword');
+    });
 
     //Route Kriteria Halaman User
     Route::get('/kriteria', 'User\CriteriaController@index')->name('user.criteria');
     
     //Route Beasiswa Halaman User
-    Route::get('/beasiswa', 'User\PeriodController@index')->name('user.period');
-    Route::get('/beasiswa/{id}/daftar', 'User\PeriodController@register')->name('user.period.register');
-    Route::post('/beasiswa/{id}/save', 'User\PeriodController@save')->name('user.period.save');
+    Route::group(['prefix' => 'beasiswa'], function() {
+        Route::get('/', 'User\PeriodController@index')->name('user.period');
+        Route::get('/{id}/daftar', 'User\PeriodController@register')->name('user.period.register');
+        Route::post('/{id}/save', 'User\PeriodController@save')->name('user.period.save');
+    });
+    
 
     Route::get('/pengumuman', 'User\PengumumanController@index')->name('user.pengumuman');
 });
@@ -73,57 +78,69 @@ Route::group(['prefix' => 'admin', 'middleware' => ['prevent-back-history','auth
 
     Route::group(['middleware' => 'can:isAdmin'], function() {
 
-            // Route Halaman Mahasiswa
-        Route::get('/mahasiswa', 'Admin\MahasiswaController@index')->name('admin.mahasiswa'); 
-        Route::get('/mahasiswa/json', 'Admin\MahasiswaController@getData')->name('admin.data.mahasiswa'); 
-        Route::get('/mahasiswa/search', 'Admin\MahasiswaController@search')->name('admin.mahasiswa.search'); 
-        Route::get('/mahasiswa/pdf', 'Admin\MahasiswaController@cetak_pdf')->name('admin.mahasiswa.pdf');
-        Route::get('/mahasiswa/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail'); //Menggunakan SweetAlert Delete
-        Route::get('/mahasiswa/delete/{id}', 'Admin\MahasiswaController@delete')->name('admin.mahasiswa.delete');
-        Route::match(['get', 'post'], '/mahasiswa/import', 'Admin\MahasiswaController@store')->name('admin.mahasiswa.store');
+        // Route Halaman Mahasiswa
+        Route::group(['prefix' => 'mahasiswa'], function() {
+            Route::get('/', 'Admin\MahasiswaController@index')->name('admin.mahasiswa'); 
+            Route::get('/json', 'Admin\MahasiswaController@getData')->name('admin.data.mahasiswa'); 
+            Route::get('/search', 'Admin\MahasiswaController@search')->name('admin.mahasiswa.search'); 
+            Route::get('/pdf', 'Admin\MahasiswaController@cetak_pdf')->name('admin.mahasiswa.pdf');
+            Route::get('/detail/{id}', 'Admin\MahasiswaController@detail')->name('admin.mahasiswa.detail'); //Menggunakan SweetAlert Delete
+            Route::get('/delete/{id}', 'Admin\MahasiswaController@delete')->name('admin.mahasiswa.delete');
+            Route::match(['get', 'post'], '/import', 'Admin\MahasiswaController@store')->name('admin.mahasiswa.store');
+        });
+        
 
         Route::get('/dashboardUser', 'Admin\DashboardController@user')->name('admin.dashboard.user');
         Route::post('/dashboardUser/save', 'Admin\DashboardController@save')->name('admin.dashboard.user.save');
         Route::match(['get', 'post'], '/dashboardUser/update/{id}', 'Admin\DashboardController@update')->name('admin.dashboard.user.update'); 
 
         //Route Halaman Prodi
-        Route::get('/prodi', 'Admin\ProdiController@index')->name('admin.prodi');
-        Route::post('/prodi', 'Admin\ProdiController@save')->name('admin.prodi.save');
-        Route::match(['get', 'post'], '/prodi/update/{id}', 'Admin\ProdiController@update')->name('admin.prodi.update');
-        Route::get('/prodi/delete/{id}', 'Admin\ProdiController@delete')->name('admin.prodi.delete');
+        Route::group(['prefix' => 'prodi'], function() {
+            Route::get('/', 'Admin\ProdiController@index')->name('admin.prodi');
+            Route::post('/', 'Admin\ProdiController@save')->name('admin.prodi.save');
+            Route::match(['get', 'post'], '/update/{id}', 'Admin\ProdiController@update')->name('admin.prodi.update');
+            Route::get('/delete/{id}', 'Admin\ProdiController@delete')->name('admin.prodi.delete');
+        });
+
 
         // Route Halaman Kriteria
-        Route::get('/kriteria', 'Admin\CriteriaController@index')->name('admin.criteria');
-        Route::post('/kriteria', 'Admin\CriteriaController@save')->name('admin.criteria.save');
-        Route::get('/kriteria/delete/{id}', 'Admin\CriteriaController@delete')->name('admin.criteria.delete'); //Menggunakan SweetAlert Dalam Delete
-        Route::match(['get', 'post'], '/kriteria/update/{id}', 'Admin\CriteriaController@update')->name('admin.criteria.update');
-        Route::post('/kriteria/weight/save', 'Admin\WeightController@save')->name('admin.criteria.weight.save');
-        Route::get('/kriteria/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete'); //Menggunakan SweetAlert Dalam Delete
-        Route::match(['get', 'post'], '/kriteria/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update'); 
+        Route::group(['prefix' => 'kriteria'], function() {
+            Route::get('/', 'Admin\CriteriaController@index')->name('admin.criteria');
+            Route::post('/', 'Admin\CriteriaController@save')->name('admin.criteria.save');
+            Route::get('/delete/{id}', 'Admin\CriteriaController@delete')->name('admin.criteria.delete'); //Menggunakan SweetAlert Dalam Delete
+            Route::match(['get', 'post'], '/update/{id}', 'Admin\CriteriaController@update')->name('admin.criteria.update');
+            Route::post('/weight/save', 'Admin\WeightController@save')->name('admin.criteria.weight.save');
+            Route::get('/weight/delete/{id}', 'Admin\WeightController@delete')->name('admin.criteria.weight.delete'); //Menggunakan SweetAlert Dalam Delete
+            Route::match(['get', 'post'], '/weight/update/{id}', 'Admin\WeightController@update')->name('admin.criteria.weight.update'); 
+        });
 
-        Route::get('/periode', 'Admin\PeriodController@index')->name('admin.period');
-        Route::post('/periode/save', 'Admin\PeriodController@save')->name('admin.period.save');
-        Route::get('/periode/delete/{id}', 'Admin\PeriodController@delete')->name('admin.period.delete'); //Menggunakan SweetAlert Dalam Delete
-        Route::match(['get', 'post'], 'periode/update/{id}', 'Admin\PeriodController@update')->name('admin.period.update');
-        Route::match(['get', 'post'], 'periode/change_status/{id}', 'Admin\PeriodController@changeStatus')->name('admin.period.status');
+        Route::group(['prefix' => 'periode'], function() {
+            Route::get('/', 'Admin\PeriodController@index')->name('admin.period');
+            Route::post('/save', 'Admin\PeriodController@save')->name('admin.period.save');
+            Route::get('/delete/{id}', 'Admin\PeriodController@delete')->name('admin.period.delete'); //Menggunakan SweetAlert Dalam Delete
+            Route::match(['get', 'post'], '/update/{id}', 'Admin\PeriodController@update')->name('admin.period.update');
+            Route::match(['get', 'post'], '/change_status/{id}', 'Admin\PeriodController@changeStatus')->name('admin.period.status');
+    
+            Route::get('/{id}/kuota', 'Admin\BeasiswaController@kuota')->name('admin.beasiswa.kuota');
+            Route::get('/{id}/kuota/{prodi_id}/analisis', 'Admin\BeasiswaController@analisisProdi')->name('admin.beasiswa.analisisProdi');
+            Route::get('/{id}/kuota/analisis', 'Admin\BeasiswaController@analisisFull')->name('admin.beasiswa.analisisFull');
+            Route::get('/pdf/{id}/analisis', 'Admin\BeasiswaController@analisis_cetak_pdf')->name('admin.beasiswa.analisis.pdf'); 
+    
+            Route::get('/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
+            Route::get('/{id}/peserta/search', 'Admin\BeasiswaController@search')->name('admin.beasiswa.peserta.search'); 
+            Route::get('/{id}/peserta/{mahasiswa_id}/delete', 'Admin\BeasiswaController@delete')->name('admin.beasiswa.peserta.delete');
+            Route::match(['get', 'post'], '/peserta/change_status/{id}', 'Admin\BeasiswaController@changeStatus')->name('admin.beasiswa.status.peserta');
+            Route::get('/{period_id}/peserta/{mahasiswa_id}/nilai', 'Admin\BeasiswaController@nilai')->name('admin.beasiswa.peserta.nilai');
+            Route::get('/{period_id}/analisis', 'Admin\BeasiswaController@analisis')->name('admin.beasiswa.analisis');
+            Route::get('/pdf/{period_id}', 'Admin\BeasiswaController@cetak_pdf')->name('admin.beasiswa.search'); 
+        });
 
-        Route::get('/periode/{id}/kuota', 'Admin\BeasiswaController@kuota')->name('admin.beasiswa.kuota');
-        Route::get('/periode/{id}/kuota/{prodi_id}/analisis', 'Admin\BeasiswaController@analisisProdi')->name('admin.beasiswa.analisisProdi');
-        Route::get('/periode/{id}/kuota/analisis', 'Admin\BeasiswaController@analisisFull')->name('admin.beasiswa.analisisFull');
-        Route::get('/periode/pdf/{id}/analisis', 'Admin\BeasiswaController@analisis_cetak_pdf')->name('admin.beasiswa.analisis.pdf'); 
-
-        Route::get('/periode/{id}/peserta', 'Admin\BeasiswaController@peserta')->name('admin.beasiswa.peserta');
-        Route::get('/periode/{id}/peserta/{mahasiswa_id}/delete', 'Admin\BeasiswaController@delete')->name('admin.beasiswa.peserta.delete');
-        Route::match(['get', 'post'], 'periode/peserta/change_status/{id}', 'Admin\BeasiswaController@changeStatus')->name('admin.beasiswa.status.peserta');
-        Route::get('/periode/{period_id}/peserta/{mahasiswa_id}/nilai', 'Admin\BeasiswaController@nilai')->name('admin.beasiswa.peserta.nilai');
-        Route::get('/periode/{period_id}/analisis', 'Admin\BeasiswaController@analisis')->name('admin.beasiswa.analisis');
-        Route::get('/periode/pdf/{period_id}', 'Admin\BeasiswaController@cetak_pdf')->name('admin.beasiswa.search'); 
-        // Route::get('/periode/pdf/{period_id}', 'Admin\BeasiswaController@cetak_pdf')->name('admin.beasiswa.pdf');
-
-        Route::get('/pengumuman', 'Admin\PengumumanController@index');
-        Route::post('/pengumuman/save', 'Admin\PengumumanController@save')->name('admin.pengumuman.save');
-        Route::match(['get', 'post'], 'pengumuman/change_status/{id}', 'Admin\PengumumanController@changeStatus')->name('admin.pengumuman.status');
-        Route::get('/pengumuman/delete/{id}', 'Admin\PengumumanController@delete')->name('admin.pengumuman.delete');
+        Route::group(['prefix' => 'pengumuman'], function(){
+            Route::get('/', 'Admin\PengumumanController@index');
+            Route::post('/save', 'Admin\PengumumanController@save')->name('admin.pengumuman.save');
+            Route::match(['get', 'post'], '/change_status/{id}', 'Admin\PengumumanController@changeStatus')->name('admin.pengumuman.status');
+            Route::get('/delete/{id}', 'Admin\PengumumanController@delete')->name('admin.pengumuman.delete');
+        });
 
     });
 
