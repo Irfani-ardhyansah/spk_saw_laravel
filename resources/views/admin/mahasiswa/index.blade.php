@@ -58,7 +58,7 @@
                             <td>{{$row->semester}}</td>
                             <td>{{ $row->prodi->name }}</td>
                             <td>
-                                    <a href="{{ route('admin.mahasiswa.detail', ['id' => $row->id]) }}" class="btn btn-info btn-sm">Info</a>
+                                    <a href="{{ route('admin.mahasiswa.detail', ['id' => Crypt::encrypt($row->id)]) }}" class="btn btn-info btn-sm">Info</a>
                                     <a href="#" class="btn btn-danger btn-sm mahasiswa-delete" mahasiswa_id="{{ $row->id }}" mahasiswa="{{ $row->name }}">Delete</a>
                             </td>
                         </tr>

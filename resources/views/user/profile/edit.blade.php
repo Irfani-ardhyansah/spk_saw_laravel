@@ -19,7 +19,7 @@
 
             <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                    <form method="post" action="{{ route('user.profile.update', ['id' => $mahasiswa->id]) }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('user.profile.update', ['id' => Crypt::encrypt($mahasiswa->id)]) }}" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <input type="hidden" value="PUT" name="_method" class="form-control">
                     <div class="card-header">

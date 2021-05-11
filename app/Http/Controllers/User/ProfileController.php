@@ -10,6 +10,7 @@ use App\Prodi;
 use Auth;
 use File;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 
 class ProfileController extends Controller
 {
@@ -23,6 +24,7 @@ class ProfileController extends Controller
     // method untuk mengedit profile
     public function edit($id)
     {
+        $id = Crypt::decrypt($id);
         $mahasiswa = Mahasiswa::where('id', $id)->first();
         $prodis = Prodi::orderBy('name', 'Asc')->get();
         return view('user.profile.edit', compact('mahasiswa', 'prodis'));
@@ -31,7 +33,7 @@ class ProfileController extends Controller
     //method untuk mengupdate profile berdasarkan inputan edit
     public function update(Request $request, $id)
     {
-
+        $id = Crypt::decrypt($id);
         try {
             $this->validate($request, [
                 'prodi_id'     => 'required',

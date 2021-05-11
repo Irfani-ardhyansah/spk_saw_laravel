@@ -10,6 +10,7 @@ use App\Weight;
 use App\Value;
 use App\User_period;
 use Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class PeriodController extends Controller
 {
@@ -22,13 +23,14 @@ class PeriodController extends Controller
     public function register($id)
     {
         $criterias = Criteria::orderBy('code', 'ASC')->get();
-        $period_id =  $id;
-        $period = Period::where('id', $id)->first();
-        return view('user.period.daftar', compact('criterias', 'period_id', 'period'));
+        $period_id =  Crypt::decrypt($id);
+        $period = Period::where('id', $period_id)->first();
+        return view('user.period.daftar', compact('criterias', 'id', 'period'));
     }
 
     public function save(Request $request, $id)
     {
+        $id =  Crypt::decrypt($id);
         try {
             $this->validate($request, [
                 'file.*'     => 'mimes:pdf|max:2000|required'

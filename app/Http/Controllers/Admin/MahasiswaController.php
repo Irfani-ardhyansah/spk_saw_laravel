@@ -12,6 +12,7 @@ use Importer;
 use \PDF;
 use File;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Crypt;
 
 class MahasiswaController extends Controller
 {
@@ -59,6 +60,7 @@ class MahasiswaController extends Controller
     public function detail($id)
     {
         //Mengambil Data Berdasarkan ID
+        $id = Crypt::decrypt($id);
         $mahasiswa = Mahasiswa::findOrFail($id);
         return view('admin.mahasiswa.detail', compact('mahasiswa'));
     }

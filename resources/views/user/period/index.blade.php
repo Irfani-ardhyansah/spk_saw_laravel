@@ -47,7 +47,7 @@
                                 @if($checker->contains('period_id', $row->id))
                                 <a href="#" class="btn btn-outline-secondary btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
                                 @else
-                                <a href="{{route('user.period.register', ['id' => $row->id])}}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="ion ion-person-add"></i> Daftar Beasiswa</a>
+                                <a href="{{route('user.period.register', ['id' => Crypt::encrypt($row->id)])}}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="ion ion-person-add"></i> Daftar Beasiswa</a>
                                 @endif
                         </div>
                     </div>
