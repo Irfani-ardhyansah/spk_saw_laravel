@@ -23,7 +23,7 @@
         {{-- <a href="#" class="dropdown-item has-icon text-danger">
           <i class="fas fa-sign-out-alt"></i> Logout
         </a> --}}
-        <a href="{{route('user.profile')}}" class="dropdown-item has-icon">
+        <a href="{{route('user.profile', Crypt::encrypt(Auth::user()->id))}}" class="dropdown-item has-icon">
           <i class="ion ion-person"></i> {{auth()->user()->mahasiswa->name}}
         </a>
         <a href="{{ route('logout') }}"

@@ -26,6 +26,7 @@ class DashboardController extends Controller
     public function user()
     {
         $dashboard = Dashboard::all();
+        // dd($dashboard);
         return view('admin.dashboard_user.index', compact('dashboard'));
     }
 

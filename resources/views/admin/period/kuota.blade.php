@@ -48,16 +48,18 @@
                           <div class="bullet"></div>
                           <div class="text-primary">{{$pendaftar = $mahasiswas->where('prodi_id', $row->id)->count()}}</div>
                         </div>
+                        <hr>
                         <div class="ticket-info">
                           <div>Kuota Prodi</div>
                           <div class="bullet"></div>
                           @php($kuota_prodi = $pendaftar / $total_mahasiswa * $kuota)
                           <div class="text-primary">{{round($kuota_prodi)}}</div>
-                        </div>
-                        <br>
-                        <div class="ticket-info">
-                          {{ session()->put('kuota_'.$row->name, round($kuota_prodi))}}
-                          <a href="{{route('admin.beasiswa.analisisProdi', ['id' => $period->id, 'prodi_id' => $row->id])}}" class="btn-outline-info btn-sm">Analisis</a>
+
+                          <div class="ml-auto">
+                            {{ session()->put('kuota_'.$row->name, round($kuota_prodi))}}
+                            <a href="{{route('admin.beasiswa.analisisProdi', ['id' => $period->id, 'prodi_id' => $row->id])}}" class="btn-outline-info btn-sm">Analisis</a>
+                          </div>
+                          
                         </div>
                     </span>
                   </div>

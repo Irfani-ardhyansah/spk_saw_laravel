@@ -5,7 +5,7 @@
     <div class="section-header">
         <h1>Halaman Dashboard User</h1>
         <div class="ml-auto">
-            @if(empty($dashboard))
+            @if($dashboard->isEmpty())
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambahData">
                 Tambah
             </button>

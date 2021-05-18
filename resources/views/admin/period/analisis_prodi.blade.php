@@ -7,6 +7,8 @@
         {{-- {{ session()->get('kuota_'.$prodi->name) }} --}}
     </div>
 
+<h2 class="section-title">Prodi {{ $prodi->name }} </h2>
+
     <div class="section-body">
         <div class="card">
             <div class="card-header">

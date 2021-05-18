@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Crypt;
 class ProfileController extends Controller
 {
     // method untuk menampilkan halaman profile
-    public function index()
+    public function index($id)
     {
+        $id = Crypt::decrypt($id);
         $mahasiswa = Mahasiswa::where('user_id', Auth::user()->id)->first();
-        return view('user.profile.index', compact('mahasiswa'));
+        $prodis = Prodi::orderBy('name', 'Asc')->get();
+        return view('user.profile.index', compact('mahasiswa', 'prodis'));
     }
 
     // method untuk mengedit profile
@@ -97,7 +99,8 @@ class ProfileController extends Controller
                     'email'     => $request->email
                 ]);
             }
-            return redirect()->route('user.profile')->with(['success' => 'Data Berhasil Diupdate!']);
+            $id = Crypt::encrypt($id);
+            return redirect()->route('user.profile', $id)->with(['success' => 'Data Berhasil Diupdate!']);
         } catch(\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
