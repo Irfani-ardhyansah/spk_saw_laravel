@@ -43,7 +43,6 @@
                         <div class="mt-4">
                                 
                                 @php($checker = $row->user_periods->where('user_id',auth()->user()->id))
-                            
                                 @if($checker->contains('period_id', $row->id))
                                 <a href="#" class="btn btn-outline-secondary btn-lg btn-icon icon-left">Sudah Terdaftar!</a>
                                 @else

@@ -64,11 +64,11 @@
                                 </div>
                             </div>
                             {{-- <a href="{{ route('user.profile.edit', Crypt::encrypt($mahasiswa->id)) }}" class="btn btn-info pull-right">Edit</a> --}}
-                            <a href="{{ route('user.changePassword.form') }}" class="btn btn-warning">Change Password</a>
+                            <a href="{{ route('user.changePassword.form', Crypt::encrypt(Auth::user()->id)) }}" class="btn btn-warning">Change Password</a>
                         </div>
                     </div>
                 </div>
-                {{-- <a href="{{ route('user.changePassword.form') }}" class="btn btn-warning">Change Password</a> --}}
+                {{-- <a href="{{ route('user.change') }}" class="btn btn-warning">Change Password</a> --}}
             </div>
 
             <div class="col-12 col-md-12 col-lg-7">

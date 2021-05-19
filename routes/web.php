@@ -33,7 +33,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['prevent-back-history','auth'
         Route::get('/{id}', 'User\ProfileController@index')->name('user.profile');
         // Route::get('/edit/{id}', 'User\ProfileController@edit')->name('user.profile.edit');
         Route::put('/update/{id}', 'User\ProfileController@update')->name('user.profile.update');
-        Route::get('/changepassword', 'HomeController@changePasswordForm')->name('user.changePassword.form');
+        Route::get('/changepassword/{id}', 'HomeController@changePasswordForm')->name('user.changePassword.form');
         Route::post('/changepassword', 'HomeController@changePassword')->name('user.changePassword');
     });
 
