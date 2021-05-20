@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
-<body  style="background-image: linear-gradient(to bottom, #dae2ed, #a2abb5, #6e777f, #3e474e, #131c21);">
+<body style="background-image: linear-gradient(to bottom, #dae2ed, #a2abb5, #6e777f, #3e474e, #131c21);">
   <div id="app">
     <section class="section">
       <div class="container mt-5" style="opacity: 0.8;">
@@ -46,10 +46,11 @@
                     <div class="d-block">
                     	<label for="" class="control-label">Password</label>
                     </div>
-                    <input id="password" type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" tabindex="2" required>
+                    <input id="form-password" type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
                       {{ $errors->first('password') }}
                     </div>
+                  <input type="checkbox" id="checkbox" class="form-checkbox mt-2"> Show password
                   </div>
 
                   <div class="form-group">
@@ -84,5 +85,16 @@
   <script src="{{ asset('assets/js/scripts.js')}}"></script>
   <script src="{{ asset('assets/js/custom.js')}}"></script>
   <!-- Page Specific JS File -->
+  <script type="text/javascript">
+    $(document).ready(function(){		
+      $('#checkbox').click(function(){
+        if($(this).is(':checked')){
+          $('#form-password').attr('type','text');
+        }else{
+          $('#form-password').attr('type','password');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

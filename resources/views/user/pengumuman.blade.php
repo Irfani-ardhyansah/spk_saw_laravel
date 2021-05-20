@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="section-header">
+<div class="section-header" style="width:500px; margin-left:300px;">
   <h1>Pengumuman</h1>
   <div class="section-header-breadcrumb">
   <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>

@@ -66,7 +66,7 @@
             </div>
         </div>
         @endforelse
-    </div>
+    </div>w
 </div>
 
 @endsection

@@ -142,14 +142,15 @@
                   <div class="row">
                     <div class="form-group col-6 {{ $errors->has('password') ? 'has-error' : '' }}">
                       <label for="">Password</label>
-                      <input type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
+                      <input type="password" id="form-password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
                       <div class="invalid-feedback">
                         {{ $errors->first('password') }}
                       </div>
+                    <input type="checkbox" id="checkbox" class="form-checkbox mt-2"> Show password
                     </div>
                     <div class="form-group col-6">
                       <label for="">Password Confirmation</label>
-                      <input type="password" class="form-control" name="password_confirmation" required>
+                      <input type="password" id="form-password-confirm" class="form-control" name="password_confirmation" required>
                     </div>
                   </div>
 
@@ -226,6 +227,17 @@
         bacaGambar(this);
     });
   
+    $(document).ready(function(){		
+      $('#checkbox').click(function(){
+        if($(this).is(':checked')){
+          $('#form-password').attr('type','text');
+          $('#form-password-confirm').attr('type','text');
+        }else{
+          $('#form-password').attr('type','password');
+          $('#form-password-confirm').attr('type','password');
+        }
+      });
+    });
   </script>
   
 </body>

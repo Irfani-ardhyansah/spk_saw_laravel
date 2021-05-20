@@ -48,12 +48,12 @@
                     <div class="d-block">
                       <label for="" class="control-label">Password</label>
                     </div>
-                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" tabindex="2" required>
+                    <input type="password" id="form-password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
                       Password yang di input salah!
                     </div>
+                  <input type="checkbox" id="checkbox" class="form-checkbox mt-2"> Show password
                   </div>
-
                   <div class="row form-group">
                     <div class="col-6"> 
                       <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
@@ -91,6 +91,18 @@
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js')}}"></script>
   <script src="{{ asset('assets/js/custom.js')}}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){		
+      $('#checkbox').click(function(){
+        if($(this).is(':checked')){
+          $('#form-password').attr('type','text');
+        }else{
+          $('#form-password').attr('type','password');
+        }
+      });
+    });
+  </script>
 
   <!-- Page Specific JS File -->
 </body>
