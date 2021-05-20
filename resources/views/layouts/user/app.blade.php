@@ -83,6 +83,7 @@
   <script src="{{ asset('assets/js/page/bootstrap-modal.js')}}"></script>
     {{-- Toaster --}}
     <script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
+    @yield('footer')
     <script>
       @if(Session::has('success'))    
         toastr.options.positionClass = "toast-top-center";
