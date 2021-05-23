@@ -6,14 +6,15 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Sistem Pengambilan Keputusan</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('css/dashboard/styles2.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('css/dashboard/styles2.css')}}">
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
