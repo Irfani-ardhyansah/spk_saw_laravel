@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -15,18 +16,9 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{{ asset('css/dashboard/styles2.css')}}">
-
     </head>
+
     <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container d-flex h-100 align-items-center">
@@ -48,4 +40,5 @@
         <!-- Core theme JS-->
         <script src="{{asset('js/dashboard/scripts.js')}}"></script>
     </body>
+
 </html>

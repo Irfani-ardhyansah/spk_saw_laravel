@@ -44,10 +44,14 @@
                             <td>{{($row -> weight) * 100}}%</td>
                             <td>{{$row  -> character}}</td>
                             <td>
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
-                                <a href="#" class="btn btn-danger btn-sm criteria-delete" criteria_id="{{ $row->id }}" criteria_name="{{ $row->name }}" >Delete</a>
+                                <div class="row">
+                                    <button type="button" class="btn btn-success btn-sm mr-2" data-toggle="modal" data-target="#modalEditKriteria-{{ $row->id }}">Edit</button>
+                                    <a href="#" class="btn btn-danger btn-sm criteria-delete" criteria_id="{{ $row->id }}" criteria_name="{{ $row->name }}" >Delete</a>
+                                </div>
                                 @if($row->status == 1)
-                                <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#modalTambahWeight-{{ $row->id }}">Tambah Nilai</button>
+                                <div class="row mt-2">
+                                    <button type="button" class="btn btn-sm btn-light float-right" data-toggle="modal" data-target="#modalTambahWeight-{{ $row->id }}">Tambah Nilai</button>
+                                </div>
                                 @else
 
                                 @endif

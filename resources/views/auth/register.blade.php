@@ -78,12 +78,12 @@
                       <label>Agama</label>
                       <select class="form-control selectric {{ $errors->has('religion') ? 'is-invalid' : '' }}" name="religion">
                         <option selected>-</option>
-                        <option value="Islam">Islam</option>
-                        <option value="Protestan">Protestan</option>
-                        <option value="Katolik">Katolik</option>
-                        <option value="Hindu">Hindu</option>
-                        <option value="Buddha">Buddha</option>
-                        <option value="Khonghucu">Khonghucu</option>
+                        <option value="Islam" {{ old('religion') == "Islam" ? "selected" :""}}>Islam</option>
+                        <option value="Protestan" {{ old('religion') == "Protestan" ? "selected" :""}}>Protestan</option>
+                        <option value="Katolik" {{ old('religion') == "Katolik" ? "selected" :""}}>Katolik</option>
+                        <option value="Hindu" {{ old('religion') == "Hindu" ? "selected" :""}}>Hindu</option>
+                        <option value="Buddha" {{ old('religion') == "Buddha" ? "selected" :""}}>Buddha</option>
+                        <option value="Khonghucu"{{ old('religion') == "Khonghucu" ? "selected" :""}}>Khonghucu</option>
                       </select>
                       <div class="invalid-feedback d-block">
                         {{ $errors->first('religion') }}
@@ -93,8 +93,8 @@
                       <label>Gender</label>
                       <select class="form-control selectric {{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender">
                         <option selected>-</option>
-                        <option value="Laki - laki">Laki - laki</option>
-                        <option value="Perempuan">Perempuan</option>
+                        <option value="Laki - laki" {{ old('gender') == "Laki - laki" ? "selected" :""}}>Laki - laki</option>
+                        <option value="Perempuan" {{ old('gender') == "Perempuan" ? "selected" :""}}>Perempuan</option>
                       </select>
                       <div class="invalid-feedback d-block">
                         {{ $errors->first('gender') }}
@@ -118,7 +118,7 @@
                       <select class="form-control selectric {{ $errors->has('prodi_id') ? 'is-invalid' : '' }}" name="prodi_id">
                         <option selected>-</option>
                         @foreach($prodis as $row)
-                        <option value="{{ $row->id }}">{{$row->name}}</option>
+                        <option value="{{ $row->id }}" {{ old('prodi_id') == $row->id ? "selected" :""}}>{{$row->name}}</option>
                         @endforeach
                       </select>
                       <div class="invalid-feedback d-block">
@@ -130,8 +130,8 @@
                       <label>Semester</label>
                       <select class="form-control selectric {{ $errors->has('semester') ? 'is-invalid' : '' }}" name="semester">
                         <option selected>-</option>
-                        <option value="3">3</option>
-                        <option value="5">5</option>
+                        <option value="3" {{ old('semester') == "3" ? "selected" :""}}>3</option>
+                        <option value="5" {{ old('semester') == "5" ? "selected" :""}}>5</option>
                       </select>
                       <div class="invalid-feedback d-block">
                         {{ $errors->first('semester') }}
@@ -140,17 +140,20 @@
                   </div>
 
                   <div class="row">
-                    <div class="form-group col-6 {{ $errors->has('password') ? 'has-error' : '' }}">
+                    <div class="form-group col-6">
                       <label for="">Password</label>
-                      <input type="password" id="form-password" class="form-control pwstrength" data-indicator="pwindicator" name="password" required>
-                      <div class="invalid-feedback">
+                      <input type="password" id="form-password" class="form-control pwstrength  {{ $errors->has('password') ? 'has-error' : '' }}" data-indicator="pwindicator" name="password" required>
+                      <div class="invalid-feedback d-block">
                         {{ $errors->first('password') }}
                       </div>
                     <input type="checkbox" id="checkbox" class="form-checkbox mt-2"> Show password
                     </div>
                     <div class="form-group col-6">
                       <label for="">Password Confirmation</label>
-                      <input type="password" id="form-password-confirm" class="form-control" name="password_confirmation" required>
+                      <input type="password" id="form-password-confirm" class="form-control {{ $errors->has('password_confirmation') ? 'has-error' : '' }}" name="password_confirmation" required>
+                      <div class="invalid-feedback d-block">
+                        {{ $errors->first('password_confirmation') }}
+                      </div>
                     </div>
                   </div>
 

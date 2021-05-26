@@ -26,10 +26,10 @@ class CriteriaController extends Controller
                 //memvalidasi inputan
                 $this->validate($request, [
                     'code'          => 'required|alpha_num|unique:criterias',
-                    'name'          => 'required|alpha|max:40',
+                    'name'          => 'required|max:40',
                     'weight'        => 'required|numeric|between: 0.0 , 0.5',
-                    'character'     => 'required|alpha',
-                    'information'   => 'required|alpha'
+                    'character'     => 'required',
+                    'information'   => 'required'
                 ], [
                     'code.alpha_num'=>  'Kode Harus Berupa Karakter dan Angka',
                     'code.required' =>  'Kode Harus Diisi!',
@@ -57,18 +57,18 @@ class CriteriaController extends Controller
             } elseif(empty($request->weight)) {
                 $this->validate($request, [
                     'code'          => 'required|alpha_num|unique:criterias',
-                    'name'          => 'required|alpha|max:40',
-                    'character'     => 'required|alpha',
-                    'information'   => 'required|alpha'
+                    'name'          => 'required|max:40',
+                    'character'     => 'required',
+                    'information'   => 'required'
                 ], [
                     'code.alpha_num'=>  'Kode Harus Berupa Karakter dan Angka',
                     'code.required' =>  'Kode Harus Diisi!',
                     'code.unique'   =>  'Kode Harus Unik!',
                     'name.required' =>  'Nama Harus Diisi!',
-                    'name.alpha'    =>  'Nama Harus Berupa Karakter',
+                    'name.regex'    =>  'Nama Harus Berupa Karakter',
                     'name.max'          =>  'Nama Maksimal 40 Huruf!',
-                    'character.alpha'   =>  'Karakter Harus Berupa Karakter',
-                    'information.alpha' =>  'Keterangan Harus Berupa Karakter',
+                    'character.regex'   =>  'Karakter Harus Berupa Karakter',
+                    'information.regex' =>  'Keterangan Harus Berupa Karakter',
                     'information.required'  => 'Keterangan Harus Diisi!',
                 ]);    
 

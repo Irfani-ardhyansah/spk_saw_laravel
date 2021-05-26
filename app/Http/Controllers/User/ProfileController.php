@@ -40,11 +40,12 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'prodi_id'     => 'required',
                 'npm'       => 'required|digits:9|unique:users,npm,' . auth()->user()->id . ',id',
-                'name'      => 'required',
+                'email'     => 'required|email|max:255|unique:users,email,' . auth()->user()->id . ',id',
+                'name'      => 'required|max:50',
                 'semester'  => 'required',
-                'address'   => 'required',
+                'address'   => 'required|max:100',
                 'gender'    => 'required',
-                'phone'     => 'required',
+                'phone'     => 'required|max:12|min:11',
                 'religion'  => 'required',
                 'photo'     => 'nullable|mimes:jpg,jpeg,png|max:20000'
             ],[
