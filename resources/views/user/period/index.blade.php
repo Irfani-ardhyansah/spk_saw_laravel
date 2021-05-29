@@ -33,7 +33,7 @@
 
                     <div class="col-3">
                         <div class="mt-4">
-                            <a href="{{ url('/') }}/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="ion ion-document"></i> File Pengumuman</a>
+                            <a href="{{ url('/') }}/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" target="_blank" class="btn btn-outline-secondary btn-lg btn-icon icon-left"><i class="ion ion-document"></i> File Pengumuman</a>
                         </div>
                     </div>
 

@@ -36,7 +36,7 @@
                             <th>Action</th>
                             <th>Nilai</th>
                         </tr>
-                        @foreach($criterias->where('status', 1) as $row)
+                        @forelse($criterias->where('status', 1) as $row)
                         <tr>
                             <td>{{$loop -> iteration}}</td>
                             <td>{{$row  -> code}}</td>
@@ -74,7 +74,11 @@
                                 </table>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center">Tidak Ada Data Kriteria!</td>
+                        </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>
@@ -92,7 +96,7 @@
                             <th>Nama</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($criterias->where('status', 0) as $row)
+                        @forelse($criterias->where('status', 0) as $row)
                         <tr>
                             <td>{{$loop -> iteration}}</td>
                             <td>{{$row  -> code}}</td>
@@ -102,7 +106,11 @@
                                 <a href="#" class="btn btn-danger btn-sm criteria-delete" criteria_id="{{ $row->id }}" criteria_name="{{ $row->name }}" >Delete</a>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center">Tidak ada data!</td>
+                        </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>

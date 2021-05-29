@@ -24,6 +24,8 @@
 </table>
 
 <body>
+    <h1 style="margin-left: 165px;">Data Mahasiswa Tahun {{ $now->year }}</h1>
+    <br>
     <table align="center" style="border-collapse: collapse;">
         <tr>
             <th style="border: 1px solid #999; padding: 8px 15px;">#</th>

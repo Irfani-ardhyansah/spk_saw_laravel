@@ -18,10 +18,13 @@ class BeasiswaController extends Controller
 {
     public function peserta($id)
     {   
-        //Mengambil Data Peserta Dari Beasiswa yang dipilih
+        // Mengambil Data Peserta Dari Beasiswa yang dipilih
         $beasiswa = Period::where('id', $id)->first();
+        // mengambil data user_period berdasarkan id
         $user_period = User_period::where('period_id', $id)->get();
+        // mencari data mahasiswa berdasarkan id pada user_period
         $pendaftar = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->orderBy('semester', 'ASC')->paginate(10);
+        // memasukkan data kedalam variabel
         $period_id = $id;
         return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
     }
@@ -47,6 +50,7 @@ class BeasiswaController extends Controller
             $user_period = User_period::where('period_id', $id)->where('user_id', $mahasiswa->user->id);
             $values = Value::where('period_id', $period->id)->where('mahasiswa_id', $mahasiswa->id);
             
+            // menghapus folder yang menyimpan data terkait periode tersebut
             File::deleteDirectory('periode/' . $period->start . '_' . $period->end . '/' . $mahasiswa->user->npm);
 
             $user_period->delete();

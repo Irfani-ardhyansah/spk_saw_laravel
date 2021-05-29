@@ -35,13 +35,13 @@ class PeriodController extends Controller
             $this->validate($request, [
                 'file.*'     => 'mimes:pdf|max:2000|required'
             ], [
-                'file.*.required' => 'File Harus Ada !',
+                'file.required' => 'File Harus Ada !',
                 'file.*.mimes'    =>  'File Harus Berjenis JPEG atau PDF'
             ]);
 
             $data = $request->all();
             
-            if($data['value']['0']['0'] < $data['value']['0']['1']) {
+            if($data['value']['0']['0'] <= $data['value']['0']['1']) {
                 $data['value']['0'] = $data['value']['0']['1'] + "0.25" ; 
             } else {
                 $data['value']['0'] = $data['value']['0']['1'];

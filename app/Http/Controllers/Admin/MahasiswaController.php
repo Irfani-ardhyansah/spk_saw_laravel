@@ -54,7 +54,7 @@ class MahasiswaController extends Controller
         $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->get();
         $now = Carbon::now();
         $pdf = PDF::loadview('admin.mahasiswa.mahasiswa_pdf', compact('mahasiswas', 'now'));
-        return $pdf->download('Data Mahasiswa Tahun '.$now->year);
+        return $pdf->download('Data Mahasiswa Tahun '.$now->year.'.pdf');
     }
 
     public function detail($id)
@@ -113,7 +113,7 @@ class MahasiswaController extends Controller
                         Mahasiswa::create([
                             'user_id'   => $user->id,
                             'name'      => $collection[$row][3],
-                            'prodi'     => $collection[$row][4],
+                            'prodi_id'  => Prodi::where('name', $collection[$row][4])->first()->id,
                             'semester'  => $collection[$row][5],
                             'address'   => $collection[$row][6],
                             'gender'    => $collection[$row][7],
@@ -122,6 +122,8 @@ class MahasiswaController extends Controller
                         ]);
                         return redirect()->back()->with(['success' => 'Berhasil Upload Excel!']);
                     }catch(\Exception $e) {
+                        $user1 = User::findOrFail($user->id);
+                        $user1->delete();
                         return redirect()->back()->with(['error' => $e->getMessage()]);
                     }
                 }

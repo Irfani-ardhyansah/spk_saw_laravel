@@ -12,7 +12,7 @@
     </div>
 
         <form action="{{ route('admin.mahasiswa.search') }}" class="form-inline" method="GET">
-            <a href="{{ route('admin.mahasiswa.pdf') }}" class="btn-sm btn-outline-danger"><i class="ion ion-document"></i></a>
+            <a href="{{ route('admin.mahasiswa.pdf') }}" class="btn-sm btn-outline-danger" target="_blank"><i class="ion ion-document"></i></a>
         <div class="row ml-auto">
             <div class="col-2 mt-1">
                 <div class="form-group">
@@ -49,7 +49,7 @@
                                     <th>Action</th>
                                 </thead>
                             </tr>
-                        @foreach($mahasiswas as $row)
+                        @forelse($mahasiswas as $row)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$row->user->npm}}</td>
@@ -62,7 +62,11 @@
                                     <a href="#" class="btn btn-danger btn-sm mahasiswa-delete" mahasiswa_id="{{ $row->id }}" mahasiswa="{{ $row->name }}">Delete</a>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                        <td colspan="7" style="text-align:center;">Tidak Ada Data</td>
+                        </tr>
+                        @endforelse
                     </table>
                     {{ $mahasiswas->links() }}
                 </div>

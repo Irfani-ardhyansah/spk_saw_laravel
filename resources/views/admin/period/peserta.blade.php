@@ -76,7 +76,7 @@
             swal({
                 backdrop:false,
                 title: "Yakin ?",
-                text: "Menghapus Data Dengan Nama " + peserta_name + " ?",
+                text: "Menghapus Data Dengan Nama " + peserta_name + " Dari Beasiswa ?",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,

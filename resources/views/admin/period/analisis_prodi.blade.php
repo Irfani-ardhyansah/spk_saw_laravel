@@ -53,19 +53,24 @@
                             </tr>
                         </thead>
                         {{-- Mengambil Data Mahasiswa --}}
-                        @foreach($mahasiswas as $row)
+                        @forelse($mahasiswas as $row)
                         <tr>
                             <td>{{$loop->iteration}}.</td>
                             <td>{{$row->user->npm}}</td>
                             <td>{{$row->name}}</td>
                             {{-- Mengambil Nilai Mahasiswa --}}
                             @foreach($values->where('mahasiswa_id', $row->id) as $value)
+                                {{-- Melakukan pengecekan criteria --}}
                                 @if($value->criteria->status == 1)
                                     <td>{{ $value->value }}</td>
                                 @endif
                             @endforeach
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center">Tidak Ada Data!</td>
+                        </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>
@@ -89,18 +94,25 @@
                                 @endforeach
                             </tr>
                         </thead>
-                        @foreach($mahasiswas as $row)
+                        @forelse($mahasiswas as $row)
                         <tr>
                             <td>{{$loop->iteration}}.</td>
                             <td>{{$row->user->npm}}</td>
                             <td>{{$row->name}}</td>
                             {{-- Mengambil Nilai Mahasiswa --}}                            
-                            @foreach($row->values as $value)
-                                <td>{{ normalisasi_prodi($values, $value) }}</td>
+                            @foreach($values->where('mahasiswa_id', $row->id) as $value)
+                                {{-- Melakukan pengecekan kriteria --}}
+                                @if($value->criteria->status == 1)
+                                    {{-- Melakukan penghitungan normalisasi dengan memanggil helper normalisasi_prodi --}}
+                                    <td>{{ normalisasi_prodi($values, $value) }}</td>
+                                @endif
                             @endforeach
                         </tr>
-                        @endforeach
-
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center">Tidak Ada Data!</td>
+                        </tr>
+                        @endforelse
                     </table>
                 </div>
             </div>
@@ -120,19 +132,28 @@
                             <th>Prodi</th>
                             <th>Nilai</th>
                         </tr>
+                        {{-- Melakukan analisis dengan memanggil helper --}}
                         @php($hasil = analisis_prodi($values, $mahasiswas, $criterias_count))
+                        {{-- Mendefinisi variabel --}}
                         @php($no = 0)
+                        {{-- melakukan sort data secara asc --}}
                         @php(arsort($hasil))
-                        @foreach($hasil as $name => $value)
+                        {{-- Memanggil data dari variabel $hasil --}}
+                        @forelse($hasil as $name => $value)
                             @php($no++)
                             <tr id="tr{{ $no }}">
+                                {{-- memecah array pada variabel name --}}
                                 @php($prodi = explode(" - ",$name) )
                                 <td>{{ $prodi[0] }}</td>
                                 <td>{{$prodi[1]}}</td>
                                 <td>{{$prodi[2]}}</td>
                                 <td>{{ $value }}</td>
                             </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center">Tidak ada Data!</td>
+                        </tr>
+                        @endforelse
 
                     </table>
                 </div>

@@ -11,6 +11,11 @@
   </div>
 </div>
 <h2 class="section-title">Form Daftar </h2>
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+  {{ $errors->first() }}
+</div>
+@endif 
 <div class="section-body">
     <div class="card">
         <div class="card-body width">
@@ -41,7 +46,10 @@
                         </select>
                       </div>
                       <div class="col-4">
-                        <input type="file" name="file[]"  multiple>
+                        <input type="file" name="file[]" class="{{ $errors->has('file.*') ? 'has-error' : '' }}" required multiple>
+                        <div class="invalid-feedback">
+                            {{ $errors->first() }}
+                        </div>
                       </div>
                     @else
                       <div class="col-4">
@@ -52,11 +60,11 @@
                           @endforeach
                         </select>
                       </div>
-                      <div class="form-group col-4  {{ $errors->has('file') ? 'has-error' : '' }}">
-                        <input type="file" name="file[]"  multiple>
+                      <div class="form-group col-4">
+                        <input type="file" name="file[]" class="{{ $errors->has('file.*') ? 'has-error' : '' }}" required multiple>
                         <div class="invalid-feedback">
-                          {{ $errors->first('file') }}
-                      </div>
+                            {{ $errors->first() }}
+                        </div>
                       </div>
                     @endif
                   </div>

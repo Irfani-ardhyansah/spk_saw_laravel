@@ -24,7 +24,7 @@
                                     <th>Action</th>
                                 </thead>
                             </tr>
-                        @foreach($prodis as $row)
+                        @forelse($prodis as $row)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$row->name}}</td>
@@ -34,7 +34,11 @@
                                 <a href="#" class="btn btn-danger btn-sm prodi-delete" prodi_id="{{ $row->id }}" prodi="{{ $row->name }}">Delete</a>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="4" style="text-align:center;">Tidak Ada Data</td>
+                        </tr>
+                        @endforelse
                     </table>
                     {{ $prodis->links() }}
                 </div>
