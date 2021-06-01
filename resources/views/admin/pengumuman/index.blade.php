@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="form-group col-6 {{ $errors->has('period_id') ? 'has-error' : '' }}">
                             <label>Periode</label>
-                            <select class="form-control selectric" name="period_id">
+                            <select class="form-control selectric {{ $errors->has('period_id')  ? 'is-invalid' : ''}}" name="period_id">
                                 <option selected>-</option>
                                 @foreach($periods as $row)
                                 <option value="{{$row->id}}">{{$row->start}}</option>

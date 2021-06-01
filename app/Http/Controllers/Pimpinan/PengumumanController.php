@@ -20,8 +20,13 @@ class PengumumanController extends Controller
         if($request->isMethod('post')) {
             //mengambil data lalu mengupdate pada kolom status
             $data = $request->all();
-            Anouncement::where(['id' => $id])->update(['status'=>$data['status']]);
-            return redirect()->back()->with(['success' => 'Status Pengumuman Berhasil Diganti!']);
+            if($data['status'] == '-') 
+            {
+                return redirect()->back()->with(['error' => 'Status Harus Diisi!']);
+            } else {
+                Anouncement::where(['id' => $id])->update(['status'=>$data['status']]);
+                return redirect()->back()->with(['success' => 'Status Pengumuman Berhasil Diganti!']);
+            }
         }
     }
 }

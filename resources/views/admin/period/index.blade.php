@@ -118,7 +118,7 @@
                     <div class="row">
                         <div class="form-group col-6 {{ $errors->has('quota') ? 'has-error' : '' }}">
                             <label>Kuota</label>
-                            <input type="number" class="form-control" name="quota">
+                            <input type="number" class="form-control  {{ $errors->has('quota') ? 'is-invalid' : '' }}" name="quota" value="{{ old('quota') }}">
                             <div class="invalid-feedback">
                                 {{ $errors->first('quota') }}
                             </div>
@@ -136,7 +136,7 @@
                     <div class="row">
                         <div class="form-group col-6 {{ $errors->has('file') ? 'has-error' : '' }}">
                             <label for="">File</label>
-                            <input type="file" class="form-control-file" name="file">
+                            <input type="file" class="form-control-file  {{ $errors->has('file') ? 'is-invalid' : '' }}" name="file">
                             <div class="invalid-feedback">
                                 {{ $errors->first('file') }}
                             </div>

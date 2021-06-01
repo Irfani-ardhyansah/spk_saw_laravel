@@ -18,13 +18,15 @@ class AdminController extends Controller
     {
         try {
             $this->validate($request, [
-                'name'      =>  'required',
-                'email'     =>  'required',
+                'name'      =>  'required|uniuqe:admins',
+                'email'     =>  'required|unique:admins',
                 'password'  =>  'required|min:6|confirmed',
                 'role'      =>  'required|between: 1 , 2'
             ], [
+                'name.unique'   =>  'Nama Harus unik!',
                 'name.required'     =>  'Nama Harus Diisi!',
                 'email.required'    =>  'Email Harus Diisi!',
+                'email.unique'  =>  'Email Harus Unik!',
                 'password.required' =>  'Password Harus Diisi!',
                 'password.min'      =>  'Password Minimal 6 Digit!',
                 'password.confirmed'=>  'Confirmasi Password Harus Sama!'

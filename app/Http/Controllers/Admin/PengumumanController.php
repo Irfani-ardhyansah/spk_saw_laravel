@@ -24,11 +24,12 @@ class PengumumanController extends Controller
             //memvalidasi data
             $this->validate($request,[
                 'period_id' => 'unique:anouncements',
-                'file'      =>  'mimes:pdf|max:20000'
+                'file'      =>  'mimes:pdf|max:2000|required'
             ], [
                 'period_id.unique'  =>  'Periode Sudah Memiliki Pengumuman!',
                 'file.mimes'        =>  'File Harus Bertipe PDF',
-                'file.max'          =>  'File Maksimal 2MB!'
+                'file.max'          =>  'File Maksimal 2MB!',
+                'file.required'     =>  'File Harus Diisi!'
             ]);
 
             $period = Period::where('id', $request->period_id)->first();

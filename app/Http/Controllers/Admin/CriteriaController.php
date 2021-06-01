@@ -111,23 +111,29 @@ class CriteriaController extends Controller
         $criteria_status = Criteria::where('id', $id)->pluck('status')->first();
 
         if($request->isMethod('post')) {
-            $this->validate($request, [
-                'code'          => 'required|unique:criterias,code,'.$id,
-            ], [
-                'code.unique'   =>  'Kode Harus Unik!',
-            ]);  
-            //melakukan update berdasarkan id data yang dipilih
-            $data = $request->all();
-            if($criteria_status != 0) {
-                if(($limit - $weight) + $data['weight'] <= '1') { 
-                    Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'weight'=>$data['weight'], 'character'=>$data['character'], 'information'=>$data['information']]);
-                    return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+            try {
+                $this->validate($request, [
+                    'code'          => 'required|unique:criterias,code,'.$id,
+                    'name'          => 'required|unique:criterias,name,'.$id,
+                ], [
+                    'code.unique'   =>  'Kode Harus Unik!',
+                    'name.unique'   =>  'Nama Harus Unik!',
+                ]);  
+                //melakukan update berdasarkan id data yang dipilih
+                $data = $request->all();
+                if($criteria_status != 0) {
+                    if(($limit - $weight) + $data['weight'] <= '1') { 
+                        Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'weight'=>$data['weight'], 'character'=>$data['character'], 'information'=>$data['information']]);
+                        return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+                    } else {
+                        return redirect()->back()->with(['error' => 'Weight total sudah Melebihi Batas 1.0']);
+                    }
                 } else {
-                    return redirect()->back()->with(['error' => 'Weight total sudah Melebihi Batas 1.0']);
+                    Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'information'=>$data['information']]);
+                    return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
                 }
-            } else {
-                Criteria::where(['id'=>$id])->update(['code'=>$data['code'], 'name'=>$data['name'], 'information'=>$data['information']]);
-                return redirect()->back()->with(['success' => 'Update ' . $request->name . ' Berhasil!']);
+            } catch(\Exception $e) {
+                return redirect()->back()->with(['error' => $e->getMessage()]);
             }
         }
     }

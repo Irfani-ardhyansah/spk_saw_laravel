@@ -37,9 +37,20 @@ class WeightController extends Controller
     public function update(Request $request, $id) 
     {
         if($request->isMethod('post')) { //jika method post
-            $data = $request->all(); //menyimpan semua inputan dari view
-            Weight::where(['id'=>$id])->update(['information'=>$data['information'], 'value'=>$data['value']]); //melakukan update pada databse
-            return redirect()->back()->with(['success' => 'Update ' . $request->information . ' Berhasil!']);
+            try {
+                $this->validate($request, [
+                    'information'          => 'required|unique:weights,information,'.$id,
+                    'value'          => 'required|unique:weights,value,'.$id,
+                ], [
+                    'information.unique'   =>  'Keterangan Tidak Boleh Sama!',
+                    'value.unique'   =>  'Nilai Tidak Boleh Sama!',
+                ]);  
+                $data = $request->all(); //menyimpan semua inputan dari view
+                Weight::where(['id'=>$id])->update(['information'=>$data['information'], 'value'=>$data['value']]); //melakukan update pada databse
+                return redirect()->back()->with(['success' => 'Update ' . $request->information . ' Berhasil!']);
+            } catch(\Exception $e) {
+                return redirect()->back()->with(['error' => $e->getMessage()]);
+            }
         }
     }
 
