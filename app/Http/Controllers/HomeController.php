@@ -23,16 +23,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+  /*  public function index()
     {
         return view('home');
-    }
+    } */
 
+    // Method memanggil halaman ganti password
     public function changePasswordForm()
     {
         return view('user.profile.changePassword');
     }
 
+    // method mengganti password
     public function changePassword(Request $request)
     {
         if (!(Hash::check($request->current_password, Auth::user()->password))) {

@@ -11,7 +11,6 @@ use Carbon\Carbon;
 use Importer;
 use \PDF;
 use File;
-use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Crypt;
 
 class MahasiswaController extends Controller
@@ -24,17 +23,6 @@ class MahasiswaController extends Controller
         $prodis = Prodi::orderBy('name', 'ASC')->get();
         return view('admin.mahasiswa.index', compact('mahasiswas', 'prodis'));
     }
-
-    // public function getData()
-    // {
-    //     $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->get();
-    //     return datatables($mahasiswas)->addColumn('action', function ($mahasiswas) {
-    //         return '<a href="/admin/mahasiswa/detail/'.$mahasiswas->id.'" class="btn btn-info btn-sm">Info</a>
-    //                 <button type="button" class="button-delete btn btn-danger btn-sm" data-remote="'.$mahasiswas->id.'" mahasiswa="'.$mahasiswas->name.'">Delete</button>';
-    //     })->addColumn('npm', function (Mahasiswa $mahasiswa) {
-    //         return $mahasiswa->user->npm;
-    //     })->addIndexColumn()->toJson();
-    // }
 
     public function search(Request $request) 
     {

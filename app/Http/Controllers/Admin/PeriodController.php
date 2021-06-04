@@ -26,8 +26,8 @@ class PeriodController extends Controller
         try {
             //memvalidasi inputan dari view
             $this->validate($request, [
-                'start'  => 'required|unique:periods,end',
-                'end'    => 'required|unique:periods,start',
+                'start'  => 'required|unique:periods,start',
+                'end'    => 'required|unique:periods,end',
                 'file'   => 'required|mimes:pdf|max:2000',
                 'status' => 'required',
                 'quota'  => 'required|numeric'
