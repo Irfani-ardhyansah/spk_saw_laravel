@@ -10,8 +10,25 @@
 			font-size: 9pt;
 		}
 	</style>
+    
+    <table align="center">
+        <tr>
+            <td><img src="{{ public_path('assets/img/logo.jpg') }}" width="80" height="80"></td>
+            <td><center>
+                <font size="3"> KEMENTERIAN RISET, TEKNOLOGI, DAN PENDIDIKAN TINGGI</font><br>
+                <font size="4"> <b>POLITEKNIK NEGERI MADIUN</b></font><br>
+                <font size="3"> Jalan Serayu Nomor 84 Madiun KodePos 63133 </font><br>
+                <font size="3"> Telepon +62 351 452970 Faksimile +62 351 452960 </font><br>
+                <font size="3"> www.pnm.ac.id </font><br>
+            </center></td>
+        </tr>
+        <tr>
+            <td colspan="2"><hr style="border: 1px solid;"></td>
+        </tr>
+    </table>
+
 	<center>
-		<h5>Hasil Hitung SAW</h4>
+		<h1>Hasil Hitung SAW</h4>
 	</center>
 
     <table align="center" style="border-collapse: collapse;">

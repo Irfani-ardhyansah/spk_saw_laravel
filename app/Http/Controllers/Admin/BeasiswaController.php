@@ -64,28 +64,31 @@ class BeasiswaController extends Controller
 
     public function kuota($id)
     {
+        $beasiswa = Period::where('id', $id)->first();
         $prodis = Prodi::orderBy('name', 'ASC')->get();
         $user_period = User_period::where('period_id', $id)->get();
         $period = Period::findOrFail($id);
         //Menghitung Prodi Yang terdaftar
         $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->whereIn('prodi_id', $prodis->pluck('id'))->get();
         // dd($mahasiswas->where('prodi_id', 10)->count());
-        return view('admin.period.kuota', compact('prodis', 'mahasiswas', 'period', 'id'));
+        return view('admin.period.kuota', compact('prodis', 'mahasiswas', 'period', 'id', 'beasiswa'));
     }
 
     public function analisisProdi($id, $prodi_id)
     {
+        $beasiswa = Period::where('id', $id)->first();
         $prodi = Prodi::where('id', $prodi_id)->orderBy('name', 'ASC')->first();
         $user_period = User_period::where('period_id', $id)->get();
         $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->where('prodi_id', $prodi_id)->get();
         $criterias = Criteria::where('status',1)->get();
         $criterias_count = Criteria::where('status',1)->get()->count();
         $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
-        return view('admin.period.analisis_prodi', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'prodi_id'));
+        return view('admin.period.analisis_prodi', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'prodi_id', 'beasiswa'));
     }
 
     public function analisisFull($id)
     {
+        $beasiswa = Period::where('id', $id)->first();
         $prodi = Prodi::orderBy('name', 'ASC')->get();
         $user_period = User_period::where('period_id', $id)->get();
         $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->get();
@@ -94,7 +97,7 @@ class BeasiswaController extends Controller
         $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
         $period = Period::findOrFail($id);
 
-        return view('admin.period.analisis_full', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'period', 'values', 'id'));
+        return view('admin.period.analisis_full', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'period', 'values', 'id', 'beasiswa'));
     }
 
     public function analisis_cetak_pdf($id)

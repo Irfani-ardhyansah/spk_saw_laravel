@@ -3,8 +3,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Analisis</h1>
-        {{-- {{ session()->get('kuota_'.$prodi->name) }} --}}
+        <h1>Analisis Periode {{ date('d', strtotime($beasiswa->start)) }} {{ date('F', strtotime($beasiswa->start)) }} {{ date('Y', strtotime($beasiswa->start)) }} s/d {{ date('d', strtotime($beasiswa->end)) }} {{ date('F', strtotime($beasiswa->end)) }} {{ date('Y', strtotime($beasiswa->end)) }}</h1>
     </div>
 
 <h2 class="section-title">Prodi {{ $prodi->name }} </h2>
