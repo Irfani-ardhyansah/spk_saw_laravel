@@ -22,7 +22,7 @@ class CriteriasTableSeeder extends Seeder
         ]);
         Criteria::create([
             'code' => 'C2',
-            'name' => 'Gaji Orang Tua',
+            'name' => 'Total Penghasilan Orang Tua',
             'weight' => 0.23,
             'character'  =>  'Cost',
             'information'  =>  'Melampirkan Scan Keterangan Penghasilan Orang Tua!',
@@ -37,12 +37,12 @@ class CriteriasTableSeeder extends Seeder
             'status'  =>  1,
         ]);
         Criteria::create([
-                'code' => 'C4',
-                'name' => 'Prestasi / Organisasi',
-                'weight' => 0.25,
-                'character'  =>  'Benefit',
-                'information'  =>  'Melampirkan Scan Sertifikat Prestasi atau Keanggotaan Organisasi!',
-                'status'  =>  1,
+            'code' => 'C4',
+            'name' => 'Prestasi / Organisasi',
+            'weight' => 0.25,
+            'character'  =>  'Benefit',
+            'information'  =>  'Melampirkan Scan Sertifikat Prestasi atau Keanggotaan Organisasi!',
+            'status'  =>  1,
         ]);
         Criteria::create([
             'code' => 'C5',

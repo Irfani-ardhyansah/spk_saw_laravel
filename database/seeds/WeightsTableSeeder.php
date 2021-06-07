@@ -37,27 +37,27 @@ class WeightsTableSeeder extends Seeder
 
         // Bobot Gaji Orang Tua
         Weight::create([
-            'criteria_id' => Criteria::where('name', 'Gaji Orang Tua')->first()->id,
+            'criteria_id' => Criteria::where('name', 'Total Penghasilan Orang Tua')->first()->id,
             'information' => 'Gaji < 500.000',
             'value' => 1,
         ]);
         Weight::create([
-            'criteria_id' => Criteria::where('name', 'Gaji Orang Tua')->first()->id,
+            'criteria_id' => Criteria::where('name', 'Total Penghasilan Orang Tua')->first()->id,
             'information' => '500.000 < Gaji <= 2.000.000',
             'value' => 0.75,
         ]);
         Weight::create([
-            'criteria_id' => Criteria::where('name', 'Gaji Orang Tua')->first()->id,
+            'criteria_id' => Criteria::where('name', 'Total Penghasilan Orang Tua')->first()->id,
             'information' => '2.000.000 < Gaji <= 4.000.000',
             'value' => 0.5,
         ]);
         Weight::create([
-            'criteria_id' => Criteria::where('name', 'Gaji Orang Tua')->first()->id,
+            'criteria_id' => Criteria::where('name', 'Total Penghasilan Orang Tua')->first()->id,
             'information' => '4.000.000 < Gaji <= 6.000.000',
             'value' => 0.25,
         ]);
         Weight::create([
-            'criteria_id' => Criteria::where('name', 'Gaji Orang Tua')->first()->id,
+            'criteria_id' => Criteria::where('name', 'Total Penghasilan Orang Tua')->first()->id,
             'information' => 'Gaji > 6.000.000',
             'value' => 0,
         ]);

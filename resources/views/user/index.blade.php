@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="section-header">
-  <h1>{{$beasiswa->title}}</h1>
+  @if($beasiswa != null) 
+    <h1>{{$beasiswa->title}}</h1>
+  @else
+    <h1>Tidak Ada Data Dashboard</h1>
+  @endif
   <div class="section-header-breadcrumb">
   <div class="breadcrumb-item active"><a href="#">Home</a></div>
   </div>
@@ -12,7 +16,11 @@
     <div class="card">
       <div class="card-body">
         <p>
-          {!! $beasiswa->content !!}
+          @if($beasiswa != null) 
+            {!! $beasiswa->content !!}
+          @else
+            Tidak Ada Data
+          @endif
         </p>
       </div>
     </div>
