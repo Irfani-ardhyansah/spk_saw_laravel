@@ -18,7 +18,7 @@ class AdminController extends Controller
     {
         try {
             $this->validate($request, [
-                'name'      =>  'required|uniuqe:admins',
+                'name'      =>  'required|unique:admins',
                 'email'     =>  'required|unique:admins',
                 'password'  =>  'required|min:6|confirmed',
                 'role'      =>  'required|between: 1 , 2'

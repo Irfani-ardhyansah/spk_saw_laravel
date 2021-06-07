@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jun 2021 pada 14.05
+-- Waktu pembuatan: 07 Jun 2021 pada 08.13
 -- Versi server: 10.1.35-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -63,6 +63,13 @@ CREATE TABLE `anouncements` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `anouncements`
+--
+
+INSERT INTO `anouncements` (`id`, `admin_id`, `period_id`, `status`, `file`, `created_at`, `updated_at`) VALUES
+(1, 1, 23, 1, 'Hasil Beasiswa.pdf', '2021-06-01 07:32:05', '2021-06-01 07:41:07');
+
 -- --------------------------------------------------------
 
 --
@@ -87,7 +94,7 @@ CREATE TABLE `criterias` (
 --
 
 INSERT INTO `criterias` (`id`, `admin_id`, `code`, `name`, `weight`, `character`, `information`, `status`, `created_at`, `updated_at`) VALUES
-(2, 1, 'C1', 'IPK', 0.3, 'Benefit', 'Melampirkan Scan Transkrip Nilai.', 1, '2021-02-04 09:18:52', '2021-05-23 10:29:38'),
+(2, 1, 'C1', 'IPK', 0.3, 'Benefit', 'Melampirkan Scan Transkrip Nilai.', 1, '2021-02-04 09:18:52', '2021-06-01 13:45:23'),
 (3, 1, 'C2', 'Gaji Orang Tua', 0.2, 'Cost', 'Melampirkan Scan Keterangan Penghasilan Orang Tua.', 1, '2021-02-09 06:48:11', '2021-05-23 10:29:54'),
 (5, 1, 'C3', 'Tanggungan Orang Tua', 0.2, 'Benefit', 'Melampirkan Scan Kartu Keluarga.', 1, '2021-02-18 03:10:53', '2021-05-23 10:30:05'),
 (9, 1, 'C5', 'Surat Permohonan', NULL, '-', 'Surat Permohonan Ditujukan Kepada Wadir 3 Berupa Tulis Tangan. File Harus JPEG / PDF.', 0, '2021-02-25 04:21:39', '2021-05-23 10:28:47'),
@@ -239,7 +246,7 @@ CREATE TABLE `periods` (
 --
 
 INSERT INTO `periods` (`id`, `admin_id`, `start`, `end`, `quota`, `file`, `status`, `created_at`, `updated_at`) VALUES
-(23, 1, '2021-05-23', '2021-05-31', 97, 'Pengumuman Pendaftaran PPA 2021.pdf', 1, '2021-05-23 10:10:43', '2021-05-23 10:10:43');
+(23, 1, '2021-05-23', '2021-05-31', 97, 'Pengumuman Pendaftaran PPA 2021.pdf', 1, '2021-05-23 10:10:43', '2021-06-01 07:09:59');
 
 -- --------------------------------------------------------
 
@@ -291,7 +298,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `npm`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(13, '183307009', 'user@ymail.com', '$2y$10$WcxqXJIL/dd79WSLjpevTepiBcgUopwHdTtB26U1Pt/nyJhpCZzUu', 'N71lERradTok7RNIpjTTnF0BPOTBebaFjR8m5LAKXa8kjxDAS2S6lAqiQftz', '2021-02-04 06:07:33', '2021-02-16 08:31:13'),
+(13, '183307009', 'user@ymail.com', '$2y$10$WcxqXJIL/dd79WSLjpevTepiBcgUopwHdTtB26U1Pt/nyJhpCZzUu', 'RikKJ9Tyjz6DtuuO5PChXSPsD65qLz89hDhN6FnTTj2f8979OTrB0tLzd23N', '2021-02-04 06:07:33', '2021-02-16 08:31:13'),
 (14, '183307008', 'user2@ymail.com', '$2y$10$uj7iE2qW4YHIZzCMDvZM0u3e.y1KxYx4sAq9Urt8XmzIJZ1RaBfI6', 'wTDuF29xRqJseuXGnABZ1GYVqUG2np3nWiVcSmUDoSO7IwA1VK4PKRvFIpNR', '2021-02-20 09:14:24', '2021-02-20 09:14:24'),
 (15, '183307004', 'user@gmail.com', '$2y$10$54VfbmcnoMW4QhO.ssQI1ud.ZXvDrFE3gCUPj8rJD4O9ml9q39hq6', 'nIIVQbzQtkRtnRoDazk0TC6NEwoq5bDyOeCUtxSYy0C5q23cUk0hhVY0e6S2', '2021-04-05 05:08:31', '2021-04-22 03:14:06'),
 (16, '183307001', 'James@gmail.com', '$2y$10$jk9R3NR3KyORfz.fYbSKYOh/rzynLYW0fX8ZZuVIFQHXqVhlvFZ/2', 'XfMtLyxgmW6x1I3rq6Mbw0FDNqS9dtd1p0ZmxQ4D8EhVVRg1LUa0KQ15T0uj', '2021-04-11 11:26:54', '2021-04-11 11:26:54'),
@@ -300,7 +307,7 @@ INSERT INTO `users` (`id`, `npm`, `email`, `password`, `remember_token`, `create
 (19, '183307005', 'user5@spk.com', '$2y$10$rarvDJAkmr1Wwr.zeMsbeOTKDwbaTpPw.e4QB4RBTxdVN83EbM2lq', 'ZwEMsUyCtmdHxxjgxnKFlonOddfwBiLWPaI5mBw2tU7KGfR9LSZ8ztRrn7zs', '2021-04-24 05:16:01', '2021-04-24 05:16:01'),
 (20, '183307006', 'user6@gmail.com', '$2y$10$xrPjVz.mOy3XdJTNw7QdbO8fHadeoCMGQQClW4TOf3QKu98qaoLUq', 'fQeutDRk0zCDAwvYfqNkAMFFoakJlPi4PYoDQIJ6sDMnCWTw01McGfrcNwmS', '2021-04-27 13:40:00', '2021-04-27 13:40:00'),
 (21, '183307007', 'user7@gmail.com', '$2y$10$OrwK6BDb9z1i4xhmxxQdj.bD9pueKL03/hM.uGHSmJV.7.V5OXPAW', 'X6j3krEQamn5DqBX04N6spz1n84bcKaZdhdNEQ8nOSCP4ZV4Eomrr25sLO4y', '2021-04-27 13:43:34', '2021-04-27 13:43:34'),
-(22, '183307010', 'user10@gmail.com', '$2y$10$SRrqXhdySK1gdF0lvNZRE.0rZ/eQ9YYc7pZovYlgSzPJDmGePH0/.', 'Di6bLC9odoMsqXNUD2EugzrJK05wZYStomCssOaVfrdMPfTUNncTo2XT8pTT', '2021-04-28 14:28:53', '2021-04-28 14:28:53'),
+(22, '183307010', 'user10@gmail.com', '$2y$10$SRrqXhdySK1gdF0lvNZRE.0rZ/eQ9YYc7pZovYlgSzPJDmGePH0/.', 'gzN51VkX6Z15zAE7GzTRprZovFurJcK9Omgxzgq1D336uJxA9eOcrpeNE28h', '2021-04-28 14:28:53', '2021-04-28 14:28:53'),
 (23, '183307012', 'user11@gmail.com', '$2y$10$rL.3dFtwLPrhgQQTGq/UIeLEcb8E1MY1AaTK2zwMVZIOeEj0AU0E.', NULL, '2021-05-06 06:22:22', '2021-05-06 06:22:22'),
 (24, '183307011', 'user12@gmail.com', '$2y$10$Uji9LDwyLyWkN/ou9DJjKuadIL7WwV4DFVSD0xg5XXj47ldbd.7iy', 'wo8ZopNJvBJsSKaKTQaCawU401nCcrZNv4ObCGuooTb7fxp0RpIGrZ2LHAyL', '2021-05-06 06:24:17', '2021-05-06 06:24:17');
 
@@ -583,7 +590,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT untuk tabel `anouncements`
 --
 ALTER TABLE `anouncements`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `criterias`
