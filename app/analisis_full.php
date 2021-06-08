@@ -16,18 +16,17 @@ function analisis_full($prod, $values, $mahasiswas, $criterias_count)
                 } else {
                     $maximum = (max($values->where('criteria_id', $value->criteria_id)->whereIn('mahasiswa_id', $mahasiswas->where('prodi_id', $prod->id)->pluck('id'))->pluck('value')->toArray()));
                     $benefit = $value->value / $maximum;
-                    $nilai = round($benefit, 3) * $value->criteria->weight;              
+                    $nilai = round($benefit, 3) * $value->criteria->weight;   
                     array_push($hasil,round($nilai, 3));
                 }
             }
         }
     }
 
-    // dd($hasil);
-
     $nama = array();
     $np = array();
     foreach($mahasiswas->where('prodi_id', $prod->id) as $row){
+    // dd($mahasiswas->where('prodi_id', '1'));
         array_push($nama, $row->user->npm);
         array_push($nama, $row->name);
         array_push($nama, $row->prodi->name);
@@ -44,6 +43,7 @@ function analisis_full($prod, $values, $mahasiswas, $criterias_count)
         $hasil_pembobotan = array_sum($r);
         array_push($nilai,$hasil_pembobotan);
     }
+    // dd($nilai);
     $hasil = array_combine($np,$nilai);
 
     return $hasil;
