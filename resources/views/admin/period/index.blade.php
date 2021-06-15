@@ -64,7 +64,7 @@
                                 
                                 <br>
                                 
-                                <a href="/admin/periode/{{$row->id}}/analisis" class="btn btn-outline-info btn-sm mt-2">Analisis</a>
+                                {{-- <a href="/admin/periode/{{$row->id}}/analisis" class="btn btn-outline-info btn-sm mt-2">Analisis</a> --}}
                                 <a href="/admin/periode/{{ $row->id }}/kuota" class="btn btn-outline-secondary btn-sm mt-2">Kuota</a>
                                 <button type="button" class="btn btn-outline-warning btn-sm mt-2" data-toggle="modal" data-target="#modalGantiStatus-{{ $row->id }}">Ganti Status</button>
                             </td>
@@ -156,32 +156,6 @@
         </div>
     </div>
 </div>
-
-{{-- Modal Pop Up PDF --}}
-{{-- @foreach($periods as $row)
-<div class="modal fade" id="modalShowPDF-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Pengumuman Beasiswa</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-    
-            <div class="modal-body">
-                <iframe src="localhost:8000/periode/{{$row->start .'_'.$row->end }}/pengumuman/{{ $row->file }}" width="90%" height="500">
-                </iframe>
-            </div>
-            
-            <div class="modal-footer">
-            </div>
-
-        </div>
-    </div>
-</div>
-@endforeach --}}
 
 {{-- Modal Edit Periode --}}
 @foreach($periods as $row)
