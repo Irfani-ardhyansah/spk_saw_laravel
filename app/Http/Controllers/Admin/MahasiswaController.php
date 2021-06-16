@@ -20,7 +20,8 @@ class MahasiswaController extends Controller
     public function index()
     {
         // //Mengambil Data Mahasiswa dari DB
-        $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->paginate(10);
+        // $mahasiswas = Mahasiswa::orderBy('semester', 'ASC')->paginate(10);
+        $mahasiswas = User::orderBy('npm', 'ASC')->paginate(10);
         $prodis = Prodi::orderBy('name', 'ASC')->get();
         return view('admin.mahasiswa.index', compact('mahasiswas', 'prodis'));
     }

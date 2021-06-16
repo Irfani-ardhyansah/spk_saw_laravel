@@ -52,11 +52,11 @@
                         @forelse($mahasiswas as $row)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$row->user->npm}}</td>
-                            <td>{{$row->name}}</td>
-                            <td>{{$row->phone}}</td>
-                            <td>{{$row->semester}}</td>
-                            <td>{{ $row->prodi->name }}</td>
+                            <td>{{$row->npm}}</td>
+                            <td>{{$row->mahasiswa->name}}</td>
+                            <td>{{$row->mahasiswa->phone}}</td>
+                            <td>{{$row->mahasiswa->semester}}</td>
+                            <td>{{ $row->mahasiswa->prodi->name }}</td>
                             <td>
                                     <a href="{{ route('admin.mahasiswa.detail', ['id' => Crypt::encrypt($row->id)]) }}" class="btn btn-info btn-sm">Info</a>
                                     <a href="#" class="btn btn-danger btn-sm mahasiswa-delete" mahasiswa_id="{{ $row->id }}" mahasiswa="{{ $row->name }}">Delete</a>
