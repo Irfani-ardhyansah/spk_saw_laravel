@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/summernote/dist/summernote-bs4.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/owl.carousel/dist/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/owl.carousel/dist/assets/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{ secure_asset('node_modules/ionicons201/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{ secure_asset('node_modules/ionicons201/css/ionicons.css')}}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/assets/css/jquery-datatables.min.css')}}">
