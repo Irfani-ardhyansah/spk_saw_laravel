@@ -11,14 +11,15 @@
     {{-- Toaster --}}
     <link rel="stylesheet" href="{{ secure_asset('assets/css/toaster.min.css')}}">
 
-
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/summernote/dist/summernote-bs4.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/jqvmap/dist/jqvmap.min.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/summernote/dist/summernote-bs4.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/owl.carousel/dist/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/node_modules/owl.carousel/dist/assets/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{ secure_asset('node_modules/ionicons201/css/ionicons.css')}}">
+    {{-- <link rel="stylesheet" href="{{ secure_asset('node_modules/ionicons201/css/ionicons.css')}}"> --}}
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ secure_asset('/assets/css/jquery-datatables.min.css')}}">
