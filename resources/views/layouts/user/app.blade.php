@@ -6,19 +6,19 @@
   <title>Sistem Pengambilan Keputusan PPA</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('node_modules/summernote/dist/summernote-bs4.css')}}">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/node_modules/summernote/dist/summernote-bs4.css">
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{ asset('node_modules/prismjs/themes/prism.css')}}">
+  <link rel="stylesheet" href="/node_modules/prismjs/themes/prism.css">
   {{-- Toaster --}}
-  <link rel="stylesheet" href="{{ asset('assets/css/toaster.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('node_modules/ionicons201/css/ionicons.min.css')}}">  
-  <link rel="stylesheet" href="{{ asset('node_modules/selectric/public/selectric.css')}}">
+  <link rel="stylesheet" href="/assets/css/toaster.min.css">
+  <link rel="stylesheet" href="/node_modules/ionicons201/css/ionicons.min.css">  
+  <link rel="stylesheet" href="/node_modules/selectric/public/selectric.css">
   
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('node_modules/chocolat/dist/css/chocolat.css')}}">
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
-  <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
+  <link rel="stylesheet" href="/node_modules/chocolat/dist/css/chocolat.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
 </head>
 
 <body class="layout-3">
@@ -62,27 +62,27 @@
 </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('/assets/js/jquery.min.js')}}"></script>
-  <script src="{{ asset('/assets/js/popper.min.js')}}"></script>
-  <script src="{{ asset('/assets/js/bootstrap.min.js')}}"></script>
-  <script src="{{ asset('/assets/js/nicescroll.min.js')}}"></script>
-  <script src="{{ asset('/assets/js/moment.min.js')}}"></script>
-  <script src="{{ asset('node_modules/prismjs/prism.js')}}"></script>
-  <script src="{{ asset('node_modules/summernote/dist/summernote-bs4.js')}}"></script>  
-  <script src="{{ asset('node_modules/selectric/public/jquery.selectric.min.js')}}"></script>
-  <script src="{{ asset('node_modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
-  <script src="{{ asset('assets/js/stisla.js')}}"></script>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/popper.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/nicescroll.min.js"></script>
+  <script src="/assets/js/moment.min.js"></script>
+  <script src="/node_modules/prismjs/prism.js"></script>
+  <script src="/node_modules/summernote/dist/summernote-bs4.js"></script>  
+  <script src="/node_modules/selectric/public/jquery.selectric.min.js"></script>
+  <script src="/node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+  <script src="/assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
 
   <!-- Template JS File -->
-  <script src="{{ asset('assets/js/scripts.js')}}"></script>
-  <script src="{{ asset('assets/js/custom.js')}}"></script>
-  <script src="{{ asset('assets/js/page/bootstrap-modal.js')}}"></script>
+  <script src="/assets/js/scripts.js"></script>
+  <script src="/assets/js/custom.js"></script>
+  <script src="/assets/js/page/bootstrap-modal.js"></script>
     {{-- Toaster --}}
-    <script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
+    <script src="/assets/js/toastr.min.js"></script>
     @yield('footer')
     <script>
       @if(Session::has('success'))    
