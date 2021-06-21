@@ -62,11 +62,11 @@
 </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ secure_asset('/assets/js/jquery.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/popper.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/bootstrap.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/nicescroll.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/moment.min.js')}}"></script>
+  <script src="{{ secure_asset('assets/js/jquery.min.js')}}"></script>
+  <script src="{{ secure_asset('assets/js/popper.min.js')}}"></script>
+  <script src="{{ secure_asset('assets/js/bootstrap.min.js')}}"></script>
+  <script src="{{ secure_asset('assets/js/nicescroll.min.js')}}"></script>
+  <script src="{{ secure_asset('assets/js/moment.min.js')}}"></script>
   <script src="{{ secure_asset('node_modules/prismjs/prism.js')}}"></script>
   <script src="{{ secure_asset('node_modules/summernote/dist/summernote-bs4.js')}}"></script>  
   <script src="{{ secure_asset('node_modules/selectric/public/jquery.selectric.min.js')}}"></script>
@@ -82,7 +82,7 @@
   <script src="{{ secure_asset('assets/js/custom.js')}}"></script>
   <script src="{{ secure_asset('assets/js/page/bootstrap-modal.js')}}"></script>
     {{-- Toaster --}}
-    <script src="{{ secure_asset('/assets/js/toastr.min.js')}}"></script>
+    <script src="{{ secure_asset('assets/js/toastr.min.js')}}"></script>
     @yield('footer')
     <script>
       @if(Session::has('success'))    
