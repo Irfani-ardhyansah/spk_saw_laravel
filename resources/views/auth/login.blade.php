@@ -6,15 +6,15 @@
   <title>Login</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ secure_asset('assets/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{ secure_asset('node_modules/ionicons201/css/ionicons.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('node_modules/ionicons201/css/ionicons.min.css')}}">
 
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{ secure_asset('node_modules/bootstrap-social/bootstrap-social.css')}}">
+  <link rel="stylesheet" href="{{ asset('node_modules/bootstrap-social/bootstrap-social.css')}}">
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css')}}">
-  <link rel="stylesheet" href="{{ secure_asset('assets/css/components.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
 
 <body style="background-color: #404950;">
@@ -79,18 +79,18 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ secure_asset('/assets/js/jquery.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/popper.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/bootstrap.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/nicescroll.min.js')}}"></script>
-  <script src="{{ secure_asset('/assets/js/moment.min.js')}}"></script>
-  <script src="{{ secure_asset('assets/js/stisla.js')}}"></script>
+  <script src="{{ asset('/assets/js/jquery.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/popper.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/nicescroll.min.js')}}"></script>
+  <script src="{{ asset('/assets/js/moment.min.js')}}"></script>
+  <script src="{{ asset('assets/js/stisla.js')}}"></script>
 
   <!-- JS Libraies -->
 
   <!-- Template JS File -->
-  <script src="{{ secure_asset('assets/js/scripts.js')}}"></script>
-  <script src="{{ secure_asset('assets/js/custom.js')}}"></script>
+  <script src="{{ asset('assets/js/scripts.js')}}"></script>
+  <script src="{{ asset('assets/js/custom.js')}}"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){		
