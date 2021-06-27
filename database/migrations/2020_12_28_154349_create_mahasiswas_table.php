@@ -17,7 +17,6 @@ class CreateMahasiswasTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->string('prodi');
             $table->string('semester');
             $table->string('photo')->nullable();
             $table->string('address');

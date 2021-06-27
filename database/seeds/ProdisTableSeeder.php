@@ -14,39 +14,39 @@ class ProdisTableSeeder extends Seeder
     {
         Prodi::create([
             'name' => 'Mesin Otomotif',
-            'total' => 100,
+            'total' => 45,
         ]);
         Prodi::create([
             'name' => 'Teknik Komputer Kontrol',
-            'total' => 100,
+            'total' => 45,
         ]);
         Prodi::create([
             'name' => 'Teknik Listrik',
-            'total' => 100,
+            'total' => 50,
         ]);
         Prodi::create([
             'name' => 'Teknik Perkeretaapian',
-            'total' => 100,
+            'total' => 48,
         ]);
         Prodi::create([
             'name' => 'Komputer Akuntansi',
-            'total' => 100,
+            'total' => 40,
         ]);
         Prodi::create([
-            'name' => 'Akuntantsi',
-            'total' => 100,
+            'name' => 'Akuntansi',
+            'total' => 40,
         ]);
         Prodi::create([
             'name' => 'Administrasi Bisnis',
-            'total' => 100,
+            'total' => 40,
         ]);
         Prodi::create([
             'name' => 'Bahasa Inggris',
-            'total' => 100,
+            'total' => 40,
         ]);
         Prodi::create([
             'name' => 'Teknologi Informasi',
-            'total' => 100,
+            'total' => 48,
         ]);
     }
 }
