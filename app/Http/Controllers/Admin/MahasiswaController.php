@@ -116,6 +116,7 @@ class MahasiswaController extends Controller
                 return redirect()->back()->with(['success' => 'Berhasil Upload Excel!']);
             } catch(\Exception $e) {
                 $user1 = User::findOrFail($user->id);
+                
                 $user1->delete();
                 return dd($e);
             }

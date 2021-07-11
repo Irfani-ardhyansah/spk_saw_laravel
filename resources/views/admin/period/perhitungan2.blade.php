@@ -28,7 +28,7 @@
     </table>
 
 	<center>
-		<h1>Hasil Hitung SAW</h4>
+		<h3>Hasil Hitung Metode Simple Additive Weight</h4>
 	</center>
 
     <table align="center" style="border-collapse: collapse;">

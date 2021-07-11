@@ -22,7 +22,7 @@
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{ asset('/assets/css/jquery-datatables.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{ asset('/assets/css/jquery-datatables.min.css')}}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
 
@@ -44,7 +44,7 @@
 
   <!-- General JS Scripts -->
   <script src="{{ asset('/assets/js/jquery.min.js')}}"></script>
-  <script src="{{ asset('/assets/js/jquery-datatables.min.js')}}"></script>
+  {{-- <script src="{{ asset('/assets/js/jquery-datatables.min.js')}}"></script> --}}
   <script src="{{ asset('/assets/js/popper.min.js')}}"></script>
   <script src="{{ asset('/assets/js/bootstrap.min.js')}}"></script>
   <script src="{{ asset('/assets/js/nicescroll.min.js')}}"></script>

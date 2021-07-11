@@ -239,13 +239,16 @@
                     {{csrf_field()}}
 
                     <div class="row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-6 {{ $errors->has('status') ? 'has-error' : '' }}">
                             <label>Status</label>
                             <select class="form-control selectric" name="status">
                                 <option selected>-</option>
                                 <option value="1" {{ $row->status  == "1" ? 'selected' : '' }}>Dibuka</option>
                                 <option value="0" {{ $row->status  == "0" ? 'selected' : '' }}>Ditutup</option>
                             </select>
+                            <div class="invalid-feedback">
+                                {{ $errors->first('status') }}
+                            </div>
                         </div>
                     </div>
 
