@@ -68,22 +68,14 @@
                             </div>
                             @endif
                         </div>
-                @endforeach
+            @endforeach
 
-                @foreach ($files as $row)
+            @foreach ($files as $row)
                 <input type="hidden" name="criteria_id[]" value="{{ $row->id }}">
                     <div class="row mt-2">
                         <div class="col-2"> 
                             <p> {{$row->name}} </p>
                         </div>
-                        {{-- <div class="col-4">
-                            <select class="form-control selectric" name="value[]">
-                            <option selected hidden>-</option>
-                            @foreach($row->weights->where('value', '!=', '0') as $weight)
-                            <option value="{{ $weight->value }}">{{$weight->information}}</option>
-                            @endforeach
-                            </select>
-                        </div> --}}
                         <input type="hidden" name="value[]" value="-">
                         <div class="form-group col-4">
                             <input type="file" name="file[]" class="{{ $errors->has('file.*') ? 'has-error' : '' }}" required multiple>
@@ -92,7 +84,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+            @endforeach
                 
                 <div class="row">
                     <div class="col-2"></div>
@@ -102,10 +94,14 @@
                     </div>
                 </div>
                 
-            </div>
-            </form>
+                    </div>
+                </form>
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('footer')
+<script src="{{ asset('assets/js/toastr.min.js')}}"></script>
 @endsection

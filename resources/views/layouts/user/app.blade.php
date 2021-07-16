@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,7 +83,7 @@
   <script src="{{ asset('assets/js/custom.js')}}"></script>
   <script src="{{ asset('assets/js/page/bootstrap-modal.js')}}"></script>
     {{-- Toaster --}}
-    <script src="{{ asset('assets/js/toastr.min.js')}}"></script>
+    {{-- <script src="{{ asset('assets/js/toastr.min.js')}}"></script> --}}
     @yield('footer')
     <script>
       @if(Session::has('success'))    
