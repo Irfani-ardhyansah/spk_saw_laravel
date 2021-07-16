@@ -136,6 +136,7 @@
 @endsection
 
 @section('footer')
+<script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
     <script>
         $('.prodi-delete').click(function(){
             var prodi_id = $(this).attr('prodi_id');

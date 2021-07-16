@@ -10,9 +10,10 @@ use App\Mahasiswa;
 use App\Value;
 use App\Criteria;
 use App\Prodi;
-use App\User;
+use Exporter;
 use \PDF;
 use File;
+use DB;
 
 class BeasiswaController extends Controller
 {
@@ -26,7 +27,10 @@ class BeasiswaController extends Controller
         $pendaftar = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->orderBy('semester', 'ASC')->paginate(10);
         // memasukkan data kedalam variabel
         $period_id = $id;
-        return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
+
+        $values = Value::where('period_id', $period_id)->get();
+
+        return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id', 'values'));
     }
 
     public function search($id, Request $request) 
@@ -70,7 +74,7 @@ class BeasiswaController extends Controller
         $period = Period::findOrFail($id);
         //Menghitung Prodi Yang terdaftar
         $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->whereIn('prodi_id', $prodis->pluck('id'))->get();
-        // dd($mahasiswas->where('prodi_id', 10)->count());
+        // dd($mahasiswas);
         return view('admin.period.kuota', compact('prodis', 'mahasiswas', 'period', 'id', 'beasiswa'));
     }
 
@@ -112,6 +116,38 @@ class BeasiswaController extends Controller
 
         $pdf = PDF::loadview('admin.period.perhitungan2', compact('prodi', 'mahasiswas', 'criterias', 'criterias_count', 'values', 'period'));
         return $pdf->download('Hasil Analisis Beasiswa PPA Periode ' . date('Y', strtotime($period->start)) . '.pdf');
+    }
+
+    public function analisis_cetak_excel($id)
+    {
+        $columns = array( 'column_name' => array('NPM', 'Nama Mahasiswa', 'Prodi', 'Nilai'));
+
+        $collection = new \Illuminate\Database\Eloquent\Collection;
+
+        foreach($columns as $column) {
+            $collection[0] = (object) $column; 
+        }
+
+        $prodi = Prodi::orderBy('name', 'ASC')->get();
+        $user_period = User_period::where('period_id', $id)->get();
+        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->get();
+        $criterias_count = Criteria::where('status',1)->get()->count();
+        $values = Value::whereIn('mahasiswa_id', $mahasiswas->pluck('id'))->get();
+        $period = Period::findOrFail($id);
+
+        foreach($prodi as $prod) {
+            $hasil = analisis_full($prod, $values, $mahasiswas, $criterias_count);
+            arsort($hasil);
+            $result = array_slice($hasil, 0, session()->get('kuota_'.$prod->name));
+            foreach($result as $name => $value) {
+                $prodi = explode(" - ",$name);
+                array_push($prodi,$value);
+                $collection[] = (object) $prodi; 
+            }
+        }
+        $excel = Exporter::make('Excel');
+        $excel->load($collection);
+        return $excel->stream('Hasil Analisis Beasiswa PPA Periode '  . date('Y', strtotime($period->start)) . '.xls');
     }
 
     public function nilai($period_id, $mahasiswa_id)

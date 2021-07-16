@@ -9,6 +9,8 @@ use App\Admin;
 use App\Criteria;
 use App\Period;
 use App\Dashboard;
+use App\Prodi;
+use App\User_period;
 use Auth;
 
 class DashboardController extends Controller
@@ -20,7 +22,24 @@ class DashboardController extends Controller
         $mahasiswa_count = Mahasiswa::all()->count();
         $criteria_count = Criteria::all()->count();
         $period_count = Period::all()->count();
-        return view('admin.index', compact('admin_count', 'mahasiswa_count', 'criteria_count', 'period_count'));
+
+        $prodiAll = [];
+        $prodi = Prodi::orderBy('name', 'ASC')->get();
+        foreach($prodi as $row) {
+            $prodiAll[] = $row->name;
+        }
+
+        $beasiswa = Period::where('status', 1)->first();
+        $prodis = Prodi::orderBy('name', 'ASC')->get();
+        $user_period = User_period::where('period_id', $beasiswa->id)->get();
+        $mahasiswas = Mahasiswa::whereIn('user_id', $user_period->pluck('user_id'))->whereIn('prodi_id', $prodis->pluck('id'))->get();
+
+        $pendaftar = [];
+        foreach($prodis as $row) {
+            $pendaftar[] = $mahasiswas->where('prodi_id', $row->id)->count();
+        }
+
+        return view('admin.index', compact('admin_count', 'mahasiswa_count', 'criteria_count', 'period_count', 'prodiAll', 'pendaftar', 'beasiswa'));
     }
 
     public function user()

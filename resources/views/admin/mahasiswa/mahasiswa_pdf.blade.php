@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Mahasiswa Tahun {{ $now->year }}</title>
+    <title>Data Mahasiswa Tahun</title>
 </head>
 
 <table align="center">
@@ -24,7 +24,7 @@
 </table>
 
 <body>
-    <h1 style="margin-left: 165px;">Data Mahasiswa Tahun {{ $now->year }}</h1>
+    <h1 style="margin-left: 265px;">Data Mahasiswa</h1>
     <br>
     <table align="center" style="border-collapse: collapse;">
         <tr>
@@ -35,16 +35,22 @@
             <th style="border: 1px solid #999; padding: 8px 15px;">Semester</th>
             <th style="border: 1px solid #999; padding: 8px 15px;">Prodi</th>
         </tr>
-        @foreach($mahasiswas as $row)
-        <tr>
-            <td style="border: 1px solid #999; padding: 8px 15px;">{{$loop->iteration}}</td>
-            <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->user->npm}}</td>
-            <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->name}}</td>
-            <td style="border: 1px solid #999; padding: 8px 15px;"> {{$row->phone}}</td>
-            <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->semester}}</td>
-            <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->prodi->name}}</td>
-        </tr>
-        @endforeach
+        @if($mahasiswas->isEmpty())
+            <tr>
+                <td colspan="6" style="text-align:center;">Tidak Ada Data</td>
+            </tr>
+        @else 
+            @foreach($mahasiswas as $row)
+            <tr>
+                <td style="border: 1px solid #999; padding: 8px 15px;">{{$loop->iteration}}</td>
+                <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->user->npm}}</td>
+                <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->name}}</td>
+                <td style="border: 1px solid #999; padding: 8px 15px;"> {{$row->phone}}</td>
+                <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->semester}}</td>
+                <td style="border: 1px solid #999; padding: 8px 15px;">{{$row->prodi->name}}</td>
+            </tr>
+            @endforeach
+        @endif
     </table>
 </body>
 </html>

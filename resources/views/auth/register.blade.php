@@ -130,8 +130,9 @@
                       <label>Semester</label>
                       <select class="form-control selectric {{ $errors->has('semester') ? 'is-invalid' : '' }}" name="semester">
                         <option selected>-</option>
-                        <option value="3" {{ old('semester') == "3" ? "selected" :""}}>3</option>
-                        <option value="5" {{ old('semester') == "5" ? "selected" :""}}>5</option>
+                        <option value="3" {{ old('semester') == "2" ? "selected" :""}}>2</option>
+                        <option value="5" {{ old('semester') == "4" ? "selected" :""}}>4</option>
+                        <option value="5" {{ old('semester') == "6" ? "selected" :""}}>6</option>
                       </select>
                       <div class="invalid-feedback d-block">
                         {{ $errors->first('semester') }}
@@ -160,7 +161,7 @@
                   <div class="row">
                     <div class="form-group col-3">
                       <label>Profile Picture</label>
-                      <img id="preview" class="profile-user-img img-responsive" style="height: 150px; width: 150px; display: block;">
+                      <img id="preview" src="{{ url('/profile_images/default.png')}}" class="rounded-circle profile-widget-picture" style="height:150px; width:150px;">
                     </div>
                     <div class="form-group col-6 mt-4">
                       <input type="file" class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}" name="photo" id="photo">

@@ -150,8 +150,9 @@
                                 <label>Semester</label>
                                     <select class="form-control select2" required name="semester" value="{{ $mahasiswa->semester }}">
                                         <option selected>-</option>
-                                        <option {{ $mahasiswa->semester == "3" ? 'selected' : '' }}>3</option>
-                                        <option {{ $mahasiswa->semester == "5" ? 'selected' : '' }}>5</option>
+                                        <option {{ $mahasiswa->semester == "2" ? 'selected' : '' }}>2</option>
+                                        <option {{ $mahasiswa->semester == "4" ? 'selected' : '' }}>4</option>
+                                        <option {{ $mahasiswa->semester == "6" ? 'selected' : '' }}>6</option>
                                     </select>
                             </div>
                         </div>
@@ -171,8 +172,12 @@
                                 {{-- <div class="gallery gallery-md">
                                     <div class="gallery-item" id="preview" data-image="{{ url('/profile_images/' . $mahasiswa->user->npm . '/' . $mahasiswa->photo)}}" data-title="Image 1"></div>
                                 </div> --}}
-                                
-                                <img id="preview" src="{{ url('/profile_images/' . $mahasiswa->user->npm . '/' . $mahasiswa->photo)}}" class="profile-user-img img-responsive" style="height: 150px; width: 150px; display: block;">
+                                @if(empty($mahasiswa->photo))
+                                    <img id="preview" alt="image" src="{{ url('/profile_images/default.png')}}" class="rounded-circle profile-widget-picture" style="height:150px; width:150px;">
+                                @else
+                                    <img id="preview" alt="image" src="{{ url('/profile_images/' . $mahasiswa->user->npm . '/' . $mahasiswa->photo)}}" class="rounded-circle profile-widget-picture" style="height:150px; width:150px;">
+                                @endif
+                                {{-- <img id="preview" src="{{ url('/profile_images/' . $mahasiswa->user->npm . '/' . $mahasiswa->photo)}}" class="profile-user-img img-responsive" style="height: 150px; width: 150px; display: block;"> --}}
                             </div>
                             <div class="form-group col-6 mt-4">
                             <input type="file" class="form-control {{ $errors->has('photo') ? 'is-invalid' : '' }}" name="photo" id="photo">

@@ -121,6 +121,7 @@
 @endsection
 
 @section('footer')
+    <script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
     <script>
         $('.mahasiswa-delete').click(function(){
             var mahasiswa_id = $(this).attr('mahasiswa_id');
@@ -140,23 +141,5 @@
                 });
                 event.preventDefault();
         });
-
-
-        // $('#tablemahasiswa').DataTable({
-        //     processing: true,
-        //     serverSide: true,
-        //     ajax: {
-        //         url: '{{ route('admin.data.mahasiswa') }}'
-        //     },
-        //     columns: [
-        //         {data: 'npm', name: 'npm'},
-        //         {data: 'name', name: 'name'},
-        //         {data: 'phone', name: 'phone', orderable: false},
-        //         {data: 'semester', name: 'semester'},
-        //         {data: 'prodi', name: 'prodi'},
-        //         {data: 'action', name: 'action', orderable: false, searchable: false},
-        //     ],
-        // });
-
     </script>
 @endsection

@@ -17,7 +17,7 @@
                 Kriteria Penghitungan
             </a>
             <a class="btn btn-light" data-toggle="collapse" href="#criteria2" role="button" aria-expanded="false" aria-controls="criteria">
-                Kriteria Beasiswa
+                Kriteria Pendukung
             </a>
           </p>
     </div>
@@ -371,6 +371,7 @@
 @endsection
 
 @section('footer')
+    <script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
     <script>
         $('.weight-delete').click(function(){
             var weight_id = $(this).attr('weight_id');

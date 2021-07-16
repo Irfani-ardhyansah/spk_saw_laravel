@@ -22,10 +22,16 @@ class PeriodController extends Controller
 
     public function register($id)
     {
-        $criterias = Criteria::orderBy('code', 'ASC')->get();
+        // $criterias = Criteria::orderBy('code', 'ASC')->get();
+        // $period_id =  Crypt::decrypt($id);
+        // $period = Period::where('id', $period_id)->first();
+        // return view('user.period.daftar', compact('criterias', 'id', 'period'));
+
+        $criterias = Criteria::where('status', 1)->orderBy('code', 'ASC')->get();
+        $files = Criteria::where('status', 0)->orderBy('code', 'ASC')->get();
         $period_id =  Crypt::decrypt($id);
         $period = Period::where('id', $period_id)->first();
-        return view('user.period.daftar', compact('criterias', 'id', 'period'));
+        return view('user.period.daftar2', compact('criterias', 'files', 'id', 'period'));
     }
 
     public function save(Request $request, $id)

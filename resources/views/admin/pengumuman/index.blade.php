@@ -109,6 +109,7 @@
 @endsection
 
 @section('footer')
+<script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
     <script>
         $('.anouncement-delete').click(function(){
             var anouncement_id = $(this).attr('anouncement_id');

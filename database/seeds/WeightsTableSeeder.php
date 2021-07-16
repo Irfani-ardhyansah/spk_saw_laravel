@@ -21,17 +21,17 @@ class WeightsTableSeeder extends Seeder
         ]);
         Weight::create([
             'criteria_id' => Criteria::where('name', 'IPK')->first()->id,
-            'information' => '3.00 S/D 3.30',
+            'information' => '3.00 < IPK <= 3.30',
             'value' => 0.25,
         ]);
         Weight::create([
             'criteria_id' => Criteria::where('name', 'IPK')->first()->id,
-            'information' => '3.30 S/D 3.60',
+            'information' => '3.30 < IPK <= 3.60',
             'value' => 0.5,
         ]);
         Weight::create([
             'criteria_id' => Criteria::where('name', 'IPK')->first()->id,
-            'information' => '3.60 S/D 4.00',
+            'information' => '3.60 < IPK <= 4.00',
             'value' => 0.75,
         ]);
 
@@ -92,13 +92,23 @@ class WeightsTableSeeder extends Seeder
         // Bobot Prestasi
         Weight::create([
             'criteria_id' => Criteria::where('name', 'Prestasi / Organisasi')->first()->id,
-            'information' => 'Ada',
+            'information' => '3 <= prestasi / organisasi',
             'value' => 1,
         ]);
         Weight::create([
             'criteria_id' => Criteria::where('name', 'Prestasi / Organisasi')->first()->id,
-            'information' => 'Tidak Ada',
+            'information' => 2,
+            'value' => 0.75,
+        ]);
+        Weight::create([
+            'criteria_id' => Criteria::where('name', 'Prestasi / Organisasi')->first()->id,
+            'information' => 1,
             'value' => 0.5,
+        ]);
+        Weight::create([
+            'criteria_id' => Criteria::where('name', 'Prestasi / Organisasi')->first()->id,
+            'information' => 'Tidak Ada',
+            'value' => 0.25,
         ]);
     }
 }

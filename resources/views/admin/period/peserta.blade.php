@@ -48,7 +48,8 @@
                             <td>{{$row->semester}}</td>
                             <td>{{$row->prodi->name}}</td>
                             <td>
-                                <a href="/admin/periode/{{$period_id}}/peserta/{{$row->id}}/nilai" class="btn btn-outline-info btn-sm">Nilai</a>
+                                <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modalNilai-{{$row->id}}">Nilai</button>
+                                {{-- <a href="/admin/periode/{{$period_id}}/peserta/{{$row->id}}/nilai" class="btn btn-outline-info btn-sm">Nilai</a> --}}
                                 <a href="#" class="btn btn-outline-danger btn-sm peserta-delete" period_id="{{ $period_id }}" peserta_id="{{ $row->id }}" peserta_name="{{ $row->name }}" >Delete</a>
                             </td>
                         </tr>
@@ -64,6 +65,47 @@
           </div>
     </div>
 </section>
+
+{{-- Modal Tambah Kriteria --}}
+@foreach($pendaftar as $row)
+<div class="modal fade" id="modalNilai-{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nilai {{ $row->name }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+    
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-md">
+                        <tr>
+                            <th>#</th>
+                            <th>Kriteria</th>
+                            <th>Nilai</th>
+                            <th>File</th>
+                        </tr>
+                        @foreach($values->where('mahasiswa_id', $row->id) as $value)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{$value->criteria->name}}</td>
+                            <td>{{$value->value}}</td>
+                            <td> 
+                                <a href="{{ url('/') }}/periode/{{$value->period->start.'_'.$value->period->end}}/{{ $row->user->npm }}/{{$value->file}}" target="_blank"><button>File</button></a> 
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endforeach
 
 @endsection
 

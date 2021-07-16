@@ -4,8 +4,12 @@
 <section class="section">
     <div class="section-header">
         <h1>Analisis Periode {{ date('d', strtotime($beasiswa->start)) }} {{ date('F', strtotime($beasiswa->start)) }} {{ date('Y', strtotime($beasiswa->start)) }} s/d {{ date('d', strtotime($beasiswa->end)) }} {{ date('F', strtotime($beasiswa->end)) }} {{ date('Y', strtotime($beasiswa->end)) }}</h1>
+        <div style="margin-left:350px;">
+            <a href="{{ route('admin.beasiswa.analisis.pdf', ['id' => $id]) }}" target="_blank"  class="btn btn-outline-danger">PDF</a>
+        </div>
+
         <div class="ml-auto">
-            <a href="{{ route('admin.beasiswa.analisis.pdf', ['id' => $id]) }}" target="_blank"  class="btn btn-outline-secondary"><i class="ion ion-document-text"></i></a>
+            <a href="{{ route('admin.beasiswa.analisis.excel', ['id' => $id]) }}" target="_blank"  class="btn btn-outline-success">Excel</a>
         </div>
     </div>
 

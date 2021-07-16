@@ -69,7 +69,8 @@
   <script src="{{ asset('/assets/js/sweetalert.min.js')}}"></script>
 
   {{-- Toaster --}}
-  <script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
+  {{-- <script src="{{ asset('/assets/js/toastr.min.js')}}"></script> --}}
+  @yield('footer')
   <script>
     @if(Session::has('success'))    
       toastr.options.positionClass = "toast-top-center";
@@ -80,6 +81,5 @@
       toastr.error("{{ Session::get('error') }}");
     @endif
   </script>
-  @yield('footer')
 </body>
 </html>

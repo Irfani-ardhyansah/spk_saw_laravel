@@ -120,32 +120,6 @@ class MahasiswaController extends Controller
                 $user1->delete();
                 return dd($e);
             }
-
-                // for($row=1; $row<sizeof($collection); $row++) {
-                //     try {
-                //         $user = User::create([
-                //             'npm'       => $collection[$row][0],
-                //             'email'     => $collection[$row][1],
-                //             'password'  => bcrypt($collection[$row][2]),
-                //         ]);
-
-                //         Mahasiswa::create([
-                //             'user_id'   => $user->id,
-                //             'name'      => $collection[$row][3],
-                //             'prodi_id'  => Prodi::where('name', $collection[$row][4])->first()->id,
-                //             'semester'  => $collection[$row][5],
-                //             'address'   => $collection[$row][6],
-                //             'gender'    => $collection[$row][7],
-                //             'phone'     => $collection[$row][8],
-                //             'religion'  => $collection[$row][9],
-                //         ]);
-                //         return redirect()->back()->with(['success' => 'Berhasil Upload Excel!']);
-                //     }catch(\Exception $e) {
-                //         $user1 = User::findOrFail($user->id);
-                //         $user1->delete();
-                //         return redirect()->back()->with(['error' => $e->getMessage()]);
-                //     }
-                // }
             }
 
         } catch(\Exception $e) {

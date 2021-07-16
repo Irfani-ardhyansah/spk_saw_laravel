@@ -69,3 +69,7 @@
 </div>
 
 @endsection
+
+@section('footer')
+<script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
+@endsection

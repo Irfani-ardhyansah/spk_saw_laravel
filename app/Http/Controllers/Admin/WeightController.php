@@ -39,8 +39,8 @@ class WeightController extends Controller
         if($request->isMethod('post')) { //jika method post
             try {
                 $this->validate($request, [
-                    'information'          => 'required|unique:weights,information,'.$id,
-                    'value'          => 'required|unique:weights,value,'.$id,
+                    'information'          => 'required',
+                    'value'          => 'required',
                 ], [
                     'information.unique'   =>  'Keterangan Tidak Boleh Sama!',
                     'value.unique'   =>  'Nilai Tidak Boleh Sama!',

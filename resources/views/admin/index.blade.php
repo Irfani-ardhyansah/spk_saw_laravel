@@ -69,6 +69,56 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel">
+            <div id="chartMahasiswa"></div>
+          </div>
+        </div>
+      </div>
     </div>
 </section>
+@endsection
+
+@section('footer')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+  Highcharts.chart('chartMahasiswa', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Laporan Pendaftar Beasiswa ' 
+    },
+    xAxis: {
+        categories: {!! json_encode($prodiAll) !!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah Mahasiswa'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:1f} Orang</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Mahasiswa Pendaftar',
+        data: {!! json_encode($pendaftar) !!}
+
+    }]
+});
+</script>
 @endsection
