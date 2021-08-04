@@ -92,34 +92,34 @@ class MahasiswaController extends Controller
             //Memecah Data Dari Excel Kedalam Array Dan Menyimpan Ke DB
             if(sizeof($collection[1]) == 10) {
 
-            try { 
-                foreach($collection as $key => $value) {
-                    if($key > 0){ 
-                        $user = User::create([
-                            'npm'       => $value[0],
-                            'email'     => $value[1],
-                            'password'  => bcrypt($value[2]),
-                        ]);
+                try { 
+                    foreach($collection as $key => $value) {9
+                        if($key > 0){ 
+                            $user = User::create([
+                                'npm'       => $value[0],
+                                'email'     => $value[1],
+                                'password'  => bcrypt($value[2]),
+                            ]);
 
-                        Mahasiswa::create([
-                            'user_id'   => $user->id,
-                            'name'      => $value[3],
-                            'prodi_id'  => Prodi::where('name', $value[4])->first()->id,
-                            'semester'  => $value[5],
-                            'address'   => $value[6],
-                            'gender'    => $value[7],
-                            'phone'     => $value[8],
-                            'religion'  => $value[9],
-                        ]);
+                            Mahasiswa::create([
+                                'user_id'   => $user->id,
+                                'name'      => $value[3],
+                                'prodi_id'  => Prodi::where('name', $value[4])->first()->id,
+                                'semester'  => $value[5],
+                                'address'   => $value[6],
+                                'gender'    => $value[7],
+                                'phone'     => $value[8],
+                                'religion'  => $value[9],
+                            ]);
+                        }
                     }
+                    return redirect()->back()->with(['success' => 'Berhasil Upload Excel!']);
+                } catch(\Exception $e) {
+                    $user1 = User::findOrFail($user->id);
+                    
+                    $user1->delete();
+                    return dd($e);
                 }
-                return redirect()->back()->with(['success' => 'Berhasil Upload Excel!']);
-            } catch(\Exception $e) {
-                $user1 = User::findOrFail($user->id);
-                
-                $user1->delete();
-                return dd($e);
-            }
             }
 
         } catch(\Exception $e) {

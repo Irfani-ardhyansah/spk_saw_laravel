@@ -42,7 +42,9 @@ class BeasiswaController extends Controller
         ->orderBy('semester', 'ASC')
         ->paginate(10);
 
-        return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id'));
+        $values = Value::where('period_id', $period_id)->get();
+
+        return view('admin.period.peserta', compact('pendaftar', 'beasiswa', 'period_id', 'values'));
     }
 
     public function delete($id, $mahasiswa_id)

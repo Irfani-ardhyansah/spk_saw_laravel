@@ -10,12 +10,12 @@
   <div class="breadcrumb-item">Daftar</div>
   </div>
 </div>
-<h2 class="section-title">Form Daftar </h2>
 @if (count($errors) > 0)
 <div class="alert alert-danger">
   {{ $errors->first() }}
 </div>
 @endif 
+<h2 class="section-title">Data Utama</h2>
 <div class="section-body">
     <div class="card">
         <div class="card-body width">
@@ -68,8 +68,14 @@
                             </div>
                             @endif
                         </div>
+                    </div>
             @endforeach
+    </div>
+</div>
 
+<h2 class="section-title">Data Pendukung</h2>
+<div class="card">
+    <div class="card-body width">
             @foreach ($files as $row)
                 <input type="hidden" name="criteria_id[]" value="{{ $row->id }}">
                     <div class="row mt-2">
@@ -93,8 +99,6 @@
                         <button type="submit" class="btn btn-primary ml-auto mr-5">Daftar</button>
                     </div>
                 </div>
-                
-                    </div>
                 </form>
         </div>
     </div>

@@ -70,6 +70,6 @@
 
 @endsection
 
-@section('footer')
+{{-- @section('footer')
 <script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
-@endsection
+@endsection --}}

@@ -38,11 +38,12 @@
                                 {{$row->name}}
                             </h4>
                         </div>
-                        <div class="ticket-info">
+                       {{--  <div class="ticket-info">
                           <div>Total Mahasiswa</div>
                           <div class="bullet"></div>
                           <div class="text-primary"> {{$total_mahasiswa = $row->total}}</div>
-                        </div>
+                        </div> --}}
+                        @php($total_mahasiswa = $row->total)
                         <div class="ticket-info">
                           <div>Jumlah Pendaftar</div>
                           <div class="bullet"></div>

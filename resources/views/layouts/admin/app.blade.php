@@ -69,7 +69,7 @@
   <script src="{{ asset('/assets/js/sweetalert.min.js')}}"></script>
 
   {{-- Toaster --}}
-  {{-- <script src="{{ asset('/assets/js/toastr.min.js')}}"></script> --}}
+  <script src="{{ asset('/assets/js/toastr.min.js')}}"></script>
   @yield('footer')
   <script>
     @if(Session::has('success'))    

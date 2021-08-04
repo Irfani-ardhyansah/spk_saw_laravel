@@ -27,57 +27,105 @@ class PeriodController extends Controller
         $start = DB::table('periods')->select('start')->where('status', 1)->first();
         $end = DB::table('periods')->select('end')->where('status', 1)->first();
 
-        if(Carbon::parse($request->start) > Carbon::parse($request->end)) {
-            return redirect()->back()->with(['error' => 'Tanggal Mulai Harus Sebelum Tanggal Selesai!']);
-        } else {
-            if(Carbon::parse($request->start)->between(Carbon::parse($start->start), Carbon::parse($end->end))) {
-                return redirect()->back()->with(['error' => 'Tanggal Mulai Dan Selesai Tidak Bisa Diantara Data Yang Masih Ada!']);
+        if($start != null && $end != null) {
+            if(Carbon::parse($request->start) > Carbon::parse($request->end)) {
+                return redirect()->back()->with(['error' => 'Tanggal Mulai Harus Sebelum Tanggal Selesai!']);
             } else {
-                try {
-                    //memvalidasi inputan dari view
-                    $this->validate($request, [
-                        'start'  => 'required|unique:periods,start',
-                        'end'    => 'required|unique:periods,end',
-                        'file'   => 'required|mimes:pdf|max:2000',
-                        'status' => 'required',
-                        'quota'  => 'required|numeric'
-                    ], [
-                        'start.required'    => 'Tanggal Mulai Harus Diisi!',
-                        'end.required'      => 'Tanggal Selesai Harus Diisi!',
-                        'file.required'     => 'File Pengumuman Harus Diisi!',
-                        'file.mimes'        => 'File Pengumuman Harus Berupa PDF!',
-                        'quota.required'    => 'Kuota Beasiswa Harus Diisi!',
-                        'quota.numeric'     => 'Kuota Beasiswa Harus Angka!'
-                    ]);
-        
-                    //jika inputan ada file
-                    if($request->hasFile('file')){
-                        $file = $request->file('file'); //memasukkan dalam variable
-                        $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
-                        $nama_file = 'Pengumuman Pendaftaran PPA' . ' ' . Carbon::now()->format('Y') . '.' . $extension; //merename file
-                        // $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
-                        $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
-                        $item = $nama_file; //memasukkan dalam variable
-                    }
-        
-                    if(!empty($item)) {  //apabila variable $item ada isinya melakukan proses penyimpanan data
-                        $periods = Period::create([
-                            'admin_id'  =>  Auth::user()->id,
-                            'start'     =>  $request->start,
-                            'end'       =>  $request->end,
-                            'file'      =>  $item,
-                            'status'    =>  $request->status,
-                            'quota'     =>  $request->quota 
+                if(Carbon::parse($request->start)->between(Carbon::parse($start->start), Carbon::parse($end->end))) {
+                    return redirect()->back()->with(['error' => 'Tanggal Mulai Dan Selesai Tidak Bisa Diantara Data Yang Masih Ada!']);
+                } else {
+                    try {
+                        //memvalidasi inputan dari view
+                        $this->validate($request, [
+                            'start'  => 'required|unique:periods,start',
+                            'end'    => 'required|unique:periods,end',
+                            'file'   => 'required|mimes:pdf|max:2000',
+                            'status' => 'required',
+                            'quota'  => 'required|numeric'
+                        ], [
+                            'start.required'    => 'Tanggal Mulai Harus Diisi!',
+                            'end.required'      => 'Tanggal Selesai Harus Diisi!',
+                            'file.required'     => 'File Pengumuman Harus Diisi!',
+                            'file.mimes'        => 'File Pengumuman Harus Berupa PDF!',
+                            'quota.required'    => 'Kuota Beasiswa Harus Diisi!',
+                            'quota.numeric'     => 'Kuota Beasiswa Harus Angka!'
                         ]);
-        
-                    } else {
-                        return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']); //jika tidak ada maka menampilkan pesan error
+            
+                        //jika inputan ada file
+                        if($request->hasFile('file')){
+                            $file = $request->file('file'); //memasukkan dalam variable
+                            $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
+                            $nama_file = 'Pengumuman Pendaftaran PPA' . ' ' . Carbon::now()->format('Y') . '.' . $extension; //merename file
+                            // $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
+                            $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
+                            $item = $nama_file; //memasukkan dalam variable
+                        }
+            
+                        if(!empty($item)) {  //apabila variable $item ada isinya melakukan proses penyimpanan data
+                            $periods = Period::create([
+                                'admin_id'  =>  Auth::user()->id,
+                                'start'     =>  $request->start,
+                                'end'       =>  $request->end,
+                                'file'      =>  $item,
+                                'status'    =>  $request->status,
+                                'quota'     =>  $request->quota 
+                            ]);
+            
+                        } else {
+                            return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']); //jika tidak ada maka menampilkan pesan error
+                        }
+            
+                        return redirect()->back()->with(['success' => 'Berhasil Menambah Periode Pada ' . $periods->start]);
+                    } catch(\Exception $e) {
+                        return redirect()->back()->with(['error' => $e->getMessage()]);
                     }
-        
-                    return redirect()->back()->with(['success' => 'Berhasil Menambah Periode Pada ' . $periods->start]);
-                } catch(\Exception $e) {
-                    return redirect()->back()->with(['error' => $e->getMessage()]);
                 }
+            }
+        } else {
+            try {
+                //memvalidasi inputan dari view
+                $this->validate($request, [
+                    'start'  => 'required|unique:periods,start',
+                    'end'    => 'required|unique:periods,end',
+                    'file'   => 'required|mimes:pdf|max:2000',
+                    'status' => 'required',
+                    'quota'  => 'required|numeric'
+                ], [
+                    'start.required'    => 'Tanggal Mulai Harus Diisi!',
+                    'end.required'      => 'Tanggal Selesai Harus Diisi!',
+                    'file.required'     => 'File Pengumuman Harus Diisi!',
+                    'file.mimes'        => 'File Pengumuman Harus Berupa PDF!',
+                    'quota.required'    => 'Kuota Beasiswa Harus Diisi!',
+                    'quota.numeric'     => 'Kuota Beasiswa Harus Angka!'
+                ]);
+    
+                //jika inputan ada file
+                if($request->hasFile('file')){
+                    $file = $request->file('file'); //memasukkan dalam variable
+                    $extension = $file->getClientOriginalExtension(); //mengambil ekstensi oroginal dari inputan
+                    $nama_file = 'Pengumuman Pendaftaran PPA' . ' ' . Carbon::now()->format('Y') . '.' . $extension; //merename file
+                    // $request->file('file')->move('pengumuman_periode/', $nama_file); //memasuukkan pada folder pengumuman_periode pada server
+                    $request->file('file')->move('periode/' . $request->start . '_' . $request->end . '/pengumuman/', $nama_file);
+                    $item = $nama_file; //memasukkan dalam variable
+                }
+    
+                if(!empty($item)) {  //apabila variable $item ada isinya melakukan proses penyimpanan data
+                    $periods = Period::create([
+                        'admin_id'  =>  Auth::user()->id,
+                        'start'     =>  $request->start,
+                        'end'       =>  $request->end,
+                        'file'      =>  $item,
+                        'status'    =>  $request->status,
+                        'quota'     =>  $request->quota 
+                    ]);
+    
+                } else {
+                    return redirect()->back()->with(['error' => 'File Jawaban Terlalu Besar.']); //jika tidak ada maka menampilkan pesan error
+                }
+    
+                return redirect()->back()->with(['success' => 'Berhasil Menambah Periode Pada ' . $periods->start]);
+            } catch(\Exception $e) {
+                return redirect()->back()->with(['error' => $e->getMessage()]);
             }
         }
 
